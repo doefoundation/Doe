@@ -15,30 +15,32 @@ export function HomePage() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#f8f5ef] text-[#1a1917]">
       <header className="relative z-20 border-b border-[#1a1917]/12 bg-[#f8f5ef]/95 px-5 backdrop-blur-sm sm:px-8">
-        <div className="mx-auto flex h-[76px] max-w-[1360px] items-center justify-between">
-          <button
-            type="button"
-            aria-label={searchOpen ? 'Close search' : 'Open search'}
-            aria-expanded={searchOpen}
-            onClick={() => setSearchOpen((open) => !open)}
-            className="group flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-[#e9e3d9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]"
-          >
-            {searchOpen ? <X size={22} strokeWidth={1.7} /> : <Search size={21} strokeWidth={1.7} />}
-          </button>
-
-          <a href="#top" aria-label="DOE Foundation home" className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center">
-            <img src={logoUrl} alt="DOE Foundation" className="h-12 w-auto object-contain mix-blend-multiply sm:h-14" />
+        <div className="mx-auto flex h-[92px] max-w-[1360px] items-center justify-between sm:h-[108px]">
+          <a href="#top" aria-label="DOE Foundation home" className="flex items-center justify-center">
+            <img src={logoUrl} alt="DOE Foundation" className="h-[68px] w-auto object-contain mix-blend-multiply sm:h-[88px]" />
           </a>
 
-          <button
-            type="button"
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
-            className="group flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-[#e9e3d9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]"
-          >
-            {menuOpen ? <X size={23} strokeWidth={1.7} /> : <Menu size={23} strokeWidth={1.7} />}
-          </button>
+          <div className="flex items-center gap-1 sm:gap-3">
+            <button
+              type="button"
+              aria-label={searchOpen ? 'Close search' : 'Open search'}
+              aria-expanded={searchOpen}
+              onClick={() => setSearchOpen((open) => !open)}
+              className="group flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-[#e9e3d9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]"
+            >
+              {searchOpen ? <X size={22} strokeWidth={1.7} /> : <Search size={21} strokeWidth={1.7} />}
+            </button>
+
+            <button
+              type="button"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((open) => !open)}
+              className="group flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-[#e9e3d9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]"
+            >
+              {menuOpen ? <X size={23} strokeWidth={1.7} /> : <Menu size={23} strokeWidth={1.7} />}
+            </button>
+          </div>
         </div>
 
         {searchOpen && (
