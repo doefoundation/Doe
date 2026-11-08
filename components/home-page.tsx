@@ -1,0 +1,118 @@
+'use client'
+
+import { useState } from 'react'
+import { ArrowUpRight, ChevronRight, Menu, Search, X } from 'lucide-react'
+
+const logoUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/file_00000000ebbc8243b1a46e16cc7df432-Ey2WCQZAaBoXSQKqIEQgRVc2ePrSvh.png'
+
+const navItems = ['Our work', 'Who we are', 'Get involved', 'Stories']
+
+export function HomePage() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [query, setQuery] = useState('')
+
+  return (
+    <main className="min-h-screen overflow-hidden bg-[#f8f5ef] text-[#1a1917]">
+      <header className="relative z-20 border-b border-[#1a1917]/12 bg-[#f8f5ef]/95 px-5 backdrop-blur-sm sm:px-8">
+        <div className="mx-auto flex h-[76px] max-w-[1360px] items-center justify-between">
+          <button
+            type="button"
+            aria-label={searchOpen ? 'Close search' : 'Open search'}
+            aria-expanded={searchOpen}
+            onClick={() => setSearchOpen((open) => !open)}
+            className="group flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-[#e9e3d9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]"
+          >
+            {searchOpen ? <X size={22} strokeWidth={1.7} /> : <Search size={21} strokeWidth={1.7} />}
+          </button>
+
+          <a href="#top" aria-label="DOE Foundation home" className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center">
+            <img src={logoUrl} alt="DOE Foundation" className="h-12 w-auto object-contain mix-blend-multiply sm:h-14" />
+          </a>
+
+          <button
+            type="button"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+            className="group flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-[#e9e3d9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]"
+          >
+            {menuOpen ? <X size={23} strokeWidth={1.7} /> : <Menu size={23} strokeWidth={1.7} />}
+          </button>
+        </div>
+
+        {searchOpen && (
+          <div className="mx-auto max-w-[1360px] border-t border-[#1a1917]/10 py-4">
+            <label htmlFor="site-search" className="sr-only">Search DOE Foundation</label>
+            <div className="flex items-center gap-3 border-b border-[#1a1917]/35 pb-2">
+              <Search size={19} strokeWidth={1.6} aria-hidden="true" />
+              <input
+                id="site-search"
+                autoFocus
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' && !event.nativeEvent.isComposing && event.keyCode !== 229) {
+                    event.preventDefault()
+                  }
+                }}
+                placeholder="Search our work, stories, and resources"
+                className="w-full bg-transparent text-base outline-none placeholder:text-[#1a1917]/50"
+              />
+              {query && <span className="text-xs uppercase tracking-[0.16em] text-[#1a1917]/50">Press enter</span>}
+            </div>
+          </div>
+        )}
+
+        {menuOpen && (
+          <nav aria-label="Main navigation" className="mx-auto max-w-[1360px] border-t border-[#1a1917]/10 py-6">
+            <ul className="grid gap-1 sm:grid-cols-4">
+              {navItems.map((item) => (
+                <li key={item}>
+                  <a href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMenuOpen(false)} className="flex items-center justify-between border-b border-[#1a1917]/10 py-3 text-lg transition-colors hover:text-[#d70063]">
+                    {item}<ArrowUpRight size={18} strokeWidth={1.5} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+      </header>
+
+      <section id="top" className="mx-auto grid min-h-[610px] max-w-[1360px] items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-20 lg:py-24">
+        <div className="max-w-[680px]">
+          <p className="mb-7 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]"><span className="h-px w-8 bg-[#d70063]" />Education changes everything</p>
+          <h1 className="max-w-[680px] font-serif text-[clamp(3.8rem,8vw,7.5rem)] leading-[.88] tracking-[-0.075em]">Every child deserves a <em className="font-normal text-[#d70063]">way forward.</em></h1>
+          <p className="mt-9 max-w-[470px] text-lg leading-relaxed text-[#1a1917]/70 sm:text-xl">We open doors to quality education, mentorship, and opportunity for young people building a brighter future.</p>
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <a href="#get-involved" className="inline-flex items-center gap-4 rounded-full bg-[#d70063] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]">Support our work <ArrowUpRight size={18} /></a>
+            <a href="#our-work" className="group inline-flex items-center gap-2 px-2 py-3.5 text-sm font-semibold">Explore our work <ChevronRight size={17} className="transition-transform group-hover:translate-x-1" /></a>
+          </div>
+        </div>
+        <div className="relative mx-auto w-full max-w-[560px]">
+          <div className="absolute -right-4 -top-5 h-28 w-28 rounded-full bg-[#f1c6d7] sm:-right-8 sm:-top-8 sm:h-40 sm:w-40" aria-hidden="true" />
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[180px_180px_22px_22px] bg-[#d70063]">
+            <div className="absolute inset-0 bg-[linear-gradient(145deg,transparent_32%,rgba(255,255,255,.15)_32%,rgba(255,255,255,.15)_33%,transparent_33%)]" />
+            <div className="absolute bottom-8 left-8 right-8 border-t border-white/40 pt-5 text-white sm:bottom-12 sm:left-12 sm:right-12 sm:pt-7"><p className="font-serif text-3xl leading-tight sm:text-4xl">A better future starts with a chance.</p><p className="mt-4 text-xs uppercase tracking-[0.18em] text-white/70">DOE Foundation · Since 2010</p></div>
+          </div>
+          <div className="absolute -bottom-8 -left-6 flex h-24 w-24 items-center justify-center rounded-full border border-[#1a1917]/20 bg-[#f8f5ef] text-center text-[10px] font-semibold uppercase leading-tight tracking-[0.16em] sm:-left-10 sm:h-32 sm:w-32">Learn<br />Grow<br />Lead</div>
+        </div>
+      </section>
+
+      <section id="our-work" className="border-y border-[#1a1917]/12 bg-[#e9e3d9] px-5 py-16 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-[1360px]">
+          <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+            <div><p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">What we do</p><h2 className="font-serif text-5xl leading-[.95] tracking-[-0.05em] sm:text-6xl">Opportunity is a <em className="font-normal">collective act.</em></h2></div>
+            <p className="max-w-xl text-lg leading-relaxed text-[#1a1917]/70">From classrooms to communities, we partner with local leaders to make learning more equitable, more joyful, and more possible.</p>
+          </div>
+          <div className="mt-14 grid border-t border-[#1a1917]/20 md:grid-cols-3">
+            {[['01', 'Learning access', 'We equip learners with the tools, spaces, and support they need to thrive.'], ['02', 'Mentorship', 'We connect young people with mentors who see their potential and help them see it too.'], ['03', 'Community power', 'We invest in local ideas because lasting change grows from within.']].map(([number, title, text]) => <article key={number} className="border-b border-[#1a1917]/20 py-7 md:border-b-0 md:border-r md:px-8 md:first:pl-0 md:last:border-r-0"><span className="text-xs font-semibold tracking-[0.16em] text-[#d70063]">{number}</span><h3 className="mt-12 font-serif text-3xl">{title}</h3><p className="mt-4 max-w-xs leading-relaxed text-[#1a1917]/65">{text}</p></article>)}
+          </div>
+        </div>
+      </section>
+
+      <section id="get-involved" className="mx-auto flex max-w-[1360px] flex-col gap-8 px-5 py-20 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:py-28"><div><p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">Join the movement</p><h2 className="max-w-2xl font-serif text-5xl leading-[.95] tracking-[-0.05em] sm:text-7xl">Small actions. <em className="font-normal">Big ripples.</em></h2></div><a href="mailto:hello@doefoundation.org" className="group inline-flex w-fit items-center gap-4 border-b border-[#1a1917] pb-3 text-sm font-semibold">Let&apos;s make a difference <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></a></section>
+      <footer className="bg-[#1a1917] px-5 py-8 text-white sm:px-8"><div className="mx-auto flex max-w-[1360px] flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"><p className="text-sm text-white/70">© 2025 DOE Foundation. Education for every future.</p><div className="flex gap-5 text-xs uppercase tracking-[0.14em] text-white/60"><a href="#our-work" className="hover:text-white">Our work</a><a href="mailto:hello@doefoundation.org" className="hover:text-white">Contact</a></div></div></footer>
+    </main>
+  )
+}
