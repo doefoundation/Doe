@@ -101,6 +101,25 @@ export function HomePage() {
         </div>
       </section>
 
+      <section id="who-we-are" className="border-y border-[#1a1917]/12 bg-[#f8f5ef] px-5 py-16 sm:px-8 sm:py-24">
+        <div className="mx-auto grid max-w-[1360px] gap-10 lg:grid-cols-[.75fr_1.25fr] lg:gap-24">
+          <div>
+            <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">Who we are</p>
+            <h2 className="max-w-sm font-serif text-5xl leading-[.95] tracking-[-0.05em] sm:text-6xl">Purposeful leaders for a <em className="font-normal text-[#d70063]">brighter Africa.</em></h2>
+          </div>
+          <div className="max-w-2xl">
+            <p className="text-xl leading-relaxed text-[#1a1917]/80 sm:text-2xl">The Davida Omosomi Empowerment Foundation (DOE Foundation) is a child- and youth-focused nonprofit dedicated to raising a generation of purposeful leaders through advocacy, literacy development, and community-centered initiatives.</p>
+            <details className="group mt-8">
+              <summary className="flex w-fit cursor-pointer list-none items-center gap-3 border-b border-[#1a1917] pb-2 text-sm font-semibold marker:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d70063] [&::-webkit-details-marker]:hidden">See More <span className="text-xl font-normal leading-none transition-transform group-open:rotate-45">+</span></summary>
+              <div className="mt-10 grid gap-8 border-t border-[#1a1917]/15 pt-8 sm:grid-cols-2">
+                <div><p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#d70063]">Vision</p><p className="leading-relaxed text-[#1a1917]/70">To develop primary and secondary school students across Africa into confident thinkers and communicators through debate education and advocacy.</p></div>
+                <div><p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#d70063]">Mission</p><p className="leading-relaxed text-[#1a1917]/70">We partner with schools to deliver structured debate training, organize competitions and establish debate societies that build students&apos; critical thinking, public speaking, and civic engagement skills.</p></div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
       <section id="our-work" className="border-y border-[#1a1917]/12 bg-[#e9e3d9] px-5 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-[1360px]">
           <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
