@@ -41,7 +41,7 @@ export function HomePage() {
 
     const animateCounters = () => {
       const startTime = performance.now()
-      const duration = 1600
+      const duration = 2800
       const tick = (now: number) => {
         const progress = Math.min((now - startTime) / duration, 1)
         const easedProgress = 1 - Math.pow(1 - progress, 3)
@@ -177,13 +177,13 @@ export function HomePage() {
       <section ref={impactRef} id="our-impact" className="border-y border-[#1a1917]/12 bg-[#e9e3d9] px-5 py-16 sm:px-8 sm:py-24">
         <div className="mx-auto max-w-[1100px]">
           <div className="text-center"><p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">Our impact</p><h2 className="font-serif text-5xl leading-[.95] tracking-[-0.05em] sm:text-6xl">Change you can <em className="font-normal text-[#d70063]">count.</em></h2></div>
-          <div className="mt-12 grid grid-cols-2 border-t border-[#1a1917]/20">
+          <div className="mt-12 grid grid-cols-2">
             {[
               [`${impactValues[0].toLocaleString()}+`, 'Students empowered through debates'],
               [`${impactValues[1]}`, 'Schools reached'],
               [`${impactValues[2]}`, 'Scholarships disbursed'],
               [`${impactValues[3]}`, 'Competitions · international & local'],
-            ].map(([figure, label]) => <article key={label} className="border-b border-[#1a1917]/20 px-4 py-8 first:border-r sm:px-8 sm:py-10 [&:nth-child(3)]:border-r"><p className="font-serif text-5xl tracking-[-0.06em] text-[#d70063] sm:text-7xl">{figure}</p><p className="mt-3 max-w-[190px] text-xs font-semibold uppercase leading-relaxed tracking-[0.12em] text-[#1a1917]/65">{label}</p></article>)}
+            ].map(([figure, label]) => <article key={label} className="flex flex-col items-center px-4 py-8 text-center sm:px-8 sm:py-10"><p className="font-serif text-5xl tracking-[-0.06em] text-[#d70063] sm:text-7xl">{figure}</p><p className="mt-3 max-w-[190px] text-xs font-semibold uppercase leading-relaxed tracking-[0.12em] text-[#1a1917]/65">{label}</p></article>)}
           </div>
         </div>
       </section>
