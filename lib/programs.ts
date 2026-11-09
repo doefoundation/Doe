@@ -1,0 +1,38 @@
+export const programs = [
+  {
+    number: '01',
+    name: 'Leadership',
+    shortDescription: 'Leadership training and advocacy programs that build confidence and civic agency.',
+    description: 'Our leadership work helps young people understand their voice, value their perspective, and use both to shape the communities around them. Through practical workshops, advocacy projects, and guided conversations, students learn to lead with empathy, clarity, and courage.',
+    outcomes: ['Confidence to speak and participate', 'Practical advocacy and civic skills', 'Peer leadership opportunities'],
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/program-advocacy-bPQZTpl4eJarEYuzBwSUXvRNKAfEOC.jpg',
+    alt: 'Young leaders discussing ideas around a table',
+  },
+  {
+    number: '02',
+    name: 'Debate & Literacy',
+    shortDescription: 'Debate training, tournaments and literary development for students, especially in underserved schools.',
+    description: 'We make argument, research, reading, and public speaking feel possible and exciting. Our structured debate training, tournaments, and literacy activities give students a safe place to think critically, ask better questions, and communicate with confidence.',
+    outcomes: ['Critical thinking and research', 'Public speaking practice', 'Debate societies and tournaments'],
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/program-debate-wWmXVCtjdIIy8tvu9rRk7Wgm6NFu7j.jpg',
+    alt: 'Students participating in a debate and public speaking session',
+  },
+  {
+    number: '03',
+    name: 'Community Outreach',
+    shortDescription: 'Programs that restore learning environments and bring resources to vulnerable communities.',
+    description: 'Learning is shaped by the spaces and support surrounding a child. We work with communities to restore learning environments, provide practical resources, and create partnerships that respond to local needs with dignity and care.',
+    outcomes: ['Improved learning environments', 'Resources for vulnerable communities', 'Community-led partnerships'],
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/program-outreach-m1Y76JxjFp8kjUhritULoXlusGaaQS.jpg',
+    alt: 'A community discussion with education and outreach partners',
+  },
+  {
+    number: '04',
+    name: 'Scholarships',
+    shortDescription: 'Targeted scholarship opportunities for students with potential and leadership promise.',
+    description: 'Our scholarship support helps promising students stay focused on their education and continue developing their potential. We pair financial assistance with encouragement and a wider community that believes in what each learner can become.',
+    outcomes: ['Reduced barriers to education', 'Support for high-potential students', 'A pathway to continued leadership'],
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/program-scholarship-KjvWQl4kvwdRCSeBFv8hQmW9infolq.jpg',
+    alt: 'A smiling student studying with a laptop and notebook',
+  },
+] as const
