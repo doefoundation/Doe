@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, ChevronRight, Menu, Search, X } from 'lucide-react'
 
 const logoUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/file_00000000ebbc8243b1a46e16cc7df432-Ey2WCQZAaBoXSQKqIEQgRVc2ePrSvh.png'
@@ -20,6 +20,8 @@ export function HomePage() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [heroImageIndex, setHeroImageIndex] = useState(0)
+  const [impactValues, setImpactValues] = useState([0, 0, 0, 0])
+  const impactRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -27,6 +29,41 @@ export function HomePage() {
     }, 5000)
 
     return () => window.clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    const section = impactRef.current
+    if (!section) return
+
+    let animationFrame = 0
+    let hasStarted = false
+    const targets = [1200, 76, 153, 7]
+
+    const animateCounters = () => {
+      const startTime = performance.now()
+      const duration = 1600
+      const tick = (now: number) => {
+        const progress = Math.min((now - startTime) / duration, 1)
+        const easedProgress = 1 - Math.pow(1 - progress, 3)
+        setImpactValues(targets.map((target) => Math.floor(target * easedProgress)))
+        if (progress < 1) animationFrame = window.requestAnimationFrame(tick)
+      }
+      animationFrame = window.requestAnimationFrame(tick)
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !hasStarted) {
+        hasStarted = true
+        animateCounters()
+        observer.disconnect()
+      }
+    }, { threshold: 0.3 })
+
+    observer.observe(section)
+    return () => {
+      observer.disconnect()
+      window.cancelAnimationFrame(animationFrame)
+    }
   }, [])
 
   return (
@@ -133,6 +170,20 @@ export function HomePage() {
                 <div><p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#d70063]">Mission</p><p className="leading-relaxed text-[#1a1917]/70">We partner with schools to deliver structured debate training, organize competitions and establish debate societies that build students&apos; critical thinking, public speaking, and civic engagement skills.</p></div>
               </div>
             </details>
+          </div>
+        </div>
+      </section>
+
+      <section ref={impactRef} id="our-impact" className="border-y border-[#1a1917]/12 bg-[#e9e3d9] px-5 py-16 sm:px-8 sm:py-24">
+        <div className="mx-auto max-w-[1100px]">
+          <div className="text-center"><p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">Our impact</p><h2 className="font-serif text-5xl leading-[.95] tracking-[-0.05em] sm:text-6xl">Change you can <em className="font-normal text-[#d70063]">count.</em></h2></div>
+          <div className="mt-12 grid grid-cols-2 border-t border-[#1a1917]/20">
+            {[
+              [`${impactValues[0].toLocaleString()}+`, 'Students empowered through debates'],
+              [`${impactValues[1]}`, 'Schools reached'],
+              [`${impactValues[2]}`, 'Scholarships disbursed'],
+              [`${impactValues[3]}`, 'Competitions · international & local'],
+            ].map(([figure, label]) => <article key={label} className="border-b border-[#1a1917]/20 px-4 py-8 first:border-r sm:px-8 sm:py-10 [&:nth-child(3)]:border-r"><p className="font-serif text-5xl tracking-[-0.06em] text-[#d70063] sm:text-7xl">{figure}</p><p className="mt-3 max-w-[190px] text-xs font-semibold uppercase leading-relaxed tracking-[0.12em] text-[#1a1917]/65">{label}</p></article>)}
           </div>
         </div>
       </section>
