@@ -98,7 +98,7 @@ export function HomePage() {
         )}
       </header>
 
-      <section id="top" className="mx-auto grid min-h-[610px] max-w-[1360px] items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-20 lg:py-24">
+      <section id="top" className="mx-auto max-w-[1360px] px-5 py-16 sm:px-8 lg:py-24">
         <div className="max-w-[680px]">
           <p className="mb-7 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]"><span className="h-px w-8 bg-[#d70063]" />Education changes everything</p>
           <h1 className="max-w-[680px] font-serif text-[clamp(3.8rem,8vw,7.5rem)] leading-[.88] tracking-[-0.075em]">Every child deserves a <em className="font-normal text-[#d70063]">way forward.</em></h1>
@@ -108,17 +108,15 @@ export function HomePage() {
             <a href="#our-work" className="group inline-flex items-center gap-2 px-2 py-3.5 text-sm font-semibold">Explore our work <ChevronRight size={17} className="transition-transform group-hover:translate-x-1" /></a>
           </div>
         </div>
-        <div className="relative mx-auto w-full max-w-[560px]">
-          <div className="absolute -right-4 -top-5 h-28 w-28 rounded-full bg-[#f1c6d7] sm:-right-8 sm:-top-8 sm:h-40 sm:w-40" aria-hidden="true" />
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[180px_180px_22px_22px] bg-[#d70063]">
-            <img key={heroImages[heroImageIndex].src} src={heroImages[heroImageIndex].src} alt={heroImages[heroImageIndex].alt} className="absolute inset-0 h-full w-full object-cover animate-in fade-in duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1a1917]/75 via-transparent to-transparent" />
-            <div className="absolute bottom-8 left-8 right-8 border-t border-white/50 pt-5 text-white sm:bottom-12 sm:left-12 sm:right-12 sm:pt-7"><p className="font-serif text-3xl leading-tight sm:text-4xl">A better future starts with a chance.</p><p className="mt-4 text-xs uppercase tracking-[0.18em] text-white/80">DOE Foundation · Since 2010</p></div>
+        <div className="relative mt-14 -mx-5 w-[calc(100%+2.5rem)] sm:-mx-8 sm:w-[calc(100%+4rem)]">
+          <div className="relative aspect-[16/8] overflow-hidden bg-[#e9e3d9]">
+            <img key={heroImages[heroImageIndex].src} src={heroImages[heroImageIndex].src} alt={heroImages[heroImageIndex].alt} className="absolute inset-0 h-full w-full object-contain animate-in fade-in duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1a1917]/65 via-transparent to-transparent" />
+            <div className="absolute bottom-8 left-6 right-6 border-t border-white/50 pt-5 text-white sm:bottom-12 sm:left-12 sm:right-12 sm:pt-7"><p className="font-serif text-3xl leading-tight sm:text-4xl">A better future starts with a chance.</p><p className="mt-4 text-xs uppercase tracking-[0.18em] text-white/80">DOE Foundation · Since 2010</p></div>
             <div className="absolute bottom-5 right-6 flex gap-1.5 sm:bottom-8 sm:right-10" aria-label="Hero image slides">
               {heroImages.map((image, index) => <span key={image.src} className={`h-1.5 rounded-full transition-all ${index === heroImageIndex ? 'w-7 bg-white' : 'w-1.5 bg-white/55'}`} aria-hidden="true" />)}
             </div>
           </div>
-          <div className="absolute -bottom-8 -left-6 flex h-24 w-24 items-center justify-center rounded-full border border-[#1a1917]/20 bg-[#f8f5ef] text-center text-[10px] font-semibold uppercase leading-tight tracking-[0.16em] sm:-left-10 sm:h-32 sm:w-32">Learn<br />Grow<br />Lead</div>
         </div>
       </section>
 
