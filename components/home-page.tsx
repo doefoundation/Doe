@@ -140,7 +140,7 @@ export function HomePage() {
       <section id="top" className="mx-auto max-w-[1360px] px-5 py-16 sm:px-8 lg:py-24">
         <div className="max-w-[680px]">
           <p className="mb-7 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]"><span className="h-px w-8 bg-[#d70063]" />Education changes everything</p>
-          <h1 className="max-w-[680px] font-serif text-[clamp(3.8rem,8vw,7.5rem)] leading-[.88] tracking-[-0.075em]">Every child deserves a <em className="font-normal text-[#d70063]">way forward.</em></h1>
+          <h1 className="max-w-[680px] font-serif text-[clamp(3.8rem,8vw,7.5rem)] leading-[.88] tracking-[-0.075em]">Every child deserves a <em className="font-normal text-[#d70063]">good Education.</em></h1>
           <p className="mt-9 max-w-[470px] text-lg leading-relaxed text-[#1a1917]/70 sm:text-xl">We open doors to quality education, mentorship, and opportunity for young people building a brighter future.</p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a href="#get-involved" className="inline-flex items-center gap-4 rounded-full bg-[#d70063] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]">Support our work <ArrowUpRight size={18} /></a>
