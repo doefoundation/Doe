@@ -163,9 +163,12 @@
   }
 
   html {
-    scroll-behavior: smooth;
-  }
-
+  scroll-behavior: smooth;
+}
+@media (max-width: 640px) {
+  html { font-size: 12px; } /* default is 16px, so everything shrinks ~12% */
+}
+  
   ::selection {
     background: #d70063;
     color: white;
