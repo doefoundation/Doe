@@ -112,7 +112,7 @@ export function HomePage() {
           <div className="relative min-h-[380px] aspect-[4/3] overflow-hidden bg-[#e9e3d9] sm:min-h-[520px] sm:aspect-[16/9]">
             <img key={heroImages[heroImageIndex].src} src={heroImages[heroImageIndex].src} alt={heroImages[heroImageIndex].alt} className="absolute inset-0 h-full w-full object-contain animate-in fade-in duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a1917]/65 via-transparent to-transparent" />
-            <div className="absolute bottom-8 left-6 right-6 border-t border-white/50 pt-5 text-white sm:bottom-12 sm:left-12 sm:right-12 sm:pt-7"><p className="font-serif text-3xl leading-tight sm:text-4xl">A better future starts with a chance.</p><p className="mt-4 text-xs uppercase tracking-[0.18em] text-white/80">DOE Foundation · Since 2010</p></div>
+            <div className="absolute bottom-8 left-6 right-6 text-white sm:bottom-12 sm:left-12 sm:right-12"><p className="font-serif text-3xl leading-tight sm:text-4xl">A better future starts with a chance.</p><p className="mt-4 text-xs uppercase tracking-[0.18em] text-white/80">DOE Foundation · Since 2010</p></div>
             <div className="absolute bottom-5 right-6 flex gap-1.5 sm:bottom-8 sm:right-10" aria-label="Hero image slides">
               {heroImages.map((image, index) => <span key={image.src} className={`h-1.5 rounded-full transition-all ${index === heroImageIndex ? 'w-7 bg-white' : 'w-1.5 bg-white/55'}`} aria-hidden="true" />)}
             </div>
