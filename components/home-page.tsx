@@ -199,6 +199,23 @@ export function HomePage() {
         </div>
       </section>
 
+      <section id="our-partners" aria-labelledby="partners-heading" className="overflow-hidden bg-[#f8f5ef] py-14 sm:py-20">
+        <div className="mx-auto max-w-[1360px] px-5 text-center sm:px-8">
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">Together, we go further</p>
+          <h2 id="partners-heading" className="font-serif text-4xl tracking-[-0.05em] sm:text-5xl">Our <em className="font-normal text-[#d70063]">partners.</em></h2>
+        </div>
+        <div className="partner-marquee mt-10 sm:mt-14" aria-label="DOE Foundation partners">
+          <div className="partner-track">
+            {[0, 1].map((copy) => <div key={copy} className="partner-group" aria-hidden={copy === 1 ? true : undefined}>
+              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1794360155530-removebg-preview-ZDwcV7T4fz0QTQhtqDVvLWJIIrQhXs.png" alt={copy === 0 ? 'AREAi — Aid for Rural Education Access Initiative' : ''} />
+              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1794360773045-removebg-preview-vMSipv1M4dQWxZmZkjSby6fFH8bIvc.png" alt={copy === 0 ? 'Oasis Haven' : ''} />
+              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_20261111-015158_Instagram_2-removebg-preview-50Jv6c1WR5GYBsbx2zOsi4QD5gGEyD.png" alt={copy === 0 ? 'Debate Champs' : ''} />
+              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tkethics-logo-oRhUIyU2YpEnIG4n3Q0HRdnsFisqFu.webp" alt={copy === 0 ? 'T K E Ethics' : ''} />
+            </div>)}
+          </div>
+        </div>
+      </section>
+
       <section id="get-involved" className="mx-auto flex max-w-[1360px] flex-col gap-8 px-5 py-20 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:py-28"><div><p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">Join the movement</p><h2 className="max-w-2xl font-serif text-5xl leading-[.95] tracking-[-0.05em] sm:text-7xl">Small actions. <em className="font-normal">Big ripples.</em></h2></div><a href="mailto:hello@doefoundation.org" className="group inline-flex w-fit items-center gap-4 border-b border-[#1a1917] pb-3 text-sm font-semibold">Let&apos;s make a difference <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></a></section>
       <footer className="bg-[#1a1917] px-5 py-8 text-white sm:px-8"><div className="mx-auto flex max-w-[1360px] flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"><p className="text-sm text-white/70">© 2025 DOE Foundation. Education for every future.</p><div className="flex gap-5 text-xs uppercase tracking-[0.14em] text-white/60"><a href="#our-work" className="hover:text-white">Our work</a><a href="mailto:hello@doefoundation.org" className="hover:text-white">Contact</a></div></div></footer>
     </main>

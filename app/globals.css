@@ -173,4 +173,49 @@
     background: #d70063;
     color: white;
   }
+
+  .partner-marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .partner-track {
+    display: flex;
+    width: max-content;
+    animation: partner-scroll 55s linear infinite;
+  }
+
+  .partner-marquee:hover .partner-track,
+  .partner-marquee:focus-within .partner-track {
+    animation-play-state: paused;
+  }
+
+  .partner-group {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 3rem;
+    padding-right: 3rem;
+  }
+
+  .partner-group img {
+    width: auto;
+    height: 4.5rem;
+    max-width: 13rem;
+    object-fit: contain;
+  }
+
+  @keyframes partner-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (min-width: 640px) {
+    .partner-group { gap: 5rem; padding-right: 5rem; }
+    .partner-group img { height: 6rem; max-width: 16rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .partner-track { animation: none; }
+  }
 }
