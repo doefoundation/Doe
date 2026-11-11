@@ -147,7 +147,7 @@ export function HomePage() {
           </div>
         </div>
         <div className="relative mt-14 -mx-5 w-[calc(100%+2.5rem)] sm:-mx-8 sm:w-[calc(100%+4rem)]">
-          <div className="relative min-h-[380px] aspect-[4/3] overflow-hidden bg-[#e9e3d9] sm:min-h-[520px] sm:aspect-[16/9]">
+          <div className="relative min-h-[260px] aspect-[4/3] overflow-hidden bg-[#e9e3d9] sm:min-h-[520px] sm:aspect-[16/9]">
             <img key={heroImages[heroImageIndex].src} src={heroImages[heroImageIndex].src} alt={heroImages[heroImageIndex].alt} className="absolute inset-0 h-full w-full object-contain animate-in fade-in duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a1917]/65 via-transparent to-transparent" />
             <div className="absolute bottom-8 left-6 right-6 text-white sm:bottom-12 sm:left-12 sm:right-12"><p className="font-serif text-3xl leading-tight sm:text-4xl">A better future starts with a chance.</p><p className="mt-4 text-xs uppercase tracking-[0.18em] text-white/80">DOE Foundation · Since 2010</p></div>
