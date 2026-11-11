@@ -72,7 +72,7 @@ export function HomePage() {
       <header className="relative z-20 border-b border-[#1a1917]/12 bg-[#f8f5ef]/95 px-5 backdrop-blur-sm sm:px-8">
         <div className="mx-auto flex h-[92px] max-w-[1360px] items-center justify-between sm:h-[108px]">
           <a href="#top" aria-label="DOE Foundation home" className="flex items-center justify-center">
-            <img src={logoUrl} alt="DOE Foundation" className="h-[82px] w-auto object-contain mix-blend-multiply sm:h-[104px]" />
+            <img src={logoUrl} alt="DOE Foundation" className="h-[90px] w-auto object-contain mix-blend-multiply sm:h-[112px]" />
           </a>
 
           <div className="flex items-center gap-1 sm:gap-3">

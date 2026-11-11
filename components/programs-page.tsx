@@ -15,7 +15,7 @@ export function ProgramsPage() {
     <main className="min-h-screen bg-[#f8f5ef] text-[#1a1917]">
       <header className="border-b border-[#1a1917]/12 bg-[#f8f5ef]/95 px-5 backdrop-blur-sm sm:px-8">
         <div className="mx-auto flex h-[92px] max-w-[1360px] items-center justify-between sm:h-[108px]">
-          <Link href="/" aria-label="DOE Foundation home"><img src={logoUrl} alt="DOE Foundation" className="h-[82px] w-auto object-contain mix-blend-multiply sm:h-[104px]" /></Link>
+          <Link href="/" aria-label="DOE Foundation home"><img src={logoUrl} alt="DOE Foundation" className="h-[90px] w-auto object-contain mix-blend-multiply sm:h-[112px]" /></Link>
           <div className="flex items-center gap-1 sm:gap-3">
             <button type="button" aria-label={searchOpen ? 'Close search' : 'Open search'} aria-expanded={searchOpen} onClick={() => setSearchOpen((open) => !open)} className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f1c6d7]/45 text-[#1a1917] transition-colors hover:bg-[#f1c6d7] focus-visible:outline-2 focus-visible:outline-[#d70063]">{searchOpen ? <X size={24} strokeWidth={2.5} /> : <Search size={24} strokeWidth={2.5} />}</button>
             <button type="button" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)} className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f1c6d7]/45 text-[#1a1917] transition-colors hover:bg-[#f1c6d7] focus-visible:outline-2 focus-visible:outline-[#d70063]">{menuOpen ? <X size={24} strokeWidth={2.5} /> : <Menu size={25} strokeWidth={2.5} />}</button>
