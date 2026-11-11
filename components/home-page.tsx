@@ -43,11 +43,10 @@ export function HomePage() {
 
     const animateCounters = () => {
       const startTime = performance.now()
-      const duration = 2800
+      const duration = 7000
       const tick = (now: number) => {
         const progress = Math.min((now - startTime) / duration, 1)
-        const easedProgress = 1 - Math.pow(1 - progress, 3)
-        setImpactValues(targets.map((target) => Math.floor(target * easedProgress)))
+        setImpactValues(targets.map((target) => Math.floor(target * progress)))
         if (progress < 1) animationFrame = window.requestAnimationFrame(tick)
       }
       animationFrame = window.requestAnimationFrame(tick)
