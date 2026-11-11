@@ -81,9 +81,9 @@ export function HomePage() {
               aria-label={searchOpen ? 'Close search' : 'Open search'}
               aria-expanded={searchOpen}
               onClick={() => setSearchOpen((open) => !open)}
-              className="group flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-[#e9e3d9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]"
+              className="group flex h-12 w-12 items-center justify-center rounded-full bg-[#f1c6d7]/45 text-[#1a1917] transition-colors hover:bg-[#f1c6d7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]"
             >
-              {searchOpen ? <X size={22} strokeWidth={1.7} /> : <Search size={21} strokeWidth={1.7} />}
+              {searchOpen ? <X size={24} strokeWidth={2.5} /> : <Search size={24} strokeWidth={2.5} />}
             </button>
 
             <button
@@ -91,9 +91,9 @@ export function HomePage() {
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((open) => !open)}
-              className="group flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-[#e9e3d9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]"
+              className="group flex h-12 w-12 items-center justify-center rounded-full bg-[#f1c6d7]/45 text-[#1a1917] transition-colors hover:bg-[#f1c6d7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]"
             >
-              {menuOpen ? <X size={23} strokeWidth={1.7} /> : <Menu size={23} strokeWidth={1.7} />}
+              {menuOpen ? <X size={24} strokeWidth={2.5} /> : <Menu size={25} strokeWidth={2.5} />}
             </button>
           </div>
         </div>
