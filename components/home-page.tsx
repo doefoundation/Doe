@@ -126,7 +126,7 @@ export function HomePage() {
             <ul className="grid gap-1 sm:grid-cols-4">
               {navItems.map((item) => (
                 <li key={item}>
-                  <a href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMenuOpen(false)} className="flex items-center justify-between border-b border-[#1a1917]/10 py-3 text-lg transition-colors hover:text-[#d70063]">
+                  <a href={item === 'Get involved' ? 'mailto:hello@doefoundation.org' : `#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMenuOpen(false)} className="flex items-center justify-between border-b border-[#1a1917]/10 py-3 text-lg transition-colors hover:text-[#d70063]">
                     {item}<ArrowUpRight size={18} strokeWidth={1.5} />
                   </a>
                 </li>
@@ -142,7 +142,7 @@ export function HomePage() {
           <h1 className="max-w-[680px] font-serif text-[clamp(3.8rem,8vw,7.5rem)] leading-[.98] tracking-[-0.075em]">Every child deserves a<br /><em className="mt-2 block font-normal text-[#d70063]">good Education.</em></h1>
           <p className="mt-9 max-w-[470px] text-lg leading-relaxed text-[#1a1917]/70 sm:text-xl">We open doors to quality education, mentorship, and opportunity for young people building a brighter future.</p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a href="#get-involved" className="inline-flex items-center gap-4 rounded-full bg-[#d70063] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]">Support our work <ArrowUpRight size={18} /></a>
+            <a href="mailto:hello@doefoundation.org" className="inline-flex items-center gap-4 rounded-full bg-[#d70063] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]">Support our work <ArrowUpRight size={18} /></a>
             <a href="#our-work" className="group inline-flex items-center gap-2 px-2 py-3.5 text-sm font-semibold">Explore our work <ChevronRight size={17} className="transition-transform group-hover:translate-x-1" /></a>
           </div>
         </div>
@@ -215,7 +215,6 @@ export function HomePage() {
         </div>
       </section>
 
-      <section id="get-involved" className="mx-auto flex max-w-[1360px] flex-col gap-8 px-5 py-20 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:py-28"><div><p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">Join the movement</p><h2 className="max-w-2xl font-serif text-5xl leading-[.95] tracking-[-0.05em] sm:text-7xl">Small actions. <em className="font-normal">Big ripples.</em></h2></div><a href="mailto:hello@doefoundation.org" className="group inline-flex w-fit items-center gap-4 border-b border-[#1a1917] pb-3 text-sm font-semibold">Let&apos;s make a difference <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></a></section>
       <footer className="bg-[#1a1917] px-5 py-8 text-white sm:px-8"><div className="mx-auto flex max-w-[1360px] flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"><p className="text-sm text-white/70">© 2025 DOE Foundation. Education for every future.</p><div className="flex gap-5 text-xs uppercase tracking-[0.14em] text-white/60"><a href="#our-work" className="hover:text-white">Our work</a><a href="mailto:hello@doefoundation.org" className="hover:text-white">Contact</a></div></div></footer>
     </main>
   )
