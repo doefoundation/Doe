@@ -278,7 +278,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <footer className="bg-[#1a1917] px-5 py-8 text-white sm:px-8"><div className="mx-auto flex max-w-[1360px] flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"><p className="text-sm text-white/70">© 2025 DOE Foundation. Education for every future.</p><div className="flex gap-5 text-xs uppercase tracking-[0.14em] text-white/60"><a href="#our-work" className="hover:text-white">Our work</a><a href="mailto:hello@doefoundation.org" className="hover:text-white">Contact</a></div></div></footer>
+      <footer className="bg-[#1a1917] px-5 py-10 text-center text-white sm:px-8 sm:py-12"><div className="mx-auto flex max-w-[1360px] flex-col items-center gap-3"><p className="text-sm font-medium text-white/85 sm:text-base">©2026 The Davida Omosomi Empowerment Foundation</p><p className="text-xs leading-relaxed text-white/55 sm:text-sm">Registered as an Incorporated Trustee in Nigeria</p><p className="mt-2 text-xs text-white/65">Made with <span role="img" aria-label="love">❤️</span> by CJ</p></div></footer>
     </main>
   )
 }
