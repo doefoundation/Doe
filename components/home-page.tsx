@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { ArrowUpRight, ChevronRight, Menu, Search, X } from 'lucide-react'
+import { ArrowUpRight, ChevronRight, Mail, MapPin, Menu, Phone, Search, X } from 'lucide-react'
 import { programs } from '@/lib/programs'
 
 const logoUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/file_00000000ebbc8243b1a46e16cc7df432-Ey2WCQZAaBoXSQKqIEQgRVc2ePrSvh.png'
@@ -22,6 +22,8 @@ export function HomePage() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [heroImageIndex, setHeroImageIndex] = useState(0)
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+  const [newsletterMessage, setNewsletterMessage] = useState('')
   const [impactValues, setImpactValues] = useState([0, 0, 0, 0])
   const impactRef = useRef<HTMLElement>(null)
 
@@ -126,7 +128,7 @@ export function HomePage() {
             <ul className="grid gap-1 sm:grid-cols-4">
               {navItems.map((item) => (
                 <li key={item}>
-                  <a href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMenuOpen(false)} className="flex items-center justify-between border-b border-[#1a1917]/10 py-3 text-lg transition-colors hover:text-[#d70063]">
+                  <a href={item === 'Get involved' ? 'mailto:hello@doefoundation.org' : `#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMenuOpen(false)} className="flex items-center justify-between border-b border-[#1a1917]/10 py-3 text-lg transition-colors hover:text-[#d70063]">
                     {item}<ArrowUpRight size={18} strokeWidth={1.5} />
                   </a>
                 </li>
@@ -142,7 +144,7 @@ export function HomePage() {
           <h1 className="max-w-[680px] font-serif text-[clamp(3.8rem,8vw,7.5rem)] leading-[.98] tracking-[-0.075em]">Every child deserves a<br /><em className="mt-2 block font-normal text-[#d70063]">good Education.</em></h1>
           <p className="mt-9 max-w-[470px] text-lg leading-relaxed text-[#1a1917]/70 sm:text-xl">We open doors to quality education, mentorship, and opportunity for young people building a brighter future.</p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a href="#get-involved" className="inline-flex items-center gap-4 rounded-full bg-[#d70063] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]">Support our work <ArrowUpRight size={18} /></a>
+            <a href="mailto:hello@doefoundation.org" className="inline-flex items-center gap-4 rounded-full bg-[#d70063] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]">Support our work <ArrowUpRight size={18} /></a>
             <a href="#our-work" className="group inline-flex items-center gap-2 px-2 py-3.5 text-sm font-semibold">Explore our work <ChevronRight size={17} className="transition-transform group-hover:translate-x-1" /></a>
           </div>
         </div>
@@ -215,7 +217,67 @@ export function HomePage() {
         </div>
       </section>
 
-      <section id="get-involved" className="mx-auto flex max-w-[1360px] flex-col gap-8 px-5 py-20 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:py-28"><div><p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">Join the movement</p><h2 className="max-w-2xl font-serif text-5xl leading-[.95] tracking-[-0.05em] sm:text-7xl">Small actions. <em className="font-normal">Big ripples.</em></h2></div><a href="mailto:hello@doefoundation.org" className="group inline-flex w-fit items-center gap-4 border-b border-[#1a1917] pb-3 text-sm font-semibold">Let&apos;s make a difference <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></a></section>
+      <section id="contact" aria-labelledby="contact-heading" className="bg-[#f8f5ef] px-5 py-16 sm:px-8 sm:py-24">
+        <div className="mx-auto max-w-[1360px]">
+          <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
+            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">We&apos;re here to help</p>
+            <h2 id="contact-heading" className="font-serif text-5xl tracking-[-0.05em] sm:text-7xl">Get in <em className="font-normal text-[#d70063]">Touch.</em></h2>
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#1a1917]/65 sm:text-lg">Have questions or want to join us? Reach out to the Davida Omosomi Empowerment Foundation. We&apos;d love to hear from you!</p>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-[1.05fr_.95fr] lg:gap-8">
+            <div className="rounded-[28px] border border-[#1a1917]/10 bg-white/65 p-6 sm:p-10">
+              <h3 className="font-serif text-2xl sm:text-3xl">Let&apos;s start a conversation</h3>
+              <div className="mt-7 grid gap-3 sm:grid-cols-3">
+                <a href="https://maps.google.com/?q=Kuje%2C+Abuja" target="_blank" rel="noreferrer" className="group rounded-2xl bg-[#f8f5ef] p-5 transition-colors hover:bg-[#f1c6d7]/40 focus-visible:outline-2 focus-visible:outline-[#d70063]">
+                  <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#f1c6d7]/55 text-[#d70063]"><MapPin size={20} strokeWidth={2} /></span><span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-[#1a1917]/50">Address</span><span className="mt-1 block text-sm font-semibold">Kuje, Abuja</span>
+                </a>
+                <a href="tel:+2349066555162" className="group rounded-2xl bg-[#f8f5ef] p-5 transition-colors hover:bg-[#f1c6d7]/40 focus-visible:outline-2 focus-visible:outline-[#d70063]">
+                  <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#f1c6d7]/55 text-[#d70063]"><Phone size={20} strokeWidth={2} /></span><span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-[#1a1917]/50">Phone</span><span className="mt-1 block text-sm font-semibold">+234 906 655 5162</span>
+                </a>
+                <a href="mailto:thee.doe.foundation@gmail.com" className="group rounded-2xl bg-[#f8f5ef] p-5 transition-colors hover:bg-[#f1c6d7]/40 focus-visible:outline-2 focus-visible:outline-[#d70063]">
+                  <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#f1c6d7]/55 text-[#d70063]"><Mail size={20} strokeWidth={2} /></span><span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-[#1a1917]/50">Email</span><span className="mt-1 block break-all text-sm font-semibold">thee.doe.foundation@gmail.com</span>
+                </a>
+              </div>
+
+              <div className="mt-8 flex flex-col gap-4 border-t border-[#1a1917]/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+                <div><p className="text-sm font-semibold">Follow our journey</p><p className="mt-1 text-xs text-[#1a1917]/55">Find us on social media</p></div>
+                <div className="flex gap-2">
+                  <a href="#" onClick={(event) => event.preventDefault()} aria-label="Facebook link coming soon" title="Facebook link coming soon" className="flex h-11 w-11 items-center justify-center rounded-full border border-[#1a1917]/10 text-[#1a1917]/70 transition-colors hover:border-[#d70063] hover:bg-[#f1c6d7]/40 hover:text-[#d70063] focus-visible:outline-2 focus-visible:outline-[#d70063]"><svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.4-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.8v8h3.4Z" /></svg></a>
+                  <a href="#" onClick={(event) => event.preventDefault()} aria-label="LinkedIn link coming soon" title="LinkedIn link coming soon" className="flex h-11 w-11 items-center justify-center rounded-full border border-[#1a1917]/10 text-[#1a1917]/70 transition-colors hover:border-[#d70063] hover:bg-[#f1c6d7]/40 hover:text-[#d70063] focus-visible:outline-2 focus-visible:outline-[#d70063]"><svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M5.2 8.3a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM3.7 9.7h3v10h-3zM9 9.7h2.9v1.4h.1a3.2 3.2 0 0 1 2.9-1.6c3.1 0 3.7 2 3.7 4.5v5.7h-3v-5.1c0-1.2 0-2.7-1.7-2.7s-2 1.3-2 2.6v5.2H9z"/></svg></a>
+                  <a href="#" onClick={(event) => event.preventDefault()} aria-label="Instagram link coming soon" title="Instagram link coming soon" className="flex h-11 w-11 items-center justify-center rounded-full border border-[#1a1917]/10 text-[#1a1917]/70 transition-colors hover:border-[#d70063] hover:bg-[#f1c6d7]/40 hover:text-[#d70063] focus-visible:outline-2 focus-visible:outline-[#d70063]"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a>
+                  <a href="#" onClick={(event) => event.preventDefault()} aria-label="WhatsApp link coming soon" title="WhatsApp link coming soon" className="flex h-11 w-11 items-center justify-center rounded-full border border-[#1a1917]/10 text-[#1a1917]/70 transition-colors hover:border-[#d70063] hover:bg-[#f1c6d7]/40 hover:text-[#d70063] focus-visible:outline-2 focus-visible:outline-[#d70063]"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.7A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="M8.5 8.2c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .6.6 1 1.4 1.8 2.5 2.3.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.4 0 .3-.2 1.1-.7 1.5-.5.4-1.1.6-1.8.4-1.1-.3-2.4-.9-3.7-2-1.1-1-2-2.3-2.3-3.3-.3-.8-.1-1.7.2-2.5Z"/></svg></a>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative overflow-hidden rounded-[28px] bg-[#1a1917] p-7 text-white sm:p-10">
+              <div className="absolute -right-16 -top-20 h-56 w-56 rounded-full bg-[#d70063]/25 blur-3xl" aria-hidden="true" />
+              <div className="relative">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#f1a4c3]">Stay in the loop</p>
+                <h3 className="mt-4 max-w-sm font-serif text-4xl leading-tight sm:text-5xl">Good news for a brighter future.</h3>
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-white/65">Subscribe to our newsletter for stories, program updates, and ways to support young leaders.</p>
+                <form className="mt-8" onSubmit={(event) => {
+                  event.preventDefault()
+                  const subject = encodeURIComponent('Newsletter subscription')
+                  const body = encodeURIComponent(`Please subscribe ${newsletterEmail} to the DOE Foundation newsletter.`)
+                  window.location.href = `mailto:thee.doe.foundation@gmail.com?subject=${subject}&body=${body}`
+                  setNewsletterMessage('Your email app will open with a subscription request addressed to our team.')
+                }}>
+                  <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+                  <div className="flex flex-col gap-2 rounded-2xl bg-white p-2 sm:flex-row sm:rounded-full">
+                    <input id="newsletter-email" type="email" required value={newsletterEmail} onChange={(event) => setNewsletterEmail(event.target.value)} placeholder="Your email address" className="min-w-0 flex-1 rounded-xl bg-transparent px-4 py-3 text-sm text-[#1a1917] outline-none placeholder:text-[#1a1917]/45 focus-visible:ring-2 focus-visible:ring-[#d70063] sm:rounded-full" />
+                    <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d70063] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#b80054] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Subscribe <ArrowUpRight size={16} /></button>
+                  </div>
+                  <p className="mt-3 text-xs text-white/45">Submitting opens an email to our team to request your subscription.</p>
+                  {newsletterMessage && <p role="status" className="mt-3 text-sm text-[#f1a4c3]">{newsletterMessage}</p>}
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <footer className="bg-[#1a1917] px-5 py-8 text-white sm:px-8"><div className="mx-auto flex max-w-[1360px] flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"><p className="text-sm text-white/70">© 2025 DOE Foundation. Education for every future.</p><div className="flex gap-5 text-xs uppercase tracking-[0.14em] text-white/60"><a href="#our-work" className="hover:text-white">Our work</a><a href="mailto:hello@doefoundation.org" className="hover:text-white">Contact</a></div></div></footer>
     </main>
   )
