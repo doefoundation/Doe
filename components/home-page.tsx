@@ -6,7 +6,7 @@ import { ArrowUpRight, ChevronRight, Mail, MapPin, Menu, Phone, Search, X } from
 import { programs } from '@/lib/programs'
 
 const logoUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/file_00000000ebbc8243b1a46e16cc7df432-Ey2WCQZAaBoXSQKqIEQgRVc2ePrSvh.png'
-
+const impactTargets = [1200, 76, 150, 7]
 const navItems = ['Our work', 'Who we are', 'Get involved', 'Stories']
 
 const heroImages = [
@@ -24,7 +24,7 @@ export function HomePage() {
   const [heroImageIndex, setHeroImageIndex] = useState(0)
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [newsletterMessage, setNewsletterMessage] = useState('')
-  const [impactValues, setImpactValues] = useState([0, 0, 0, 0])
+  const [impactValues, setImpactValues] = useState(impactTargets)
   const impactRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export function HomePage() {
 
     let animationFrame = 0
     let hasStarted = false
-    const targets = [1200, 76, 153, 7]
+    const targets = impactTargets
 
     const animateCounters = () => {
       const startTime = performance.now()
@@ -185,7 +185,7 @@ export function HomePage() {
               [`${impactValues[0].toLocaleString()}+`, 'Students empowered through debates'],
               [`${impactValues[1]}`, 'Schools reached'],
               [`${impactValues[2]}`, 'Scholarships disbursed'],
-              [`${impactValues[3]}`, 'Competitions · international & local'],
+              [`${impactValues[3]}`, 'Competitions (international & local)'],
             ].map(([figure, label]) => <article key={label} className="flex flex-col items-center px-4 py-8 text-center sm:px-8 sm:py-10"><p className="font-serif text-5xl tracking-[-0.06em] text-[#d70063] sm:text-7xl">{figure}</p><p className="mt-3 max-w-[190px] text-xs font-semibold uppercase leading-relaxed tracking-[0.12em] text-[#1a1917]/65">{label}</p></article>)}
           </div>
         </div>
