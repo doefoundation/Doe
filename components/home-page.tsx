@@ -2,13 +2,13 @@
 
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { ArrowUpRight, ChevronRight, Mail, MapPin, Menu, Phone, Search, X } from 'lucide-react'
+import { ArrowUpRight, ChevronRight, Mail, MapPin, Phone } from 'lucide-react'
 import { programs } from '@/lib/programs'
 import { TestimonialsSection } from '@/components/testimonials'
+import { SiteHeader } from '@/components/site-header'
+import { SiteFooter } from '@/components/site-footer'
 
-const logoUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/file_00000000ebbc8243b1a46e16cc7df432-Ey2WCQZAaBoXSQKqIEQgRVc2ePrSvh.png'
 const impactTargets = [1200, 76, 150, 7]
-const navItems = ['Our work', 'Who we are', 'Get involved', 'Stories']
 
 const heroImages = [
   { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/15-cQBBTFwjpRjQBkMF3nfTMtzv2bmoxo.jpeg', alt: 'DOE Foundation students and mentors celebrating together' },
@@ -19,9 +19,6 @@ const heroImages = [
 ]
 
 export function HomePage() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
-  const [query, setQuery] = useState('')
   const [heroImageIndex, setHeroImageIndex] = useState(0)
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [newsletterMessage, setNewsletterMessage] = useState('')
@@ -72,72 +69,7 @@ export function HomePage() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#f8f5ef] text-[#1a1917]">
-      <header className="relative z-20 border-b border-[#1a1917]/12 bg-[#f8f5ef]/95 px-5 backdrop-blur-sm sm:px-8">
-        <div className="mx-auto flex h-[92px] max-w-[1360px] items-center justify-between sm:h-[108px]">
-          <a href="#top" aria-label="DOE Foundation home" className="flex items-center justify-center">
-            <img src={logoUrl} alt="DOE Foundation" className="h-[90px] w-auto object-contain mix-blend-multiply sm:h-[112px]" />
-          </a>
-
-          <div className="flex items-center gap-1 sm:gap-3">
-            <button
-              type="button"
-              aria-label={searchOpen ? 'Close search' : 'Open search'}
-              aria-expanded={searchOpen}
-              onClick={() => setSearchOpen((open) => !open)}
-              className="group flex h-12 w-12 items-center justify-center rounded-full bg-[#f1c6d7]/45 text-[#1a1917] transition-colors hover:bg-[#f1c6d7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]"
-            >
-              {searchOpen ? <X size={24} strokeWidth={2.5} /> : <Search size={24} strokeWidth={2.5} />}
-            </button>
-
-            <button
-              type="button"
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((open) => !open)}
-              className="group flex h-12 w-12 items-center justify-center rounded-full bg-[#f1c6d7]/45 text-[#1a1917] transition-colors hover:bg-[#f1c6d7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]"
-            >
-              {menuOpen ? <X size={24} strokeWidth={2.5} /> : <Menu size={25} strokeWidth={2.5} />}
-            </button>
-          </div>
-        </div>
-
-        {searchOpen && (
-          <div className="mx-auto max-w-[1360px] border-t border-[#1a1917]/10 py-4">
-            <label htmlFor="site-search" className="sr-only">Search DOE Foundation</label>
-            <div className="flex items-center gap-3 border-b border-[#1a1917]/35 pb-2">
-              <Search size={19} strokeWidth={1.6} aria-hidden="true" />
-              <input
-                id="site-search"
-                autoFocus
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter' && !event.nativeEvent.isComposing && event.keyCode !== 229) {
-                    event.preventDefault()
-                  }
-                }}
-                placeholder="Search our work, stories, and resources"
-                className="w-full bg-transparent text-base outline-none placeholder:text-[#1a1917]/50"
-              />
-              {query && <span className="text-xs uppercase tracking-[0.16em] text-[#1a1917]/50">Press enter</span>}
-            </div>
-          </div>
-        )}
-
-        {menuOpen && (
-          <nav aria-label="Main navigation" className="mx-auto max-w-[1360px] border-t border-[#1a1917]/10 py-6">
-            <ul className="grid gap-1 sm:grid-cols-4">
-              {navItems.map((item) => (
-                <li key={item}>
-                  <a href={item === 'Get involved' ? 'mailto:hello@doefoundation.org' : `#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setMenuOpen(false)} className="flex items-center justify-between border-b border-[#1a1917]/10 py-3 text-lg transition-colors hover:text-[#d70063]">
-                    {item}<ArrowUpRight size={18} strokeWidth={1.5} />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        )}
-      </header>
+      <SiteHeader />
 
       <section id="top" className="mx-auto max-w-[1360px] px-5 py-16 sm:px-8 lg:py-24">
         <div className="max-w-[680px]">
@@ -290,7 +222,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <footer className="bg-[#1a1917] px-5 py-10 text-center text-white sm:px-8 sm:py-12"><div className="mx-auto flex max-w-[1360px] flex-col items-center gap-3"><p className="text-sm font-medium text-white/85 sm:text-base">©2026 The Davida Omosomi Empowerment Foundation</p><p className="text-xs leading-relaxed text-white/55 sm:text-sm">Registered as an Incorporated Trustee in Nigeria</p><p className="mt-2 text-xs text-white/65">Made with <span role="img" aria-label="love">❤️</span> by CJ</p></div></footer>
+      <SiteFooter />
     </main>
   )
 }
