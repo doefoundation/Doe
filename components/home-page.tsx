@@ -230,7 +230,7 @@ export function HomePage() {
               <h3 className="font-serif text-2xl sm:text-3xl">Let&apos;s start a conversation</h3>
               <div className="mt-7 grid gap-3 sm:grid-cols-3">
                 <a href="https://maps.google.com/?q=Kuje%2C+Abuja" target="_blank" rel="noreferrer" className="group rounded-2xl bg-[#f8f5ef] p-5 transition-colors hover:bg-[#f1c6d7]/40 focus-visible:outline-2 focus-visible:outline-[#d70063]">
-                  <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#f1c6d7]/55 text-[#d70063]"><MapPin size={20} strokeWidth={2} /></span><span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-[#1a1917]/50">Address</span><span className="mt-1 block text-sm font-semibold">Kuje, Abuja</span>
+                  <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#f1c6d7]/55 text-[#d70063]"><MapPin size={20} strokeWidth={2} /></span><span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-[#1a1917]/50">Address</span><span className="mt-1 block text-sm font-semibold">Abuja, Nigeria</span>
                 </a>
                 <a href="tel:+2349066555162" className="group rounded-2xl bg-[#f8f5ef] p-5 transition-colors hover:bg-[#f1c6d7]/40 focus-visible:outline-2 focus-visible:outline-[#d70063]">
                   <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#f1c6d7]/55 text-[#d70063]"><Phone size={20} strokeWidth={2} /></span><span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-[#1a1917]/50">Phone</span><span className="mt-1 block text-sm font-semibold">+234 906 655 5162</span>
