@@ -163,7 +163,7 @@
   }
 
   html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 @media (max-width: 640px) {
   html { font-size: 11px; } /* default is 16px, so everything shrinks ~12% */
