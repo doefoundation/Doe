@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, ChevronRight, Mail, MapPin, Menu, Phone, Search, X } from 'lucide-react'
 import { programs } from '@/lib/programs'
+import { TestimonialsSection } from '@/components/testimonials'
 
 const logoUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/file_00000000ebbc8243b1a46e16cc7df432-Ey2WCQZAaBoXSQKqIEQgRVc2ePrSvh.png'
 
@@ -199,6 +200,8 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      <TestimonialsSection />
 
       <section id="our-partners" aria-labelledby="partners-heading" className="overflow-hidden bg-[#f8f5ef] py-14 sm:py-20">
         <div className="mx-auto max-w-[1360px] px-5 text-center sm:px-8">

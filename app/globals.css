@@ -215,7 +215,17 @@
     .partner-group img { height: 6rem; max-width: 16rem; }
   }
 
+  .testimonial-content {
+    animation: testimonial-enter 500ms ease both;
+  }
+
+  @keyframes testimonial-enter {
+    from { opacity: 0; transform: translateY(0.75rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .partner-track { animation: none; }
+    .testimonial-content { animation: none; }
   }
 }
