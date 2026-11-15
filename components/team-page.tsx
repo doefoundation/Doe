@@ -1,7 +1,7 @@
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 
-const team = [
+const team: Array<{ name: string; role: string; image: string; objectPosition?: string; bio: string[] }> = [
   {
     name: 'Davida Paul',
     role: 'Founder & Executive Director',
@@ -16,6 +16,7 @@ const team = [
     name: 'Ameze Obaseki',
     role: 'Strategy Consultant',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Ameze%20Obaseki-mUH0z4xjapYSDYU8tW5wUF12NgTN0u.jpg',
+    objectPosition: 'center 35%',
     bio: [
       'Ameze Obaseki is the Founder of DVO Partners and a Strategy Consultant at the DOE Foundation. She brings extensive experience across strategy, consumer insights, business transformation, workplace culture and organisational development, combining these disciplines to help organisations navigate complexity, build effective systems and achieve sustainable growth.',
       'Her professional experience spans leading organisations, including EY, Heineken and Deloitte, where she has developed expertise in strategic thinking, organisational effectiveness and business transformation.',
@@ -25,6 +26,7 @@ const team = [
     name: 'Sylvia John Adamu',
     role: 'Head Debate Coach',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Sylvia%20Adamu%20John-28Z7hLy5SakXs5SbbOjxat8ViF11nR.jpg',
+    objectPosition: 'center 24%',
     bio: [
       'Sylvia John Adamu is a legal practitioner, public speaking enthusiast, and youth development advocate. She holds an LL.B degree Honours from the University of Jos and has been called to the Nigerian Bar.',
       'She serves as a volunteer coach at Davida Omosomi Empowerment Foundation, where she trains young people in public speaking, advocacy, and debate. Through her work with the Foundation, she has trained over 200 students across five schools and has also served as an adjudicator at a debate tournament.',
@@ -76,9 +78,8 @@ export function TeamPage() {
       <SiteHeader />
       <section className="mx-auto max-w-[1360px] px-5 pb-12 pt-14 sm:px-8 sm:pb-20 sm:pt-24">
         <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]"><span className="h-px w-8 bg-[#d70063]" />The people behind the purpose</p>
-        <div className="grid gap-7 border-b border-[#1a1917]/15 pb-10 sm:pb-14 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
+        <div className="border-b border-[#1a1917]/15 pb-10 sm:pb-14">
           <h1 className="max-w-3xl font-serif text-6xl leading-[.9] tracking-[-0.07em] sm:text-8xl">Our <em className="font-normal text-[#d70063]">team.</em></h1>
-          <p className="max-w-xl text-base leading-relaxed text-[#1a1917]/70 sm:text-lg">Meet the thoughtful leaders and dedicated professionals building brighter futures through education, advocacy, and opportunity.</p>
         </div>
         <div className="mt-9 flex items-center justify-between gap-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1a1917]/50 sm:mt-12">
           <span>Leadership & people</span><span>01 — 05</span>
@@ -87,12 +88,11 @@ export function TeamPage() {
           {team.map((member, index) => (
             <article key={member.name} className="group min-w-0">
               <div className="relative aspect-square overflow-hidden bg-[#e9e3d9]">
-                <img src={member.image} alt={`Portrait of ${member.name}`} loading={index > 1 ? 'lazy' : 'eager'} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]" />
+                <img src={member.image} alt={`Portrait of ${member.name}`} loading={index > 1 ? 'lazy' : 'eager'} style={{ objectPosition: member.objectPosition ?? 'center 50%' }} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]" />
                 <span className="absolute left-4 top-4 flex size-10 items-center justify-center rounded-full bg-[#f8f5ef]/90 text-xs font-semibold text-[#d70063] backdrop-blur-sm">0{index + 1}</span>
               </div>
               <div className="pt-6">
-                <div className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d70063]"><span className="h-px w-5 bg-[#d70063]" />DOE Foundation</div>
-                <div className="mt-4 space-y-4 text-sm leading-[1.8] text-[#1a1917]/70 sm:text-[15px]">
+                <div className="space-y-4 text-base leading-[1.85] text-[#1a1917]/85">
                   {member.bio.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                 </div>
                 <h2 className="mt-6 font-serif text-3xl leading-tight tracking-[-0.04em] sm:text-4xl">{member.name}</h2>

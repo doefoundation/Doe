@@ -2,11 +2,12 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { ArrowUpRight, Menu, Search, X } from 'lucide-react'
+import { Menu, Search, X } from 'lucide-react'
 
 const logoUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/file_00000000ebbc8243b1a46e16cc7df432-Ey2WCQZAaBoXSQKqIEQgRVc2ePrSvh.png'
 
 const siteLinks = [
+  { label: 'Home', href: '/' },
   { label: 'Programs', href: '/programs' },
   { label: 'Our Team', href: '/our-team' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
@@ -51,8 +52,8 @@ export function SiteHeader() {
           <ul className="grid gap-x-8 gap-y-1 sm:grid-cols-2 lg:grid-cols-4">
             {siteLinks.map((item) => (
               <li key={item.label}>
-                <Link href={item.href} onClick={() => setMenuOpen(false)} className="flex items-center justify-between border-b border-[#1a1917]/10 py-3 text-base transition-colors hover:text-[#d70063] focus-visible:outline-2 focus-visible:outline-[#d70063]">
-                  {item.label}<ArrowUpRight size={18} strokeWidth={1.5} aria-hidden="true" />
+                <Link href={item.href} scroll onClick={() => setMenuOpen(false)} className="flex min-h-12 items-center border-b border-[#1a1917]/10 py-3 text-base font-medium text-[#1a1917] transition-colors hover:text-[#d70063] focus-visible:outline-2 focus-visible:outline-[#d70063]">
+                  {item.label}
                 </Link>
               </li>
             ))}
