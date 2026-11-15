@@ -77,8 +77,8 @@ export function TestimonialsSection() {
     <section id="testimonials" aria-labelledby="testimonials-heading" className="border-y border-[#1a1917]/10 bg-[#f8f5ef] px-5 py-16 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-[1100px]">
         <div className="mb-10 text-center sm:mb-14">
-          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">Words from our community</p>
-          <h2 id="testimonials-heading" className="font-serif text-5xl tracking-[-0.05em] sm:text-6xl">Voices of <em className="font-normal text-[#d70063]">change.</em></h2>
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">STORIES OF IMPACT</p>
+          <h2 id="testimonials-heading" className="font-serif text-5xl tracking-[-0.05em] sm:text-6xl">Lives <em className="font-normal text-[#d70063]">we&apos;ve touched.</em></h2>
         </div>
 
         <div
