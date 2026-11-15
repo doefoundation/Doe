@@ -182,7 +182,7 @@
   .partner-track {
     display: flex;
     width: max-content;
-    animation: partner-scroll 55s linear infinite;
+    animation: partner-scroll 50s linear infinite;
   }
 
   .partner-marquee:hover .partner-track,
@@ -212,7 +212,7 @@
 
   @media (min-width: 640px) {
     .partner-group { gap: 5rem; padding-right: 5rem; }
-    .partner-group img { height: 6rem; max-width: 16rem; }
+    .partner-group img { height: 9rem; max-width: 24rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
