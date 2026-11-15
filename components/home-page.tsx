@@ -209,7 +209,7 @@ export function HomePage() {
           <div className="partner-track">
             {[0, 1].map((copy) => <div key={copy} className="partner-group" aria-hidden={copy === 1 ? true : undefined}>
               <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1794360155530-removebg-preview-ZDwcV7T4fz0QTQhtqDVvLWJIIrQhXs.png" alt={copy === 0 ? 'AREAi — Aid for Rural Education Access Initiative' : ''} />
-              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1794360773045-removebg-preview-vMSipv1M4dQWxZmZkjSby6fFH8bIvc.png" alt={copy === 0 ? 'Oasis Haven' : ''} />
+              <img src="/oasis.png" alt={copy === 0 ? 'Oasis Haven' : ''} />
               <img src="/debate.png" alt={copy === 0 ? 'Debate Champs' : ''} />
               <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tkethics-logo-oRhUIyU2YpEnIG4n3Q0HRdnsFisqFu.webp" alt={copy === 0 ? 'T K E Ethics' : ''} />
             </div>)}
