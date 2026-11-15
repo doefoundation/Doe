@@ -148,21 +148,17 @@ export function HomePage() {
             <a href="#our-work" className="group inline-flex items-center gap-2 px-2 py-3.5 text-sm font-semibold">Explore our work <ChevronRight size={17} className="transition-transform group-hover:translate-x-1" /></a>
           </div>
         </div>
- <div className="border border-[#1a1917]/15">
-  <div className="relative min-h-[260px] aspect-[4/3] overflow-hidden bg-[#f8f5ef] sm:min-h-[520px] sm:aspect-[16/9]">
-    <img key={heroImages[heroImageIndex].src} src={heroImages[heroImageIndex].src} alt={heroImages[heroImageIndex].alt} className="absolute inset-0 h-full w-full object-contain animate-in fade-in duration-700" />
-  </div>
-  <div className="flex items-end justify-between gap-4 bg-[#1a1917] px-6 py-5 text-white sm:px-12 sm:py-8">
-    <div>
-      <p className="font-serif text-2xl leading-tight sm:text-4xl">A better future starts with a chance.</p>
-      <p className="mt-3 text-xs uppercase tracking-[0.18em] text-white/80">DOE Foundation · Since 2025</p>
-    </div>
-    <div className="flex shrink-0 gap-1.5 pb-1" aria-label="Hero image slides">
-      {heroImages.map((image, index) => <span key={image.src} className={`h-1.5 rounded-full transition-all ${index === heroImageIndex ? 'w-7 bg-white' : 'w-1.5 bg-white/55'}`} aria-hidden="true" />)}
-    </div>
-  </div>
-</div>
-</section>
+ <div className="relative mt-14 -mx-5 w-[calc(100%+2.5rem)] sm:-mx-8 sm:w-[calc(100%+4rem)]">
+          <div className="relative min-h-[260px] aspect-[4/3] overflow-hidden border border-[#1a1917]/15 bg-[#f8f5ef] sm:min-h-[520px] sm:aspect-[16/9]">
+            <img key={heroImages[heroImageIndex].src} src={heroImages[heroImageIndex].src} alt={heroImages[heroImageIndex].alt} className="absolute inset-0 h-full w-full object-cover animate-in fade-in duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1a1917]/65 via-transparent to-transparent" />
+            <div className="absolute bottom-8 left-6 right-6 text-white sm:bottom-12 sm:left-12 sm:right-12"><p className="font-serif text-3xl leading-tight sm:text-4xl">A better future starts with a chance.</p><p className="mt-4 text-xs uppercase tracking-[0.18em] text-white/80">DOE Foundation · Since 2025</p></div>
+            <div className="absolute bottom-5 right-6 flex gap-1.5 sm:bottom-8 sm:right-10" aria-label="Hero image slides">
+              {heroImages.map((image, index) => <span key={image.src} className={`h-1.5 rounded-full transition-all ${index === heroImageIndex ? 'w-7 bg-white' : 'w-1.5 bg-white/55'}`} aria-hidden="true" />)}
+            </div>
+          </div>
+        </div>
+     </section>
 
       <section id="who-we-are" className="border-y border-[#1a1917]/12 bg-[#f8f5ef] px-5 py-16 sm:px-8 sm:py-24">
         <div className="mx-auto max-w-[900px] text-center">
