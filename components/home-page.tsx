@@ -20,8 +20,6 @@ const heroImages = [
 
 export function HomePage() {
   const [heroImageIndex, setHeroImageIndex] = useState(0)
-  const [newsletterEmail, setNewsletterEmail] = useState('')
-  const [newsletterMessage, setNewsletterMessage] = useState('')
   const [impactValues, setImpactValues] = useState(impactTargets)
   const impactRef = useRef<HTMLElement>(null)
 
@@ -160,7 +158,7 @@ export function HomePage() {
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#1a1917]/65 sm:text-lg">Have questions or want to join us? Reach out to the Davida Omosomi Empowerment Foundation. We&apos;d love to hear from you!</p>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-[1.05fr_.95fr] lg:gap-8">
+          <div className="grid gap-6">
             <div className="rounded-[28px] border border-[#1a1917]/10 bg-white/65 p-6 sm:p-10">
               <h3 className="font-serif text-2xl sm:text-3xl">Let&apos;s start a conversation</h3>
               <div className="mt-7 grid gap-3 sm:grid-cols-3">
@@ -186,38 +184,6 @@ export function HomePage() {
               </div>
             </div>
 
-            <div className="relative isolate overflow-hidden rounded-[32px] bg-[#1a1917] p-7 text-white shadow-[0_24px_70px_-32px_rgba(26,25,23,.7)] sm:p-10">
-              <div className="pointer-events-none absolute -right-24 -top-24 -z-10 h-80 w-80 rounded-full bg-[#d70063]/30 blur-3xl" aria-hidden="true" />
-              <div className="pointer-events-none absolute -bottom-28 -right-16 -z-10 h-72 w-72 rounded-full border border-white/[0.08]" aria-hidden="true" />
-              <div className="pointer-events-none absolute -bottom-16 -right-4 -z-10 h-48 w-48 rounded-full border border-white/[0.06]" aria-hidden="true" />
-              <div className="relative">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.08] text-[#f1a4c3]"><Mail size={21} strokeWidth={1.8} /></span>
-                    <div><p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#f1a4c3]">A little good news</p><p className="mt-1 text-xs text-white/55">From DOE Foundation</p></div>
-                  </div>
-                  <span className="rounded-full border border-white/15 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-white/60">Newsletter</span>
-                </div>
-                <h3 className="mt-8 max-w-sm font-serif text-4xl leading-[1.02] tracking-[-0.04em] sm:text-5xl">Good news for a <em className="font-normal text-[#f1a4c3]">brighter future.</em></h3>
-                <p className="mt-4 max-w-md text-sm leading-relaxed text-white/65">Subscribe to our newsletter for stories, program updates, and ways to support young leaders.</p>
-                <form className="mt-8" onSubmit={(event) => {
-                  event.preventDefault()
-                  const subject = encodeURIComponent('Newsletter subscription')
-                  const body = encodeURIComponent(`Please subscribe ${newsletterEmail} to the DOE Foundation newsletter.`)
-                  window.location.href = `mailto:thee.doe.foundation@gmail.com?subject=${subject}&body=${body}`
-                  setNewsletterMessage('Your email app will open with a subscription request addressed to our team.')
-                }}>
-                  <label htmlFor="newsletter-email" className="sr-only">Email address</label>
-                  <div className="flex flex-col gap-2 rounded-2xl bg-white p-2 sm:flex-row sm:items-center sm:rounded-full">
-                    <span className="hidden pl-3 text-[#d70063] sm:block"><Mail size={18} strokeWidth={1.8} /></span>
-                    <input id="newsletter-email" type="email" required value={newsletterEmail} onChange={(event) => setNewsletterEmail(event.target.value)} placeholder="Your email address" className="min-w-0 flex-1 rounded-xl bg-transparent px-4 py-3 text-sm text-[#1a1917] outline-none placeholder:text-[#1a1917]/45 focus-visible:ring-2 focus-visible:ring-[#d70063] sm:rounded-full sm:px-2" />
-                    <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d70063] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#b80054] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Subscribe <ArrowUpRight size={16} /></button>
-                  </div>
-                  <p className="mt-3 text-xs text-white/45">Submitting opens an email to our team to request your subscription.</p>
-                  {newsletterMessage && <p role="status" className="mt-3 text-sm text-[#f1a4c3]">{newsletterMessage}</p>}
-                </form>
-              </div>
-            </div>
           </div>
         </div>
       </section>

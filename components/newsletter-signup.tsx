@@ -1,0 +1,33 @@
+'use client'
+
+import { useState, type FormEvent } from 'react'
+
+export function NewsletterSignup() {
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const subject = encodeURIComponent('Newsletter subscription')
+    const body = encodeURIComponent(`Please subscribe ${email} to the DOE Foundation newsletter.`)
+    window.location.href = `mailto:thee.doe.foundation@gmail.com?subject=${subject}&body=${body}`
+    setMessage('Your email app will open with a subscription request addressed to our team.')
+  }
+
+  return (
+    <section aria-labelledby="newsletter-heading" className="relative isolate overflow-hidden rounded-[28px] bg-gradient-to-br from-[#073f27] via-[#09502f] to-[#0d633a] px-5 py-10 text-center text-white shadow-[0_24px_70px_-36px_rgba(7,63,39,.75)] sm:rounded-[32px] sm:px-10 sm:py-14">
+      <div aria-hidden="true" className="pointer-events-none absolute -bottom-28 -left-12 -z-10 size-80 rounded-full border border-white/[0.06]" />
+      <div aria-hidden="true" className="pointer-events-none absolute -bottom-20 left-10 -z-10 size-64 rounded-full border border-white/[0.05]" />
+      <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-white/90 sm:text-sm">Get latest updates</p>
+      <h2 id="newsletter-heading" className="mt-4 font-sans text-[24px] font-bold tracking-[-0.03em] sm:text-3xl">Sign up for our newsletter</h2>
+      <p className="mt-4 text-[15px] text-white/85 sm:text-base">We won&apos;t spam your mailbox.</p>
+      <form className="mx-auto mt-6 flex max-w-[640px] flex-col gap-3 sm:mt-7 sm:flex-row sm:items-center sm:rounded-2xl sm:bg-white sm:p-2" onSubmit={handleSubmit}>
+        <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+        <input id="newsletter-email" type="email" required value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Enter your email address" className="min-w-0 flex-1 rounded-xl border border-white/70 bg-white px-5 py-4 text-[16px] text-[#1a1917] outline-none placeholder:text-[#1a1917]/50 focus-visible:ring-2 focus-visible:ring-[#17814b] sm:border-0 sm:bg-transparent" />
+        <button type="submit" className="inline-flex min-h-14 items-center justify-center rounded-xl bg-[#118047] px-7 py-4 text-base font-semibold text-white transition-colors hover:bg-[#0d6d3b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Subscribe now</button>
+      </form>
+      <p className="mx-auto mt-4 max-w-xl text-[13px] leading-relaxed text-white/85 sm:text-sm">Submitting opens an email to our team to request your subscription.</p>
+      {message && <p role="status" className="mt-3 text-[15px] font-medium text-white">{message}</p>}
+    </section>
+  )
+}
