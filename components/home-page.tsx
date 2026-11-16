@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, ChevronRight } from 'lucide-react'
@@ -126,7 +127,7 @@ export function HomePage() {
         <div className="mx-auto max-w-[1360px]">
           <div className="mx-auto max-w-3xl text-center"><p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">What we do</p><h2 className="font-serif text-5xl leading-[.92] tracking-[-0.05em] sm:text-7xl">Small beginnings.<br /><em className="font-normal text-[#d70063]">Limitless potential.</em></h2><p className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-[#1a1917]/70 sm:text-xl">Our programs connect education, leadership and practical support to create opportunities for children and young people.</p></div>
           <div className="mt-14 grid gap-5 sm:grid-cols-2">
-            {programs.map((program) => <article key={program.name} className="group overflow-hidden rounded-[70px_16px_16px_16px] bg-[#f8f5ef]"><div className="relative aspect-[4/3] overflow-hidden"><img src={program.image} alt={program.alt} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#1a1917]/70 via-transparent to-transparent" /><span className="absolute left-6 top-6 text-xs font-semibold tracking-[0.18em] text-white">{program.number}</span></div><div className="p-6 sm:p-8"><h3 className="font-serif text-3xl">{program.name}</h3><p className="mt-3 max-w-md leading-relaxed text-[#1a1917]/65">{program.shortDescription}</p><Link href="/programs" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold hover:text-[#d70063]">Discover the program <ArrowUpRight size={17} /></Link></div></article>)}
+            {programs.map((program) => <article key={program.name} className="group overflow-hidden rounded-[70px_16px_16px_16px] bg-[#f8f5ef]"><div className="relative aspect-[4/3] overflow-hidden"><Image src={program.image} alt={program.alt} fill sizes="(max-width: 639px) calc(100vw - 2.5rem), 50vw" quality={75} loading="lazy" className="object-cover transition-transform duration-500 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#1a1917]/70 via-transparent to-transparent" /><span className="absolute left-6 top-6 text-xs font-semibold tracking-[0.18em] text-white">{program.number}</span></div><div className="p-6 sm:p-8"><h3 className="font-serif text-3xl">{program.name}</h3><p className="mt-3 max-w-md leading-relaxed text-[#1a1917]/65">{program.shortDescription}</p><Link href="/programs" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold hover:text-[#d70063]">Discover the program <ArrowUpRight size={17} /></Link></div></article>)}
           </div>
         </div>
       </section>

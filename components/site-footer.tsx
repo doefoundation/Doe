@@ -38,7 +38,7 @@ export function SiteFooter() {
             <Link href="/" scroll aria-label="DOE Foundation home" className="inline-flex shrink-0">
               <img src={logoUrl} alt="DOE Foundation" className="h-[70px] w-auto object-contain mix-blend-multiply sm:h-[82px]" />
             </Link>
-            <p className="w-full text-[18px] leading-relaxed text-[#1a1917]/75 lg:text-xl">The Davida Omosomi Empowerment Foundation is a child- and youth-focused nonprofit dedicated to raising purposeful leaders through advocacy, literacy, and community-centered initiatives.</p>
+            <p className="w-full font-serif text-[15px] leading-relaxed text-[#1a1917]/75 sm:text-[16px]">The Davida Omosomi Empowerment Foundation is a child- and youth-focused nonprofit dedicated to raising purposeful leaders through advocacy, literacy, and community-centered initiatives.</p>
           </div>
 
           <div className="mt-10 grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-16">
@@ -47,7 +47,7 @@ export function SiteFooter() {
             <ul className="grid gap-1">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} scroll className="group flex min-h-10 items-center gap-3 py-2 text-[16px] text-[#1a1917] transition-colors hover:text-[#137d48] focus-visible:outline-2 focus-visible:outline-[#137d48]">
+                  <Link href={link.href} scroll className="group flex min-h-10 items-center gap-3 py-2 font-serif text-[15px] text-[#1a1917] transition-colors hover:text-[#137d48] focus-visible:outline-2 focus-visible:outline-[#137d48]">
                     <ArrowRight size={19} strokeWidth={1.8} aria-hidden="true" className="shrink-0 transition-transform group-hover:translate-x-0.5" />
                     {link.label}
                   </Link>
@@ -59,15 +59,15 @@ export function SiteFooter() {
           <section aria-labelledby="footer-contact-heading">
             <h2 id="footer-contact-heading" className="mb-5 text-[22px] font-semibold tracking-[-0.02em] text-[#1a243b] sm:text-2xl">Contact Us</h2>
             <div className="grid gap-4">
-              <a href="tel:+2349066555162" className="flex items-center gap-4 text-[16px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
+              <a href="tel:+2349066555162" className="flex items-center gap-4 font-serif text-[15px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
                 <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><Phone size={21} fill="currentColor" aria-hidden="true" /></span>
                 +234 906 655 5162
               </a>
-              <a href="mailto:thee.doe.foundation@gmail.com" className="flex items-center gap-4 break-all text-[16px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
+              <a href="mailto:thee.doe.foundation@gmail.com" className="flex items-center gap-4 break-all font-serif text-[15px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
                 <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><Mail size={21} fill="currentColor" aria-hidden="true" /></span>
                 thee.doe.foundation@gmail.com
               </a>
-              <a href="https://maps.google.com/?q=Kuje%2C+Abuja" target="_blank" rel="noreferrer" className="flex items-start gap-4 text-[16px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
+              <a href="https://maps.google.com/?q=Kuje%2C+Abuja" target="_blank" rel="noreferrer" className="flex items-start gap-4 font-serif text-[15px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
                 <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><MapPin size={21} fill="currentColor" aria-hidden="true" /></span>
                 Abuja, Nigeria
               </a>
@@ -85,7 +85,7 @@ export function SiteFooter() {
       </div>
 
       <div className="bg-white px-5 py-6 text-center text-[#1a243b] sm:px-8">
-        <div className="mx-auto grid max-w-[1200px] gap-2 text-[14px] font-medium leading-relaxed sm:grid-cols-3 sm:items-center sm:text-base">
+        <div className="mx-auto grid max-w-[1200px] gap-2 font-serif text-[13px] font-medium leading-relaxed sm:grid-cols-3 sm:items-center sm:text-[15px]">
           <p>© 2026 The Davida Omosomi Empowerment Foundation</p>
           <p>Registered as an Incorporated Trustee in Nigeria</p>
           <p>Made with ❤️ by CJ</p>
