@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import { ArrowLeft, ArrowRight, Quote } from 'lucide-react'
 
 const testimonials = [
@@ -58,6 +58,7 @@ const testimonials = [
 export function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const swipeStartX = useRef<number | null>(null)
   const activeTestimonial = testimonials[activeIndex]
 
   useEffect(() => {
@@ -72,6 +73,29 @@ export function TestimonialsSection() {
 
   const showPrevious = () => setActiveIndex((index) => (index - 1 + testimonials.length) % testimonials.length)
   const showNext = () => setActiveIndex((index) => (index + 1) % testimonials.length)
+
+  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === 'mouse') return
+    swipeStartX.current = event.clientX
+    setIsPaused(true)
+  }
+
+  const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === 'mouse') return
+    const startX = swipeStartX.current
+    const distance = startX === null ? 0 : startX - event.clientX
+
+    if (distance > 45) showNext()
+    if (distance < -45) showPrevious()
+
+    swipeStartX.current = null
+    setIsPaused(false)
+  }
+
+  const handlePointerCancel = () => {
+    swipeStartX.current = null
+    setIsPaused(false)
+  }
 
   return (
     <section id="testimonials" aria-labelledby="testimonials-heading" className="border-y border-[#1a1917]/10 bg-[#f8f5ef] px-5 py-16 sm:px-8 sm:py-24">
@@ -91,7 +115,10 @@ export function TestimonialsSection() {
           onBlurCapture={(event) => {
             if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsPaused(false)
           }}
-          className="rounded-[28px] border border-[#1a1917]/10 bg-white/75 p-6 shadow-[0_20px_60px_-45px_rgba(26,25,23,.35)] sm:p-10 lg:p-12"
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerCancel}
+          className="touch-pan-y rounded-[28px] border border-[#1a1917]/10 bg-white/75 p-6 shadow-[0_20px_60px_-45px_rgba(26,25,23,.35)] sm:p-10 lg:p-12"
         >
           <div key={activeTestimonial.name} aria-live={isPaused ? 'polite' : 'off'} className="testimonial-content grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-center lg:gap-12">
             <div className="flex items-center gap-5 lg:flex-col lg:items-start lg:gap-7">
