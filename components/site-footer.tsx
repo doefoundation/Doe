@@ -27,12 +27,12 @@ const socialLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[#f0f1ef] text-[#1a1917]">
+    <footer className="bg-[#f8f5ef] text-[#1a1917]">
       <div className="mx-auto max-w-[1200px] px-5 pb-10 pt-12 sm:px-8 sm:pb-14 sm:pt-16">
         <NewsletterSignup />
       </div>
 
-      <div className="bg-[#e8eae8] px-5 py-14 sm:px-8 sm:py-20">
+      <div className="bg-[#f8f5ef] px-5 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-[1200px]">
           <div className="flex flex-col items-start gap-3 border-b border-[#1a1917]/12 pb-10 sm:flex-row sm:items-center sm:gap-8 sm:pb-12">
             <Link href="/" scroll aria-label="DOE Foundation home" className="inline-flex shrink-0">
@@ -84,7 +84,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="bg-white px-5 py-6 text-center text-[#1a243b] sm:px-8">
+      <div className="bg-[#f8f5ef] px-5 py-6 text-center text-[#1a243b] sm:px-8">
         <div className="mx-auto grid max-w-[1200px] gap-2 font-serif text-[13px] font-medium leading-relaxed sm:grid-cols-3 sm:items-center sm:text-[15px]">
           <p>© 2026 The Davida Omosomi Empowerment Foundation</p>
           <p>Registered as an Incorporated Trustee in Nigeria</p>
