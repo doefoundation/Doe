@@ -33,14 +33,15 @@ export function SiteFooter() {
       </div>
 
       <div className="bg-[#e8eae8] px-5 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[1.1fr_.8fr_1.1fr] lg:gap-16">
-          <div>
-            <Link href="/" scroll aria-label="DOE Foundation home" className="inline-flex">
-              <img src={logoUrl} alt="DOE Foundation" className="h-[74px] w-auto object-contain mix-blend-multiply" />
+        <div className="mx-auto max-w-[1200px]">
+          <div className="flex flex-col items-start gap-3 border-b border-[#1a1917]/12 pb-10 sm:flex-row sm:items-center sm:gap-8 sm:pb-12">
+            <Link href="/" scroll aria-label="DOE Foundation home" className="inline-flex shrink-0">
+              <img src={logoUrl} alt="DOE Foundation" className="h-[70px] w-auto object-contain mix-blend-multiply sm:h-[82px]" />
             </Link>
-            <p className="mt-5 max-w-md text-[16px] leading-relaxed text-[#1a1917]/75">The Davida Omosomi Empowerment Foundation is a child- and youth-focused nonprofit dedicated to raising purposeful leaders through advocacy, literacy, and community-centered initiatives.</p>
+            <p className="w-full text-[18px] leading-relaxed text-[#1a1917]/75 lg:text-xl">The Davida Omosomi Empowerment Foundation is a child- and youth-focused nonprofit dedicated to raising purposeful leaders through advocacy, literacy, and community-centered initiatives.</p>
           </div>
 
+          <div className="mt-10 grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-16">
           <nav aria-label="Quick links">
             <h2 className="mb-5 text-[22px] font-semibold tracking-[-0.02em] text-[#1a243b] sm:text-2xl">Quick Links</h2>
             <ul className="grid gap-1">
@@ -79,6 +80,7 @@ export function SiteFooter() {
               ))}
             </div>
           </section>
+          </div>
         </div>
       </div>
 

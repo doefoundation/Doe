@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { ArrowUpRight, ChevronRight, Mail, MapPin, Phone } from 'lucide-react'
+import { ArrowUpRight, ChevronRight } from 'lucide-react'
 import { programs } from '@/lib/programs'
 import { TestimonialsSection } from '@/components/testimonials'
 import { SiteHeader } from '@/components/site-header'
@@ -150,43 +150,6 @@ export function HomePage() {
         </div>
       </section>
 
-      <section id="contact" aria-labelledby="contact-heading" className="bg-[#f8f5ef] px-5 py-16 sm:px-8 sm:py-24">
-        <div className="mx-auto max-w-[1360px]">
-          <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
-            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">We&apos;re here to help</p>
-            <h2 id="contact-heading" className="font-serif text-5xl tracking-[-0.05em] sm:text-7xl">Get in <em className="font-normal text-[#d70063]">Touch.</em></h2>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#1a1917]/65 sm:text-lg">Have questions or want to join us? Reach out to the Davida Omosomi Empowerment Foundation. We&apos;d love to hear from you!</p>
-          </div>
-
-          <div className="grid gap-6">
-            <div className="rounded-[28px] border border-[#1a1917]/10 bg-white/65 p-6 sm:p-10">
-              <h3 className="font-serif text-2xl sm:text-3xl">Let&apos;s start a conversation</h3>
-              <div className="mt-7 grid gap-3 sm:grid-cols-3">
-                <a href="https://maps.google.com/?q=Kuje%2C+Abuja" target="_blank" rel="noreferrer" className="group rounded-2xl bg-[#f8f5ef] p-5 transition-colors hover:bg-[#f1c6d7]/40 focus-visible:outline-2 focus-visible:outline-[#d70063]">
-                  <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#f1c6d7]/55 text-[#d70063]"><MapPin size={20} strokeWidth={2} /></span><span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-[#1a1917]/50">Address</span><span className="mt-1 block text-sm font-semibold">Abuja, Nigeria</span>
-                </a>
-                <a href="tel:+2349066555162" className="group rounded-2xl bg-[#f8f5ef] p-5 transition-colors hover:bg-[#f1c6d7]/40 focus-visible:outline-2 focus-visible:outline-[#d70063]">
-                  <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#f1c6d7]/55 text-[#d70063]"><Phone size={20} strokeWidth={2} /></span><span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-[#1a1917]/50">Phone</span><span className="mt-1 block text-sm font-semibold">+234 906 655 5162</span>
-                </a>
-                <a href="mailto:thee.doe.foundation@gmail.com" className="group rounded-2xl bg-[#f8f5ef] p-5 transition-colors hover:bg-[#f1c6d7]/40 focus-visible:outline-2 focus-visible:outline-[#d70063]">
-                  <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#f1c6d7]/55 text-[#d70063]"><Mail size={20} strokeWidth={2} /></span><span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-[#1a1917]/50">Email</span><span className="mt-1 block break-all text-sm font-semibold">thee.doe.foundation@gmail.com</span>
-                </a>
-              </div>
-
-              <div className="mt-8 flex flex-col gap-4 border-t border-[#1a1917]/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
-                <div><p className="text-base font-semibold sm:text-lg">Follow our journey</p><p className="mt-1 text-sm text-[#1a1917]/65">Find us on social media</p></div>
-                <div className="flex gap-2">
-                  <a href="https://www.facebook.com/share/16YXz6DD8T5/" target="_blank" rel="noreferrer" aria-label="Visit DOE Foundation on Facebook" title="Facebook" className="flex h-12 w-12 items-center justify-center rounded-full border border-[#1a1917]/10 text-[#1a1917]/70 transition-colors hover:border-[#d70063] hover:bg-[#f1c6d7]/40 hover:text-[#d70063] focus-visible:outline-2 focus-visible:outline-[#d70063]"><svg viewBox="0 0 24 24" width="23" height="23" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.4-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.8v8h3.4Z" /></svg></a>
-                  <a href="https://www.linkedin.com/company/thee-davida-omosomi-empowerment-foundation/" target="_blank" rel="noreferrer" aria-label="Visit DOE Foundation on LinkedIn" title="LinkedIn" className="flex h-12 w-12 items-center justify-center rounded-full border border-[#1a1917]/10 text-[#1a1917]/70 transition-colors hover:border-[#d70063] hover:bg-[#f1c6d7]/40 hover:text-[#d70063] focus-visible:outline-2 focus-visible:outline-[#d70063]"><svg viewBox="0 0 24 24" width="23" height="23" fill="currentColor" aria-hidden="true"><path d="M5.2 8.3a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM3.7 9.7h3v10h-3zM9 9.7h2.9v1.4h.1a3.2 3.2 0 0 1 2.9-1.6c3.1 0 3.7 2 3.7 4.5v5.7h-3v-5.1c0-1.2 0-2.7-1.7-2.7s-2 1.3-2 2.6v5.2H9z"/></svg></a>
-                  <a href="https://www.instagram.com/the_doe_foundation?obrf=MTQ3czczNmVtcGkyZA==" target="_blank" rel="noreferrer" aria-label="Visit DOE Foundation on Instagram" title="Instagram" className="flex h-12 w-12 items-center justify-center rounded-full border border-[#1a1917]/10 text-[#1a1917]/70 transition-colors hover:border-[#d70063] hover:bg-[#f1c6d7]/40 hover:text-[#d70063] focus-visible:outline-2 focus-visible:outline-[#d70063]"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a>
-                  <a href="https://wa.link/sq0qzb" target="_blank" rel="noreferrer" aria-label="Contact DOE Foundation on WhatsApp" title="WhatsApp" className="flex h-12 w-12 items-center justify-center rounded-full border border-[#1a1917]/10 text-[#1a1917]/70 transition-colors hover:border-[#d70063] hover:bg-[#f1c6d7]/40 hover:text-[#d70063] focus-visible:outline-2 focus-visible:outline-[#d70063]"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.7A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="M8.5 8.2c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .6.6 1 1.4 1.8 2.5 2.3.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.4 0 .3-.2 1.1-.7 1.5-.5.4-1.1.6-1.8.4-1.1-.3-2.4-.9-3.7-2-1.1-1-2-2.3-2.3-3.3-.3-.8-.1-1.7.2-2.5Z"/></svg></a>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
 
       <SiteFooter />
     </main>
