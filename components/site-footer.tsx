@@ -12,7 +12,7 @@ const quickLinks = [
   { label: 'Our Partners', href: '/#our-partners' },
   { label: 'Newsletters', href: '/#newsletter-heading' },
   { label: 'Volunteer', href: 'mailto:hello@doefoundation.org?subject=Volunteering%20with%20DOE%20Foundation' },
-  { label: 'Donate', href: 'mailto:hello@doefoundation.org?subject=Supporting%20DOE%20Foundation' },
+  { label: 'Donate', href: '/donate' },
   { label: 'Contact Us', href: 'mailto:thee.doe.foundation@gmail.com' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
   { label: 'Cookie Policy', href: '/cookie-policy' },
