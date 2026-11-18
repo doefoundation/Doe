@@ -36,7 +36,7 @@ export function SiteFooter() {
         <div className="mx-auto max-w-[1200px]">
           <div className="flex flex-col items-start gap-3 border-b border-[#1a1917]/12 pb-10 sm:flex-row sm:items-center sm:gap-8 sm:pb-12">
             <Link href="/" scroll aria-label="DOE Foundation home" className="inline-flex shrink-0">
-              <img src={logoUrl} alt="DOE Foundation" className="h-[70px] w-auto object-contain mix-blend-multiply sm:h-[82px]" />
+              <img src={logoUrl} alt="DOE Foundation" className="h-[80px] w-auto object-contain mix-blend-multiply sm:h-[92px]" />
             </Link>
             <p className="w-full font-serif text-[15px] leading-relaxed text-[#1a1917]/75 sm:text-[16px]">The Davida Omosomi Empowerment Foundation is a child- and youth-focused nonprofit dedicated to raising purposeful leaders through advocacy, literacy, and community-centered initiatives.</p>
           </div>
@@ -60,15 +60,15 @@ export function SiteFooter() {
             <h2 id="footer-contact-heading" className="mb-5 text-[22px] font-semibold tracking-[-0.02em] text-[#1a243b] sm:text-2xl">Contact Us</h2>
             <div className="grid gap-4">
               <a href="tel:+2349066555162" className="flex items-center gap-4 font-serif text-[15px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
-                <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><Phone size={21} fill="currentColor" aria-hidden="true" /></span>
+                <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><Phone size={21} strokeWidth={1.8} aria-hidden="true" /></span>
                 +234 906 655 5162
               </a>
               <a href="mailto:thee.doe.foundation@gmail.com" className="flex items-center gap-4 break-all font-serif text-[15px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
-                <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><Mail size={21} fill="currentColor" aria-hidden="true" /></span>
+                <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><Mail size={21} strokeWidth={1.8} aria-hidden="true" /></span>
                 thee.doe.foundation@gmail.com
               </a>
               <a href="https://maps.google.com/?q=Kuje%2C+Abuja" target="_blank" rel="noreferrer" className="flex items-start gap-4 font-serif text-[15px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
-                <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><MapPin size={21} fill="currentColor" aria-hidden="true" /></span>
+                <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><MapPin size={21} strokeWidth={1.8} aria-hidden="true" /></span>
                 Abuja, Nigeria
               </a>
             </div>
