@@ -76,7 +76,7 @@ export function HomePage() {
           <h1 className="max-w-[680px] font-serif text-[clamp(3.8rem,8vw,7.5rem)] leading-[.98] tracking-[-0.075em]">Every child deserves a<br /><em className="mt-2 block font-normal text-[#d70063]">good Education.</em></h1>
           <p className="mt-9 max-w-[470px] text-lg leading-relaxed text-[#1a1917]/70 sm:text-xl">We open doors to quality education, mentorship, and opportunity for young people building a brighter future.</p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a href="mailto:hello@doefoundation.org" className="inline-flex items-center gap-4 rounded-full bg-[#d70063] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]">Support our work <ArrowUpRight size={18} /></a>
+            <Link href="/donate" className="inline-flex items-center gap-4 rounded-full bg-[#d70063] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d70063]">Support our work <ArrowUpRight size={18} /></Link>
             <a href="#our-work" className="group inline-flex items-center gap-2 px-2 py-3.5 text-sm font-semibold">Explore our work <ChevronRight size={17} className="transition-transform group-hover:translate-x-1" /></a>
           </div>
         </div>
