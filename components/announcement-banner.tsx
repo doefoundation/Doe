@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import useSWR from 'swr'
 import { ArrowUpRight, Megaphone, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
@@ -21,20 +21,9 @@ async function fetchLiveAnnouncement() {
 
 export function AnnouncementBanner() {
   const { data: announcement } = useSWR('live-announcement', fetchLiveAnnouncement, { revalidateOnFocus: false })
-  const [dismissedKey, setDismissedKey] = useState<string | null>(null)
-  const announcementKey = announcement ? `${announcement.id}:${announcement.updated_at}` : null
+  const [dismissed, setDismissed] = useState(false)
 
-  useEffect(() => {
-    setDismissedKey(window.sessionStorage.getItem('doe-announcement-dismissed'))
-  }, [])
-
-  if (!announcement || !announcementKey || dismissedKey === announcementKey) return null
-
-  function dismiss() {
-    if (!announcementKey) return
-    window.sessionStorage.setItem('doe-announcement-dismissed', announcementKey)
-    setDismissedKey(announcementKey)
-  }
+  if (!announcement || dismissed) return null
 
   const isExternal = announcement.link_url?.startsWith('http')
 
@@ -59,7 +48,7 @@ export function AnnouncementBanner() {
         </div>
         <button
           type="button"
-          onClick={dismiss}
+          onClick={() => setDismissed(true)}
           aria-label="Dismiss announcement"
           className="flex size-8 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-white"
         >
@@ -68,4 +57,4 @@ export function AnnouncementBanner() {
       </div>
     </aside>
   )
-}
+    }
