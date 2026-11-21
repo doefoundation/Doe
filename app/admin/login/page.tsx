@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { ArrowLeft, ShieldCheck } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { getAdminSession, hasAnyAdmin } from '@/lib/admin-auth'
 import { signOut } from '@/app/admin/actions'
 import { LoginForm, SetupForm } from '@/components/admin/login-forms'
+import { LOGO_URL } from '@/lib/brand'
 
 export const metadata = { title: 'Admin sign in | DOE Foundation' }
 
@@ -20,9 +21,7 @@ export default async function AdminLoginPage() {
           <ArrowLeft size={16} aria-hidden="true" /> Back to website
         </Link>
         <div className="rounded-3xl border border-[#1a1917]/10 bg-white p-6 shadow-[0_24px_70px_-40px_rgba(26,25,23,.35)] sm:p-8">
-          <div className="mb-6 flex size-12 items-center justify-center rounded-full bg-[#f1c6d7]/50 text-[#d70063]">
-            <ShieldCheck size={22} aria-hidden="true" />
-          </div>
+          <img src={LOGO_URL} alt="DOE Foundation" className="mb-5 h-20 w-auto object-contain mix-blend-multiply" />
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#d70063]">DOE Foundation Admin</p>
           <h1 className="mt-2 font-serif text-4xl tracking-[-0.04em]">{isSetup ? 'Create your admin account' : 'Welcome back'}</h1>
           <p className="mt-2 text-sm leading-relaxed text-[#1a1917]/60">
@@ -49,4 +48,4 @@ export default async function AdminLoginPage() {
       </div>
     </main>
   )
-}
+  }
