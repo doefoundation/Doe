@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ExternalLink, Pencil, Plus, Trash2 } from 'lucide-react'
+import { ExternalLink, Eye, Pencil, Plus, Trash2 } from 'lucide-react'
 import { requireAdmin } from '@/lib/admin-auth'
 import { deleteNews } from '@/app/admin/actions'
 import { PageHeading } from '@/components/admin/admin-shell'
@@ -17,7 +17,15 @@ export default async function AdminNewsPage({ searchParams }: Props) {
     .select('id, title, slug, category, status, published_at, updated_at')
     .order('updated_at', { ascending: false })
 
-  const notice = params.deleted ? 'Article deleted.' : params.saved === 'published' ? 'Article published to the website.' : params.saved ? 'Draft saved.' : null
+  const notice = params.deleted
+    ? 'Article deleted.'
+    : params.saved === 'published'
+      ? 'Article published to the website.'
+      : params.saved === 'scheduled'
+        ? 'Article scheduled. It will appear on the website automatically at the chosen time.'
+        : params.saved
+          ? 'Draft saved.'
+          : null
 
   return (
     <>
@@ -40,15 +48,22 @@ export default async function AdminNewsPage({ searchParams }: Props) {
             <li key={post.id} className="flex flex-col gap-4 rounded-2xl border border-[#1a1917]/10 bg-white p-4 sm:flex-row sm:items-center sm:p-5">
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <StatusBadge status={post.status} />
+                  <StatusBadge status={post.status} publishedAt={post.published_at} />
                   <span className="text-xs text-[#1a1917]/50">{post.category}</span>
                 </div>
                 <Link href={`/admin/news/${post.id}`} className="mt-2 block font-serif text-xl leading-snug tracking-[-0.02em] hover:text-[#d70063]">{post.title}</Link>
                 <p className="mt-1 text-xs text-[#1a1917]/50">
-                  {post.status === 'published' ? `Published ${formatDate(post.published_at)}` : `Last edited ${formatDate(post.updated_at)}`}
+                  {post.status !== 'published'
+                    ? `Last edited ${formatDate(post.updated_at)}`
+                    : post.published_at && new Date(post.published_at).getTime() > Date.now()
+                      ? `Goes live ${formatDate(post.published_at)}`
+                      : `Published ${formatDate(post.published_at)}`}
                 </p>
               </div>
               <div className="flex items-center gap-2">
+                <Link href={`/admin/preview/${post.id}`} target="_blank" aria-label={`Preview ${post.title}`} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#1a1917]/15 px-4 text-sm font-semibold hover:border-[#d70063] hover:text-[#d70063]">
+                  <Eye size={16} aria-hidden="true" /> Preview
+                </Link>
                 {post.status === 'published' && (
                   <Link href={`/news/${post.slug}`} target="_blank" aria-label={`View ${post.title} on website`} className="flex size-11 items-center justify-center rounded-full border border-[#1a1917]/15 hover:border-[#d70063] hover:text-[#d70063]">
                     <ExternalLink size={16} aria-hidden="true" />
