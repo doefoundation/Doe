@@ -91,6 +91,8 @@ export async function saveNews(_prev: ActionState, formData: FormData): Promise<
   const category = text(formData, 'category') || 'News'
   const coverImageUrl = text(formData, 'cover_image_url') || null
   const status = formData.get('status') === 'published' ? 'published' : 'draft'
+  const scheduled = text(formData, 'publish_mode') === 'scheduled'
+  const scheduledFor = text(formData, 'published_at')
 
   if (title.length < 3 || title.length > 200) return { error: 'Title must be between 3 and 200 characters.' }
   if (!slug) return { error: 'Add a URL slug using letters or numbers.' }
@@ -101,11 +103,19 @@ export async function saveNews(_prev: ActionState, formData: FormData): Promise<
 
   let publishedAt: string | null = null
   if (status === 'published') {
-    if (id) {
-      const { data: existing } = await supabase.from('news_posts').select('published_at').eq('id', id).maybeSingle()
-      publishedAt = existing?.published_at ?? new Date().toISOString()
+    if (scheduled) {
+      const when = new Date(scheduledFor)
+      if (!scheduledFor || Number.isNaN(when.getTime())) return { error: 'Choose a valid date and time to schedule this article.' }
+      if (when.getTime() < Date.now() + 60_000) return { error: 'The scheduled time must be in the future. To go live immediately, choose "Publish now".' }
+      publishedAt = when.toISOString()
     } else {
-      publishedAt = new Date().toISOString()
+      // Publish now. Keep the original date if the article is already live; otherwise use the current time.
+      let existingDate: string | null = null
+      if (id) {
+        const { data: existing } = await supabase.from('news_posts').select('published_at').eq('id', id).maybeSingle()
+        existingDate = existing?.published_at ?? null
+      }
+      publishedAt = existingDate && new Date(existingDate).getTime() <= Date.now() ? existingDate : new Date().toISOString()
     }
   }
 
@@ -132,8 +142,8 @@ export async function saveNews(_prev: ActionState, formData: FormData): Promise<
   }
 
   refreshPublicSite()
-  redirect(`/admin/news?saved=${status}`)
-}
+  redirect(`/admin/news?saved=${scheduled && status === 'published' ? 'scheduled' : status}`)
+    }
 
 export async function deleteNews(formData: FormData) {
   const { supabase } = await requireAdmin()
