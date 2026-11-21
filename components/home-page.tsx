@@ -8,8 +8,8 @@ import { programs } from '@/lib/programs'
 import { TestimonialsSection } from '@/components/testimonials'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
-
-const impactTargets = [1200, 76, 150, 7]
+import { LatestNews } from '@/components/latest-news'
+import type { ImpactStat, NewsPost } from '@/lib/cms-types'
 
 const heroImages = [
   { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/15-cQBBTFwjpRjQBkMF3nfTMtzv2bmoxo.jpeg', alt: 'DOE Foundation students and mentors celebrating together' },
@@ -19,7 +19,8 @@ const heroImages = [
   { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/9-5kM9OMsC7vDYKzvBl8DpovpiBkZDhJ.jpeg', alt: 'Students participating in an educational debate event' },
 ]
 
-export function HomePage() {
+export function HomePage({ impactStats, latestNews }: { impactStats: ImpactStat[]; latestNews: NewsPost[] }) {
+  const impactTargets = impactStats.map((stat) => stat.value)
   const [heroImageIndex, setHeroImageIndex] = useState(0)
   const [impactValues, setImpactValues] = useState(impactTargets)
   const impactRef = useRef<HTMLElement>(null)
@@ -64,6 +65,8 @@ export function HomePage() {
       observer.disconnect()
       window.cancelAnimationFrame(animationFrame)
     }
+    // Animate once on mount with the server-provided targets.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -113,12 +116,7 @@ export function HomePage() {
         <div className="mx-auto max-w-[1100px]">
           <div className="text-center"><p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">Our impact</p><h2 className="font-serif text-5xl leading-[.95] tracking-[-0.05em] sm:text-6xl">Change you can <em className="font-normal text-[#d70063]">count.</em></h2></div>
           <div className="mt-12 grid grid-cols-2">
-            {[
-              [`${impactValues[0].toLocaleString()}+`, 'Students empowered through debates'],
-              [`${impactValues[1]}`, 'Schools reached'],
-              [`${impactValues[2]}`, 'Scholarships disbursed'],
-              [`${impactValues[3]}`, 'Competitions (international & local)'],
-            ].map(([figure, label]) => <article key={label} className="flex flex-col items-center px-4 py-8 text-center sm:px-8 sm:py-10"><p className="font-serif text-5xl tracking-[-0.06em] text-[#d70063] sm:text-7xl">{figure}</p><p className="mt-3 max-w-[190px] text-xs font-semibold uppercase leading-relaxed tracking-[0.12em] text-[#1a1917]/65">{label}</p></article>)}
+            {impactStats.map((stat, index) => <article key={stat.id} className="flex flex-col items-center px-4 py-8 text-center sm:px-8 sm:py-10"><p className="font-serif text-5xl tracking-[-0.06em] text-[#d70063] sm:text-7xl">{`${(impactValues[index] ?? stat.value).toLocaleString()}${stat.suffix}`}</p><p className="mt-3 max-w-[190px] text-xs font-semibold uppercase leading-relaxed tracking-[0.12em] text-[#1a1917]/65">{stat.label}</p></article>)}
           </div>
         </div>
       </section>
@@ -131,6 +129,8 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      <LatestNews posts={latestNews} />
 
       <TestimonialsSection />
 
