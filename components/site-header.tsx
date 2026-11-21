@@ -5,6 +5,7 @@ import { useMemo, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowUpRight, Menu, Search, X } from 'lucide-react'
 import { siteSearchItems, type SiteSearchItem } from '@/lib/site-search'
+import { AnnouncementBanner } from '@/components/announcement-banner'
 
 const logoUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/file_00000000ebbc8243b1a46e16cc7df432-Ey2WCQZAaBoXSQKqIEQgRVc2ePrSvh.png'
 
@@ -20,7 +21,7 @@ const siteLinks = [
   { label: 'Volunteer', href: 'mailto:hello@doefoundation.org?subject=Volunteering%20with%20DOE%20Foundation' },
   { label: 'Donate', href: '/donate' },
   { label: 'Contact Us', href: 'mailto:hello@doefoundation.org' },
-  { label: 'News Content', href: '/#testimonials' },
+  { label: 'News', href: '/news' },
   { label: 'Cookie Policy', href: '/cookie-policy' },
 ]
 
@@ -77,6 +78,7 @@ export function SiteHeader() {
   }
 
   return (
+    <>
     <header className="relative z-20 border-b border-[#1a1917]/12 bg-[#f8f5ef]/95 px-5 backdrop-blur-sm sm:px-8">
       <div className="mx-auto flex h-[92px] max-w-[1360px] items-center justify-between sm:h-[108px]">
         <Link href="/" aria-label="DOE Foundation home" className="flex items-center justify-center">
@@ -133,5 +135,7 @@ export function SiteHeader() {
         </nav>
       )}
     </header>
+    <AnnouncementBanner />
+    </>
   )
 }
