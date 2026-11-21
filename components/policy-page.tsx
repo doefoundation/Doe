@@ -13,7 +13,7 @@ export function PolicyPage({ type }: { type: 'privacy' | 'cookies' }) {
         <h1 className="mt-4 font-serif text-6xl leading-[.92] tracking-[-0.06em] sm:text-8xl">{title}</h1>
         <div className="mt-8 max-w-2xl border-t border-[#1a1917]/15 pt-7 text-base leading-relaxed text-[#1a1917]/70 sm:text-lg">
           <p>The DOE Foundation is preparing this policy information for publication. For current questions about {isPrivacy ? 'how we handle information you share with us' : 'cookies and similar technologies on this website'}, please contact our team.</p>
-          <a href="mailto:hello@doefoundation.org" className="mt-6 inline-flex font-semibold text-[#d70063] underline decoration-[#d70063]/40 underline-offset-4 hover:decoration-[#d70063]">hello@doefoundation.org</a>
+          <a href="mailto:info@thedoefoundation.com" className="mt-6 inline-flex font-semibold text-[#d70063] underline decoration-[#d70063]/40 underline-offset-4 hover:decoration-[#d70063]">info@thedoefoundation.com</a>
         </div>
       </section>
       <SiteFooter />
