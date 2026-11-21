@@ -2,10 +2,10 @@ export const SITE_NAME = 'DOE Foundation'
 
 /**
  * The public address of the website, used to build absolute links for social previews and sharing.
- * Set NEXT_PUBLIC_SITE_URL in Vercel (for example https://doefoundation.org) so previews always use your real domain.
+ * Set SITE_URL in Vercel (for example https://www.thedoefoundation.com) so previews always use your real domain.
  */
 export function getSiteUrl() {
-  const explicit = process.env.NEXT_PUBLIC_SITE_URL
+  const explicit = process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL
   if (explicit) return explicit.replace(/\/+$/, '')
   const production = process.env.VERCEL_PROJECT_PRODUCTION_URL
   if (production) return `https://${production}`
