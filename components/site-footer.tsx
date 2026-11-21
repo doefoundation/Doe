@@ -11,7 +11,7 @@ const quickLinks = [
   { label: 'Testimonials', href: '/#testimonials' },
   { label: 'Our Partners', href: '/#our-partners' },
   { label: 'Newsletters', href: '/#newsletter-heading' },
-  { label: 'Volunteer', href: 'mailto:hello@doefoundation.org?subject=Volunteering%20with%20DOE%20Foundation' },
+  { label: 'Volunteer', href: 'mailto:info@thedoefoundation.com?subject=Volunteering%20with%20DOE%20Foundation' },
   { label: 'Donate', href: '/donate' },
   { label: 'Contact Us', href: 'mailto:info@thedoefoundation.com' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
