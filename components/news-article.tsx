@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { MarkdownContent } from '@/components/markdown-content'
+import { ShareButtons } from '@/components/share-buttons'
 import { formatDate, type NewsPost } from '@/lib/cms-types'
 
 type ArticleData = Pick<NewsPost, 'title' | 'excerpt' | 'content' | 'category' | 'cover_image_url' | 'published_at'>
 
-export function NewsArticle({ post, showBackLink = true }: { post: ArticleData; showBackLink?: boolean }) {
+export function NewsArticle({ post, showBackLink = true, shareUrl }: { post: ArticleData; showBackLink?: boolean; shareUrl?: string }) {
   return (
     <article className="mx-auto max-w-[820px] px-5 py-14 sm:px-8 sm:py-20">
       {showBackLink && (
@@ -25,6 +26,7 @@ export function NewsArticle({ post, showBackLink = true }: { post: ArticleData; 
       <div className="mt-10">
         <MarkdownContent source={post.content} />
       </div>
+      {shareUrl && <ShareButtons url={shareUrl} title={post.title} summary={post.excerpt || undefined} />}
     </article>
   )
-      }
+}
