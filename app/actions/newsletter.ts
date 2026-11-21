@@ -5,6 +5,11 @@ export type NewsletterState = { status: 'success' | 'error'; message: string } |
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const GENERIC_ERROR = 'Sorry, we could not subscribe you right now. Please try again shortly.'
 
+/** Removes spaces, line breaks and wrapping quotes that sometimes get pasted into environment variables. */
+function cleanEnv(value: string | undefined) {
+  return (value ?? '').trim().replace(/^["']|["']$/g, '').trim()
+}
+
 export async function subscribeToNewsletter(_prev: NewsletterState, formData: FormData): Promise<NewsletterState> {
   // Bot traps: a hidden field real people never fill in, and forms submitted impossibly fast.
   const trap = String(formData.get('website') ?? '')
@@ -23,10 +28,14 @@ export async function subscribeToNewsletter(_prev: NewsletterState, formData: Fo
     return { status: 'error', message: 'Please tick the box to accept the Privacy Policy.' }
   }
 
-  const apiKey = process.env.BREVO_API_KEY
-  const listId = Number.parseInt(process.env.BREVO_LIST_ID ?? '', 10)
+  const apiKey = cleanEnv(process.env.BREVO_API_KEY)
+  const listId = Number.parseInt(cleanEnv(process.env.BREVO_LIST_ID).replace(/^#/, ''), 10)
   if (!apiKey || !Number.isInteger(listId)) {
-    console.error('Newsletter signup is not configured: set BREVO_API_KEY and BREVO_LIST_ID')
+    console.error(
+      'Newsletter: not configured.',
+      `BREVO_API_KEY present: ${Boolean(apiKey)}.`,
+      `BREVO_LIST_ID valid: ${Number.isInteger(listId)}.`,
+    )
     return { status: 'error', message: GENERIC_ERROR }
   }
 
@@ -42,13 +51,17 @@ export async function subscribeToNewsletter(_prev: NewsletterState, formData: Fo
     if (response.status === 201 || response.status === 204) {
       return { status: 'success', message: 'Thank you for subscribing! We will keep you updated.' }
     }
-    if (response.status === 400) {
+
+    // Brevo explains the problem in the response. Log it (never the key) so it can be fixed.
+    const detail = (await response.json().catch(() => null)) as { code?: string; message?: string } | null
+    console.error('Newsletter: Brevo refused the signup.', `status=${response.status}`, `code=${detail?.code ?? 'none'}`, `message=${detail?.message ?? 'none'}`)
+
+    if (response.status === 400 && /email/i.test(detail?.message ?? '')) {
       return { status: 'error', message: 'Please check your email address and try again.' }
     }
-    console.error('Brevo rejected the signup with status', response.status)
     return { status: 'error', message: GENERIC_ERROR }
-  } catch {
-    console.error('Could not reach Brevo')
+  } catch (error) {
+    console.error('Newsletter: could not reach Brevo.', error instanceof Error ? error.message : 'unknown error')
     return { status: 'error', message: GENERIC_ERROR }
   }
 }
