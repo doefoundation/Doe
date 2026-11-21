@@ -109,7 +109,7 @@ export function DonatePage() {
       </section>
 
       <section className="mx-auto max-w-[1100px] px-5 py-14 text-center sm:px-8 sm:py-16">
-        <p className="text-[15px] leading-relaxed text-[#1a1917]/70">For partnerships, reach out at <span className="font-semibold text-[#1a1917]">thee.doe.foundation.com</span> or email <a href="mailto:thee.doe.foundation@gmail.com" className="font-semibold text-[#d70063] underline underline-offset-4">thee.doe.foundation@gmail.com</a>.</p>
+        <p className="text-[15px] leading-relaxed text-[#1a1917]/70">For partnerships, call <a href="tel:+2349066555162" className="font-semibold text-[#1a1917] underline underline-offset-4">+234 906 655 5162</a> or email <a href="mailto:info@thedoefoundation.com" className="font-semibold text-[#d70063] underline underline-offset-4">info@thedoefoundation.com</a>.</p>
       </section>
 
       <SiteFooter />
