@@ -13,7 +13,7 @@ const quickLinks = [
   { label: 'Newsletters', href: '/#newsletter-heading' },
   { label: 'Volunteer', href: 'mailto:hello@doefoundation.org?subject=Volunteering%20with%20DOE%20Foundation' },
   { label: 'Donate', href: '/donate' },
-  { label: 'Contact Us', href: 'mailto:thee.doe.foundation@gmail.com' },
+  { label: 'Contact Us', href: 'mailto:info@thedoefoundation.com' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
   { label: 'Cookie Policy', href: '/cookie-policy' },
 ]
@@ -63,9 +63,9 @@ export function SiteFooter() {
                 <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><Phone size={21} strokeWidth={1.8} aria-hidden="true" /></span>
                 +234 906 655 5162
               </a>
-              <a href="mailto:thee.doe.foundation@gmail.com" className="flex items-center gap-4 break-all font-serif text-[15px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
+                            <a href="mailto:info@thedoefoundation.com" className="flex items-center gap-4 break-all font-serif text-[15px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
                 <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><Mail size={21} strokeWidth={1.8} aria-hidden="true" /></span>
-                thee.doe.foundation@gmail.com
+               info@thedoefoundation.com
               </a>
               <a href="https://maps.google.com/?q=Kuje%2C+Abuja" target="_blank" rel="noreferrer" className="flex items-start gap-4 font-serif text-[15px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
                 <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><MapPin size={21} strokeWidth={1.8} aria-hidden="true" /></span>
