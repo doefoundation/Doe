@@ -9,7 +9,7 @@ export function LoginForm() {
   return (
     <form action={action} className="flex flex-col gap-5">
       <Field label="Email address" htmlFor="email">
-        <input id="email" name="email" type="email" autoComplete="email" required className={inputClass} placeholder="you@doefoundation.org" />
+        <input id="email" name="email" type="email" autoComplete="email" required className={inputClass} placeholder="info@thedoefoundation.com" />
       </Field>
       <Field label="Password" htmlFor="password">
         <input id="password" name="password" type="password" autoComplete="current-password" required className={inputClass} />
