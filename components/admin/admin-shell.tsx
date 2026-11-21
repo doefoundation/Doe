@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState, type ReactNode } from 'react'
 import { ChartColumn, ExternalLink, LayoutDashboard, LogOut, Megaphone, Menu, Newspaper, Users, X } from 'lucide-react'
 import { signOut } from '@/app/admin/actions'
+import { LOGO_URL } from '@/lib/brand'
 
 const navItems = [
   { label: 'Overview', href: '/admin', icon: LayoutDashboard },
@@ -21,9 +22,12 @@ function isActive(pathname: string, href: string) {
 function SidebarContent({ email, pathname, onNavigate }: { email: string; pathname: string; onNavigate?: () => void }) {
   return (
     <div className="flex h-full flex-col">
-      <div className="px-6 pb-6 pt-7">
-        <p className="font-serif text-2xl tracking-[-0.03em] text-white">DOE <em className="font-normal text-[#ff5fa8]">Admin</em></p>
-        <p className="mt-1 text-xs text-white/50">Davida Omosomi Empowerment</p>
+      <div className="px-5 pb-6 pt-6">
+        <Link href="/admin" onClick={onNavigate} aria-label="DOE Foundation admin home" className="inline-block rounded-2xl bg-white px-4 py-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff5fa8]">
+          <img src={LOGO_URL} alt="DOE Foundation" className="block h-12 w-auto object-contain mix-blend-multiply" />
+        </Link>
+        <p className="mt-4 font-serif text-xl tracking-[-0.03em] text-white">DOE <em className="font-normal text-[#ff5fa8]">Admin</em></p>
+        <p className="mt-0.5 text-xs text-white/50">Davida Omosomi Empowerment</p>
       </div>
       <nav aria-label="Admin navigation" className="flex-1 px-3">
         <ul className="flex flex-col gap-1">
@@ -85,7 +89,10 @@ export function AdminShell({ email, children }: { email: string; children: React
       </aside>
 
       <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-[#1a1917]/10 bg-[#f8f5ef]/95 px-4 backdrop-blur lg:hidden">
-        <p className="font-serif text-xl tracking-[-0.03em]">DOE <em className="font-normal text-[#d70063]">Admin</em><span className="sr-only"> — {current?.label}</span></p>
+        <Link href="/admin" aria-label="DOE Foundation admin home" className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-[#d70063]">
+          <img src={LOGO_URL} alt="DOE Foundation" className="h-11 w-auto object-contain mix-blend-multiply" />
+          <span className="font-serif text-xl tracking-[-0.03em]"><em className="font-normal text-[#d70063]">Admin</em><span className="sr-only"> — {current?.label}</span></span>
+        </Link>
         <button
           type="button"
           onClick={() => setOpen(true)}
