@@ -13,7 +13,7 @@ export default async function AdminOverviewPage() {
     supabase.from('news_posts').select('id', { count: 'exact', head: true }).eq('status', 'draft'),
     supabase.from('announcements').select('id', { count: 'exact', head: true }),
     supabase.from('admin_users').select('user_id', { count: 'exact', head: true }),
-    supabase.from('news_posts').select('id, title, status, updated_at').order('updated_at', { ascending: false }).limit(5),
+    supabase.from('news_posts').select('id, title, status, published_at, updated_at').order('updated_at', { ascending: false }).limit(5),
     supabase.from('announcements').select('id, message').eq('is_active', true).maybeSingle(),
     supabase.from('impact_stats').select('id, label, value, suffix').order('sort_order'),
   ])
@@ -65,7 +65,7 @@ export default async function AdminOverviewPage() {
                       <span className="block truncate text-sm font-medium">{post.title}</span>
                       <span className="text-xs text-[#1a1917]/50">Updated {formatDate(post.updated_at)}</span>
                     </span>
-                    <StatusBadge status={post.status} />
+                    <StatusBadge status={post.status} publishedAt={post.published_at} />
                   </Link>
                 </li>
               ))}
