@@ -79,6 +79,7 @@ export function SiteHeader() {
 
   return (
     <>
+    <AnnouncementBanner />
     <header className="relative z-20 border-b border-[#1a1917]/12 bg-[#f8f5ef]/95 px-5 backdrop-blur-sm sm:px-8">
       <div className="mx-auto flex h-[92px] max-w-[1360px] items-center justify-between sm:h-[108px]">
         <Link href="/" aria-label="DOE Foundation home" className="flex items-center justify-center">
@@ -135,7 +136,6 @@ export function SiteHeader() {
         </nav>
       )}
     </header>
-    <AnnouncementBanner />
     </>
   )
-}
+    }
