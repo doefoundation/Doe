@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import { connection } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { createServiceClient } from '@/lib/supabase/admin'
 
@@ -20,6 +21,7 @@ export async function requireAdmin() {
 }
 
 export async function hasAnyAdmin() {
+  await connection()
   const service = createServiceClient()
   const { count, error } = await service.from('admin_users').select('user_id', { count: 'exact', head: true })
   if (error) throw new Error('Unable to check admin accounts')

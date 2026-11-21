@@ -3,7 +3,10 @@ import { fallbackImpactStats, type ImpactStat, type NewsPost } from '@/lib/cms-t
 
 const newsColumns = 'id, title, slug, excerpt, content, category, cover_image_url, status, published_at, created_at, updated_at'
 
+const isSupabaseConfigured = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+
 export async function getImpactStats(): Promise<ImpactStat[]> {
+  if (!isSupabaseConfigured) return fallbackImpactStats
   const supabase = await createClient()
   const { data, error } = await supabase.from('impact_stats').select('id, label, value, suffix, sort_order').order('sort_order')
   if (error || !data?.length) return fallbackImpactStats
@@ -11,6 +14,7 @@ export async function getImpactStats(): Promise<ImpactStat[]> {
 }
 
 export async function getPublishedNews(limit?: number): Promise<NewsPost[]> {
+  if (!isSupabaseConfigured) return []
   const supabase = await createClient()
   let query = supabase
     .from('news_posts')
@@ -25,6 +29,7 @@ export async function getPublishedNews(limit?: number): Promise<NewsPost[]> {
 }
 
 export async function getPublishedNewsBySlug(slug: string): Promise<NewsPost | null> {
+  if (!isSupabaseConfigured) return null
   const supabase = await createClient()
   const { data } = await supabase
     .from('news_posts')
