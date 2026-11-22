@@ -13,6 +13,9 @@ const NOT_SET_UP = 'Email sending is not set up yet. Check the Brevo variables i
 
 type Supabase = Awaited<ReturnType<typeof requireAdmin>>['supabase']
 
+/** Brevo's free plan does not allow campaign tags, so the article is recognised by a short code at the end of the campaign name. */
+const campaignMarker = (articleId: string) => articleId.slice(0, 8)
+
 async function loadLiveArticle(supabase: Supabase, id: string) {
   if (!/^[0-9a-f-]{36}$/i.test(id)) return { error: 'Article not found.' as const }
   const { data: post } = await supabase
@@ -60,11 +63,10 @@ export async function sendArticleTest(articleId: string, testEmail: string, exis
     const built = buildEmail(post)
     const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Africa/Lagos' })
     const created = await createCampaign({
-      name: `News: ${post.title} (${date})`.slice(0, 120),
+      name: `News: ${post.title.slice(0, 80)} (${date}) [${campaignMarker(post.id)}]`,
       subject: built.subject,
       previewText: built.previewText,
       htmlContent: built.html,
-      tag: `news-${post.id}`,
     })
     if (!created.ok) return { ok: false, error: `Brevo could not create the email: ${created.message}` }
     campaignId = created.data
@@ -94,7 +96,7 @@ export async function sendArticleToSubscribers(articleId: string, campaignId: nu
   // The campaign must be the unsent draft that was made for this article.
   const campaign = await getCampaign(campaignId)
   if (!campaign.ok) return { ok: false, error: `Brevo could not find the email: ${campaign.message}` }
-  if (campaign.data.tag && campaign.data.tag !== `news-${post.id}`) return { ok: false, error: 'That email belongs to a different article. Reload the page and start again.' }
+  if (campaign.data.name && !campaign.data.name.includes(`[${campaignMarker(post.id)}]`)) return { ok: false, error: 'That email belongs to a different article. Reload the page and start again.' }
   if (campaign.data.status && campaign.data.status !== 'draft') return { ok: false, error: 'That email has already been sent or scheduled.' }
 
   const subscribers = await getSubscriberCount(config.listId)
@@ -111,4 +113,4 @@ export async function sendArticleToSubscribers(articleId: string, campaignId: nu
 
   revalidatePath('/admin/news')
   return { ok: true, campaignId, message: 'Sent! Brevo is delivering the email to your subscribers now.' }
-}
+  }
