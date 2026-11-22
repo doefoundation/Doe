@@ -47,8 +47,9 @@ export default async function NewsArticleRoute({ params }: Props) {
   const post = await getPost(slug)
   if (!post) notFound()
 
-  return (
+    return (
     <main className="min-h-screen bg-[#f8f5ef] text-[#1a1917]">
+      <JsonLd data={articleJsonLd(post)} />
       <SiteHeader />
       <NewsArticle post={post} shareUrl={`${getSiteUrl()}/news/${post.slug}`} />
       <SiteFooter />
