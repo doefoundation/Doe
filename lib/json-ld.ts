@@ -26,8 +26,11 @@ export function organizationJsonLd() {
       addressLocality: 'Abuja',
       addressCountry: 'NG',
     },
-    // Add your social profiles here, e.g. ['https://www.instagram.com/...', 'https://x.com/...']
-    // sameAs: [],
+     sameAs: [
+      'https://www.facebook.com/share/16YXz6DD8T5/',
+      'https://www.linkedin.com/company/thee-davida-omosomi-empowerment-foundation/',
+      'https://www.instagram.com/the_doe_foundation/',
+    ],
   }
 }
 
