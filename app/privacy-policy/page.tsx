@@ -94,7 +94,7 @@ export default function PrivacyPolicyRoute() {
           <Section id="information-we-collect" number={2} title="Information we collect">
             <SubHeading>Information you give us</SubHeading>
             <Bullets>
-              <li><Strong>Newsletter sign-up.</Strong> Your email address and a record that you agreed to receive our updates.</li>
+              <li><Strong>Newsletter sign-up.</Strong> Your email address and a record that you agreed to receive our updates. When you open our emails or click links in them, our email provider records this so that we can see which news is useful.</li>
               <li><Strong>Messages and enquiries.</Strong> If you email or call us about volunteering, partnerships or anything else, we receive your contact details and whatever you choose to tell us.</li>
               <li><Strong>Donations and sponsorship.</Strong> Donations are made by bank transfer, outside this website, and we do not collect payment card details here. Your bank shares your name, the amount and your payment reference with us so that we can record and acknowledge your gift.</li>
             </Bullets>
