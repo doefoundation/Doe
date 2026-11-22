@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ExternalLink, Eye, Pencil, Plus, Trash2 } from 'lucide-react'
+import { ExternalLink, Eye, Mail, Pencil, Plus, Trash2 } from 'lucide-react'
 import { requireAdmin } from '@/lib/admin-auth'
 import { deleteNews } from '@/app/admin/actions'
 import { PageHeading } from '@/components/admin/admin-shell'
@@ -14,7 +14,7 @@ export default async function AdminNewsPage({ searchParams }: Props) {
   const params = await searchParams
   const { data: posts } = await supabase
     .from('news_posts')
-    .select('id, title, slug, category, status, published_at, updated_at')
+    .select('id, title, slug, category, status, published_at, updated_at, emailed_at')
     .order('updated_at', { ascending: false })
 
   const notice = params.deleted
@@ -44,7 +44,9 @@ export default async function AdminNewsPage({ searchParams }: Props) {
 
       {posts?.length ? (
         <ul className="flex flex-col gap-3">
-          {posts.map((post) => (
+          {posts.map((post) => {
+            const live = post.status === 'published' && post.published_at !== null && new Date(post.published_at).getTime() <= Date.now()
+            return (
             <li key={post.id} className="flex flex-col gap-4 rounded-2xl border border-[#1a1917]/10 bg-white p-4 sm:flex-row sm:items-center sm:p-5">
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
@@ -58,15 +60,21 @@ export default async function AdminNewsPage({ searchParams }: Props) {
                     : post.published_at && new Date(post.published_at).getTime() > Date.now()
                       ? `Goes live ${formatDate(post.published_at)}`
                       : `Published ${formatDate(post.published_at)}`}
+                  {post.emailed_at && ` · Emailed ${formatDate(post.emailed_at)}`}
                 </p>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <Link href={`/admin/preview/${post.id}`} target="_blank" aria-label={`Preview ${post.title}`} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#1a1917]/15 px-4 text-sm font-semibold hover:border-[#d70063] hover:text-[#d70063]">
                   <Eye size={16} aria-hidden="true" /> Preview
                 </Link>
                 {post.status === 'published' && (
                   <Link href={`/news/${post.slug}`} target="_blank" aria-label={`View ${post.title} on website`} className="flex size-11 items-center justify-center rounded-full border border-[#1a1917]/15 hover:border-[#d70063] hover:text-[#d70063]">
                     <ExternalLink size={16} aria-hidden="true" />
+                  </Link>
+                )}
+                {live && (
+                  <Link href={`/admin/news/${post.id}/email`} aria-label={`Email ${post.title} to subscribers`} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#1a1917]/15 px-4 text-sm font-semibold hover:border-[#d70063] hover:text-[#d70063]">
+                    <Mail size={16} aria-hidden="true" /> Email
                   </Link>
                 )}
                 <Link href={`/admin/news/${post.id}`} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#1a1917]/15 px-4 text-sm font-semibold hover:border-[#d70063] hover:text-[#d70063]">
@@ -84,7 +92,8 @@ export default async function AdminNewsPage({ searchParams }: Props) {
                 </form>
               </div>
             </li>
-          ))}
+            )
+          })}
         </ul>
       ) : (
         <div className="rounded-2xl border border-dashed border-[#1a1917]/20 bg-white px-6 py-16 text-center">
