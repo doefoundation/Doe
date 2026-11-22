@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: 'DOE Foundation | Education for every future',
   description: 'DOE Foundation opens doors to quality education, mentorship, and opportunity for young people.',
-  generator: 'v0.app',
   // Defaults shared by every page. Pages without their own title/description fall back to the ones above.
   openGraph: {
     type: 'website',
