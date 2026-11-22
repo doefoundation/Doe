@@ -54,28 +54,31 @@ export async function getSubscriberCount(listId: number): Promise<BrevoResult<nu
   return { ok: true, data: result.data.uniqueSubscribers ?? result.data.totalSubscribers ?? 0 }
 }
 
-export async function createCampaign(input: { name: string; subject: string; previewText: string; htmlContent: string; tag: string }): Promise<BrevoResult<number>> {
+export async function createCampaign(input: { name: string; subject: string; previewText: string; htmlContent: string }): Promise<BrevoResult<number>> {
   const { senderEmail, senderName, listId } = getBrevoConfig()
-  const result = await call<{ id: number }>('/emailCampaigns', {
-    method: 'POST',
-    body: {
-      name: input.name,
-      subject: input.subject,
-      previewText: input.previewText,
-      htmlContent: input.htmlContent,
-      tag: input.tag,
-      sender: { name: senderName, email: senderEmail },
-      replyTo: senderEmail,
-      mirrorActive: true,
-      recipients: { listIds: [listId] },
-    },
-  })
+  const base = {
+    name: input.name,
+    subject: input.subject,
+    htmlContent: input.htmlContent,
+    sender: { name: senderName, email: senderEmail },
+    replyTo: senderEmail,
+    recipients: { listIds: [listId] },
+  }
+
+  let result = await call<{ id: number }>('/emailCampaigns', { method: 'POST', body: { ...base, previewText: input.previewText, mirrorActive: true } })
+
+  // Some Brevo plans do not allow optional extras. Try again with only the essentials
+  // (the preview text is also built into the email itself, so nothing important is lost).
+  if (!result.ok && result.status === 400 && /not allowed|not available|upgrade|plan/i.test(result.message)) {
+    result = await call<{ id: number }>('/emailCampaigns', { method: 'POST', body: base })
+  }
+
   if (!result.ok) return result
   return { ok: true, data: result.data.id }
 }
 
-export async function getCampaign(id: number): Promise<BrevoResult<{ status?: string; tag?: string }>> {
-  return call<{ status?: string; tag?: string }>(`/emailCampaigns/${id}`)
+export async function getCampaign(id: number): Promise<BrevoResult<{ status?: string; name?: string }>> {
+  return call<{ status?: string; name?: string }>(`/emailCampaigns/${id}`)
 }
 
 export async function sendTest(id: number, emails: string[]): Promise<BrevoResult<Record<string, never>>> {
