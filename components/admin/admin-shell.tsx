@@ -13,6 +13,7 @@ const navItems = [
   { label: 'Announcements', href: '/admin/announcements', icon: Megaphone },
   { label: 'Impact stats', href: '/admin/stats', icon: ChartColumn },
   { label: 'Volunteers', href: '/admin/volunteers', icon: HeartHandshake },
+  { label: 'Partners', href: '/admin/partners', icon: Building2 },
   { label: 'Admins', href: '/admin/admins', icon: Users },
 ]
 
