@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { MarkdownContent } from '@/components/markdown-content'
-import { ShareButtons } from '@/components/share-buttons'
+import { ShareButtons, ShareIconBar } from '@/components/share-buttons'
 import { formatDate, type NewsPost } from '@/lib/cms-types'
 
 type ArticleData = Pick<NewsPost, 'title' | 'excerpt' | 'content' | 'category' | 'cover_image_url' | 'published_at'>
@@ -20,10 +20,13 @@ export function NewsArticle({ post, showBackLink = true, shareUrl }: { post: Art
           <span className="text-[#1a1917]/45"> · <time dateTime={post.published_at}>{formatDate(post.published_at)}</time></span>
         )}
       </p>
-      <h1 className="mt-4 font-serif text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] tracking-[-0.05em] text-balance">{post.title || 'Untitled article'}</h1>
-      {post.excerpt && <p className="mt-6 text-xl leading-relaxed text-[#1a1917]/70">{post.excerpt}</p>}
-      {post.cover_image_url && <img src={post.cover_image_url} alt="" className="mt-10 aspect-[16/9] w-full rounded-2xl object-cover" />}
-      <div className="mt-10">
+      <h1 className="mt-5 break-words font-serif text-[clamp(2rem,5.2vw,3.25rem)] font-normal leading-[1.18] tracking-[-0.015em]">
+        {post.title || 'Untitled article'}
+      </h1>
+      {post.excerpt && <p className="mt-6 text-lg leading-8 text-[#1a1917]/70 sm:text-xl sm:leading-9">{post.excerpt}</p>}
+      {shareUrl && <ShareIconBar url={shareUrl} title={post.title} summary={post.excerpt || undefined} />}
+      {post.cover_image_url && <img src={post.cover_image_url} alt="" className="mt-8 aspect-[16/9] w-full rounded-2xl object-cover" />}
+      <div className="mt-12 border-t border-[#1a1917]/10 pt-10">
         <MarkdownContent source={post.content} />
       </div>
       {shareUrl && <ShareButtons url={shareUrl} title={post.title} summary={post.excerpt || undefined} />}
