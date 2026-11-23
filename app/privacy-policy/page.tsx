@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'How the DOE Foundation collects, uses and protects personal information on this website, and the choices you have.',
 }
 
-const UPDATED = '22 November 2026'
+const UPDATED = '23 November 2026'
 const EMAIL = 'info@thedoefoundation.com'
 const PHONE_DISPLAY = '+234 906 655 5162'
 const PHONE_LINK = '+2349066555162'
@@ -95,6 +95,7 @@ export default function PrivacyPolicyRoute() {
             <SubHeading>Information you give us</SubHeading>
             <Bullets>
               <li><Strong>Newsletter sign-up.</Strong> Your email address and a record that you agreed to receive our updates. When you open our emails or click links in them, our email provider records this so that we can see which news is useful.</li>
+              <li><Strong>Volunteer registration.</Strong> Your name, phone number, email address, your reason for volunteering and any other information you choose to share with us.</li>
               <li><Strong>Messages and enquiries.</Strong> If you email or call us about volunteering, partnerships or anything else, we receive your contact details and whatever you choose to tell us.</li>
               <li><Strong>Donations and sponsorship.</Strong> Donations are made by bank transfer, outside this website, and we do not collect payment card details here. Your bank shares your name, the amount and your payment reference with us so that we can record and acknowledge your gift.</li>
             </Bullets>
@@ -112,6 +113,7 @@ export default function PrivacyPolicyRoute() {
             <dl className="flex flex-col gap-4">
               {[
                 ['Sending our newsletter and updates', 'Your consent. You can withdraw it at any time.'],
+                ['Managing volunteers and sending them important updates', 'Your consent. You can withdraw it at any time.'],
                 ['Replying to enquiries, volunteering and partnership messages', 'Our legitimate interest in responding to you, and taking steps you ask us to take.'],
                 ['Recording and acknowledging donations', 'Our legal obligations and legitimate interest in keeping accurate financial records.'],
                 ['Understanding how the website is used so we can improve it', 'Our legitimate interest in running an effective website.'],
@@ -130,9 +132,9 @@ export default function PrivacyPolicyRoute() {
           <Section id="who-we-share-with" number={4} title="Who we share it with">
             <p>We share information only with the service providers who help us run the website and our communications, and only for those purposes:</p>
             <Bullets>
-              <li><Strong>Brevo</Strong> &mdash; sends our newsletters and holds the subscriber list.</li>
+              <li><Strong>Brevo</Strong> &mdash; sends our newsletters and volunteer emails, and holds the subscriber and volunteer lists.</li>
               <li><Strong>Vercel</Strong> &mdash; hosts the website and provides visit statistics.</li>
-              <li><Strong>Supabase</Strong> &mdash; stores our news articles and announcements and handles team sign-in. It does not hold the newsletter subscriber list.</li>
+              <li><Strong>Supabase</Strong> &mdash; stores our news articles, announcements and volunteer registrations, and handles team sign-in. It does not hold the newsletter subscriber list.</li>
               <li><Strong>Banks</Strong> &mdash; process donations made by bank transfer.</li>
             </Bullets>
             <p>We may also disclose information when the law requires it, for example to a court, regulator or law enforcement agency.</p>
@@ -151,6 +153,7 @@ export default function PrivacyPolicyRoute() {
               <li><Strong>Enquiries:</Strong> for as long as needed to deal with your message and any follow-up.</li>
               <li><Strong>Donation records:</Strong> for as long as financial and legal record-keeping rules require.</li>
               <li><Strong>Visit statistics:</Strong> in summary form, for a limited period set by our analytics provider.</li>
+              <li><Strong>Volunteer registrations:</Strong> until you ask us to delete them or you stop volunteering with us.</li>
               <li><Strong>Team accounts:</Strong> until a person&apos;s access is removed.</li>
             </Bullets>
           </Section>
@@ -220,4 +223,4 @@ export default function PrivacyPolicyRoute() {
       <SiteFooter />
     </main>
   )
-}
+ }
