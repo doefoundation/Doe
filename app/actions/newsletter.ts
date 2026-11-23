@@ -1,5 +1,11 @@
 'use server'
 
+import { after } from 'next/server'
+import { getContact, sendTransactional } from '@/lib/brevo'
+import { getPublishedNews } from '@/lib/cms'
+import { getSiteUrl } from '@/lib/site'
+import { buildWelcomeEmail } from '@/lib/welcome-email'
+
 export type NewsletterState = { status: 'success' | 'error'; message: string } | null
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -39,6 +45,15 @@ export async function subscribeToNewsletter(_prev: NewsletterState, formData: Fo
     return { status: 'error', message: GENERIC_ERROR }
   }
 
+  // Only people who are new to the newsletter get a welcome email. Anyone who unsubscribed in the past, or is already on the list, does not.
+  const existing = await getContact(email)
+  let sendWelcome = false
+  if (existing.ok) {
+    sendWelcome = !existing.data.emailBlacklisted && !(existing.data.listIds ?? []).includes(listId)
+  } else if (existing.status === 404) {
+    sendWelcome = true
+  }
+
   try {
     const response = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
@@ -49,6 +64,15 @@ export async function subscribeToNewsletter(_prev: NewsletterState, formData: Fo
 
     // 201 = new contact, 204 = existing contact updated. Both mean they are on the list.
     if (response.status === 201 || response.status === 204) {
+      if (sendWelcome) {
+        // Look up the latest stories now, then send the email after the reply has gone back to the visitor.
+        const articles = await getPublishedNews(3).catch(() => [])
+        after(async () => {
+          const welcome = buildWelcomeEmail({ siteUrl: getSiteUrl(), articles })
+          const sent = await sendTransactional({ to: { email }, subject: welcome.subject, htmlContent: welcome.html })
+          if (!sent.ok) console.error('Newsletter: could not send the welcome email.', `status=${sent.status}`)
+        })
+      }
       return { status: 'success', message: 'Thank you for subscribing! We will keep you updated.' }
     }
 
