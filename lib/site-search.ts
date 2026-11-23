@@ -20,6 +20,7 @@ const mainPages: SiteSearchItem[] = [
   { title: 'Contact us', description: 'Reach DOE Foundation in Abuja, Nigeria.', href: 'mailto:info@thedoefoundation.com', keywords: ['phone', '+234 906 655 5162', 'email', 'info@thedoefoundation.com', 'address', 'Abuja', 'Nigeria', 'contact'] },
   { title: 'Donate: Sponsor a debate club', description: 'Sponsor one student or a lasting school debate club.', href: '/donate', keywords: ['donate', 'donation', 'give', 'sponsor', '₦150,000', '₦1,000,000', 'UBA', '1029860127', 'debate club'], popular: true },
   { title: 'Volunteer', description: 'Join DOE Foundation in supporting young leaders.', href: '/volunteer', keywords: ['volunteer', 'get involved', 'help'] },
+  { title: 'Partner with us', description: 'Partner with DOE Foundation as an individual or an organisation.', href: '/partner', keywords: ['partner', 'partnership', 'sponsor', 'collaborate', 'organisation', 'corporate'] },
   { title: 'Privacy policy', description: 'Information about privacy and contact details.', href: '/privacy-policy', keywords: ['privacy', 'data'] },
   { title: 'Cookie policy', description: 'Information about cookies and this website.', href: '/cookie-policy', keywords: ['cookies', 'website'] },
 ]
