@@ -1,7 +1,7 @@
 import { LOGO_URL } from '@/lib/brand'
 
-const FONT = 'Arial, Helvetica, sans-serif'
-const SERIF = "Georgia, 'Times New Roman', serif"
+export const FONT = 'Arial, Helvetica, sans-serif'
+export const SERIF = "Georgia, 'Times New Roman', serif"
 
 /** Escapes text for HTML, and stops Brevo's template language from reading "{{ ... }}" typed by a person. */
 export function escapeHtml(value: string) {
@@ -31,7 +31,7 @@ export function textToParagraphs(text: string) {
 
 type Shell = { title: string; preheader: string; bodyHtml: string; footerHtml: string; siteUrl: string }
 
-function shell({ title, preheader, bodyHtml, footerHtml, siteUrl }: Shell) {
+export function shell({ title, preheader, bodyHtml, footerHtml, siteUrl }: Shell) {
   const e = escapeHtml
   return `<!doctype html>
 <html lang="en">
@@ -63,9 +63,9 @@ ${footerHtml}
 </html>`
 }
 
-const footerLine = (text: string) => `      <p style="margin:0 0 8px 0;font-family:${FONT};font-size:12px;line-height:1.7;color:#777777;">${text}</p>`
-const org = `      <p style="margin:0;font-family:${FONT};font-size:12px;line-height:1.7;color:#999999;">Davida Omosomi Empowerment Foundation · Abuja, Nigeria</p>`
-const link = (href: string, label: string) => `<a href="${href}" style="color:#777777;text-decoration:underline;">${label}</a>`
+export const footerLine = (text: string) => `      <p style="margin:0 0 8px 0;font-family:${FONT};font-size:12px;line-height:1.7;color:#777777;">${text}</p>`
+export const org = `      <p style="margin:0;font-family:${FONT};font-size:12px;line-height:1.7;color:#999999;">Davida Omosomi Empowerment Foundation · Abuja, Nigeria</p>`
+export const link = (href: string, label: string) => `<a href="${href}" style="color:#777777;text-decoration:underline;">${label}</a>`
 
 /** The email a volunteer receives straight after registering. */
 export function buildVolunteerConfirmationEmail(input: { firstName: string; siteUrl: string }) {
