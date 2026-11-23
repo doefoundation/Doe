@@ -18,7 +18,7 @@ const siteLinks = [
   { label: 'Programs', href: '/programs' },
   { label: 'Our Team', href: '/our-team' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
-  { label: 'Volunteer', href: 'mailto:info@thedoefoundation.com?subject=Volunteering%20with%20DOE%20Foundation' },
+  { label: 'Volunteer', href: '/volunteer' },
   { label: 'Donate', href: '/donate' },
   { label: 'Contact Us', href: 'mailto:info@thedoefoundation.com' },
   { label: 'News', href: '/news' },
