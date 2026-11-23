@@ -19,6 +19,7 @@ const siteLinks = [
   { label: 'Our Team', href: '/our-team' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
   { label: 'Volunteer', href: '/volunteer' },
+  { label: 'Partner With Us', href: '/partner' },
   { label: 'Donate', href: '/donate' },
   { label: 'Contact Us', href: 'mailto:info@thedoefoundation.com' },
   { label: 'News', href: '/news' },
