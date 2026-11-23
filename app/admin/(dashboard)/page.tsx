@@ -50,8 +50,8 @@ export default async function AdminOverviewPage() {
         ))}
       </ul>
 
-      <div className="mt-6 grid gap-4 lg:grid-cols-5">
-        <section aria-labelledby="recent-heading" className="rounded-2xl border border-[#1a1917]/10 bg-white p-5 lg:col-span-3">
+      <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-5">
+        <section aria-labelledby="recent-heading" className="min-w-0 rounded-2xl border border-[#1a1917]/10 bg-white p-4 sm:p-5 lg:col-span-3">
           <div className="flex items-center justify-between">
             <h2 id="recent-heading" className="font-semibold">Recent articles</h2>
             <Link href="/admin/news" className="text-sm font-semibold text-[#d70063] hover:underline">View all</Link>
@@ -60,10 +60,10 @@ export default async function AdminOverviewPage() {
             <ul className="mt-4 divide-y divide-[#1a1917]/8">
               {recent.data.map((post) => (
                 <li key={post.id}>
-                  <Link href={`/admin/news/${post.id}`} className="flex items-center justify-between gap-4 py-3 hover:text-[#d70063]">
-                    <span className="min-w-0">
-                      <span className="block truncate text-sm font-medium">{post.title}</span>
-                      <span className="text-xs text-[#1a1917]/50">Updated {formatDate(post.updated_at)}</span>
+                  <Link href={`/admin/news/${post.id}`} className="flex items-start justify-between gap-3 py-3 hover:text-[#d70063]">
+                    <span className="min-w-0 flex-1">
+                      <span className="line-clamp-2 block break-words text-sm font-medium leading-snug">{post.title}</span>
+                      <span className="mt-1 block text-xs text-[#1a1917]/50">Updated {formatDate(post.updated_at)}</span>
                     </span>
                     <StatusBadge status={post.status} publishedAt={post.published_at} />
                   </Link>
@@ -75,11 +75,11 @@ export default async function AdminOverviewPage() {
           )}
         </section>
 
-        <div className="flex flex-col gap-4 lg:col-span-2">
-          <section aria-labelledby="live-banner-heading" className="rounded-2xl border border-[#1a1917]/10 bg-white p-5">
+        <div className="flex min-w-0 flex-col gap-4 lg:col-span-2">
+          <section aria-labelledby="live-banner-heading" className="min-w-0 rounded-2xl border border-[#1a1917]/10 bg-white p-4 sm:p-5">
             <h2 id="live-banner-heading" className="font-semibold">Live announcement</h2>
             {liveAnnouncement.data ? (
-              <p className="mt-3 rounded-xl bg-[#d70063] px-4 py-3 text-sm text-white">{liveAnnouncement.data.message}</p>
+              <p className="mt-3 break-words rounded-xl bg-[#d70063] px-4 py-3 text-sm leading-relaxed text-white">{liveAnnouncement.data.message}</p>
             ) : (
               <p className="mt-3 text-sm text-[#1a1917]/55">No banner is showing on the website.</p>
             )}
@@ -88,13 +88,13 @@ export default async function AdminOverviewPage() {
             </Link>
           </section>
 
-          <section aria-labelledby="impact-heading" className="rounded-2xl border border-[#1a1917]/10 bg-white p-5">
+          <section aria-labelledby="impact-heading" className="min-w-0 rounded-2xl border border-[#1a1917]/10 bg-white p-4 sm:p-5">
             <h2 id="impact-heading" className="font-semibold">Homepage impact stats</h2>
             <dl className="mt-3 grid grid-cols-2 gap-3">
               {stats.data?.map((stat) => (
-                <div key={stat.id} className="rounded-xl bg-[#f8f5ef] p-3">
-                  <dt className="line-clamp-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#1a1917]/55">{stat.label}</dt>
-                  <dd className="mt-1 font-serif text-2xl text-[#d70063]">{stat.value.toLocaleString()}{stat.suffix}</dd>
+                <div key={stat.id} className="min-w-0 rounded-xl bg-[#f8f5ef] p-3">
+                  <dt className="break-words text-[10px] font-semibold uppercase leading-snug tracking-[0.06em] text-[#1a1917]/55 sm:text-[11px]">{stat.label}</dt>
+                  <dd className="mt-1 break-words font-serif text-2xl text-[#d70063]">{stat.value.toLocaleString()}{stat.suffix}</dd>
                 </div>
               ))}
             </dl>
