@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState, type ReactNode } from 'react'
-import { ChartColumn, ExternalLink, LayoutDashboard, LogOut, Megaphone, Menu, Newspaper, Users, X } from 'lucide-react'
+import { ChartColumn, ExternalLink, HeartHandshake, LayoutDashboard, LogOut, Megaphone, Menu, Newspaper, Users, X } from 'lucide-react'
 import { signOut } from '@/app/admin/actions'
 import { LOGO_URL } from '@/lib/brand'
 
@@ -12,6 +12,7 @@ const navItems = [
   { label: 'News', href: '/admin/news', icon: Newspaper },
   { label: 'Announcements', href: '/admin/announcements', icon: Megaphone },
   { label: 'Impact stats', href: '/admin/stats', icon: ChartColumn },
+  { label: 'Volunteers', href: '/admin/volunteers', icon: HeartHandshake },
   { label: 'Admins', href: '/admin/admins', icon: Users },
 ]
 
