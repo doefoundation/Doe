@@ -108,6 +108,12 @@ export async function saveNews(_prev: ActionState, formData: FormData): Promise<
       if (!scheduledFor || Number.isNaN(when.getTime())) return { error: 'Choose a valid date and time to schedule this article.' }
       if (when.getTime() < Date.now() + 60_000) return { error: 'The scheduled time must be in the future. To go live immediately, choose "Publish now".' }
       publishedAt = when.toISOString()
+        } else if (scheduledFor) {
+      // Publish with a date chosen by the admin (today or any past date).
+      const when = new Date(scheduledFor)
+      if (Number.isNaN(when.getTime()) || when.getFullYear() < 2000) return { error: 'Choose a valid article date.' }
+      if (when.getTime() > Date.now() + 60_000) return { error: 'The article date cannot be in the future. To go live later, choose "Schedule for later".' }
+      publishedAt = when.toISOString()
     } else {
       // Publish now. Keep the original date if the article is already live; otherwise use the current time.
       let existingDate: string | null = null
