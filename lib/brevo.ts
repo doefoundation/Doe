@@ -48,7 +48,10 @@ async function call<T>(path: string, init: { method?: string; body?: unknown } =
     }
 
     const detail = (await response.json().catch(() => null)) as { code?: string; message?: string } | null
-    console.error('Brevo request failed.', `path=${path}`, `status=${response.status}`, `code=${detail?.code ?? 'none'}`, `message=${detail?.message ?? 'none'}`)
+    // A 404 is often expected (for example, looking up a contact who does not exist yet), so it is not logged as an error.
+    if (response.status !== 404) {
+      console.error('Brevo request failed.', `path=${path}`, `status=${response.status}`, `code=${detail?.code ?? 'none'}`, `message=${detail?.message ?? 'none'}`)
+    }
     return { ok: false, status: response.status, message: detail?.message ?? 'Brevo could not complete the request.' }
   } catch (error) {
     console.error('Could not reach Brevo.', `path=${path}`, error instanceof Error ? error.message : 'unknown error')
@@ -130,16 +133,21 @@ export async function removeContact(email: string): Promise<BrevoResult<Record<s
 }
 
 /** Sends one email to one person right away (confirmations and direct messages). */
-export async function sendTransactional(input: { to: { email: string; name: string }; subject: string; htmlContent: string }): Promise<BrevoResult<Record<string, never>>> {
+export async function sendTransactional(input: { to: { email: string; name?: string }; subject: string; htmlContent: string }): Promise<BrevoResult<Record<string, never>>> {
   const { senderEmail, senderName } = getBrevoConfig()
   return call<Record<string, never>>('/smtp/email', {
     method: 'POST',
     body: {
       sender: { name: senderName, email: senderEmail },
-      to: [{ email: input.to.email, name: input.to.name }],
+      to: [input.to.name ? { email: input.to.email, name: input.to.name } : { email: input.to.email }],
       replyTo: { email: senderEmail, name: senderName },
       subject: input.subject,
       htmlContent: input.htmlContent,
     },
   })
- }
+}
+
+/** Looks up a contact. A contact who does not exist comes back as status 404. */
+export async function getContact(email: string): Promise<BrevoResult<{ listIds?: number[]; emailBlacklisted?: boolean }>> {
+  return call<{ listIds?: number[]; emailBlacklisted?: boolean }>(`/contacts/${encodeURIComponent(email)}`)
+}
