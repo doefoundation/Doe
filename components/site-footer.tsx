@@ -12,6 +12,7 @@ const quickLinks = [
   { label: 'Our Partners', href: '/#our-partners' },
   { label: 'Newsletters', href: '/#newsletter-heading' },
   { label: 'Volunteer', href: '/volunteer' },
+  { label: 'Partner With Us', href: '/partner' },
   { label: 'Donate', href: '/donate' },
   { label: 'Contact Us', href: 'mailto:info@thedoefoundation.com' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
