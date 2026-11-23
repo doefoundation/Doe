@@ -15,14 +15,17 @@ export function getBrevoConfig() {
   const senderEmail = clean(process.env.BREVO_SENDER_EMAIL) || 'info@thedoefoundation.com'
   const senderName = clean(process.env.BREVO_SENDER_NAME) || 'The DOE Foundation'
   const volunteerListId = Number.parseInt(clean(process.env.BREVO_VOLUNTEER_LIST_ID).replace(/^#/, ''), 10)
+  const partnerListId = Number.parseInt(clean(process.env.BREVO_PARTNER_LIST_ID).replace(/^#/, ''), 10)
   return {
     apiKey,
     listId,
     volunteerListId,
+    partnerListId,
     senderEmail,
     senderName,
     ready: Boolean(apiKey) && Number.isInteger(listId),
     volunteersReady: Boolean(apiKey) && Number.isInteger(volunteerListId),
+    partnersReady: Boolean(apiKey) && Number.isInteger(partnerListId),
   }
 }
 
@@ -150,4 +153,13 @@ export async function sendTransactional(input: { to: { email: string; name?: str
 /** Looks up a contact. A contact who does not exist comes back as status 404. */
 export async function getContact(email: string): Promise<BrevoResult<{ listIds?: number[]; emailBlacklisted?: boolean }>> {
   return call<{ listIds?: number[]; emailBlacklisted?: boolean }>(`/contacts/${encodeURIComponent(email)}`)
+}
+
+/** Takes a contact off one list only, leaving them on any other lists. A contact who is not on the list counts as success. */
+export async function removeFromList(email: string, listId: number): Promise<BrevoResult<Record<string, never>>> {
+  const result = await call<Record<string, never>>(`/contacts/lists/${listId}/contacts/remove`, { method: 'POST', body: { emails: [email] } })
+  if (!result.ok && (result.status === 404 || (result.status === 400 && /already removed|does not exist|not exist/i.test(result.message)))) {
+    return { ok: true, data: {} }
+  }
+  return result
 }
