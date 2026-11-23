@@ -67,7 +67,7 @@ export function SiteFooter() {
                 <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><Mail size={21} strokeWidth={1.8} aria-hidden="true" /></span>
                info@thedoefoundation.com
               </a>
-              <a href="https://maps.google.com/?q=Abuja%2C+Nigeria target="_blank" rel="noreferrer" className="flex items-start gap-4 font-serif text-[15px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
+              <a href="https://maps.google.com/?q=Kuje%2C+Abuja target="_blank" rel="noreferrer" className="flex items-start gap-4 font-serif text-[15px] leading-relaxed text-[#1a243b] transition-colors hover:text-[#137d48]">
                 <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm"><MapPin size={21} strokeWidth={1.8} aria-hidden="true" /></span>
                 Abuja, Nigeria
               </a>
