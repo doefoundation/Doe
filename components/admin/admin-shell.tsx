@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState, type ReactNode } from 'react'
-import { ChartColumn, ExternalLink, HeartHandshake, LayoutDashboard, LogOut, Megaphone, Menu, Newspaper, Users, X } from 'lucide-react'
+import { Building2, ChartColumn, ExternalLink, HeartHandshake, LayoutDashboard, LogOut, Megaphone, Menu, Newspaper, Users, X } from 'lucide-react'
 import { signOut } from '@/app/admin/actions'
 import { LOGO_URL } from '@/lib/brand'
 
