@@ -96,7 +96,9 @@ export default function PrivacyPolicyRoute() {
             <Bullets>
               <li><Strong>Newsletter sign-up.</Strong> Your email address and a record that you agreed to receive our updates. When you open our emails or click links in them, our email provider records this so that we can see which news is useful.</li>
               <li><Strong>Volunteer registration.</Strong> Your name, phone number, email address, your reason for volunteering and any other information you choose to share with us.</li>
+              <li><Strong>Partnership enquiries:</Strong> until you ask us to delete them or our partnership discussions end.</li>
               <li><Strong>Messages and enquiries.</Strong> If you email or call us about volunteering, partnerships or anything else, we receive your contact details and whatever you choose to tell us.</li>
+              <li><Strong>Partnership enquiries.</Strong> Your name, organisation (if any), phone number, email address, how you would like to partner with us, and anything else you choose to tell us.</li>
               <li><Strong>Donations and sponsorship.</Strong> Donations are made by bank transfer, outside this website, and we do not collect payment card details here. Your bank shares your name, the amount and your payment reference with us so that we can record and acknowledge your gift.</li>
             </Bullets>
             <SubHeading>Information collected automatically</SubHeading>
