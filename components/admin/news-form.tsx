@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useActionState, useEffect, useMemo, useRef, useState, type ChangeEvent, type KeyboardEvent } from 'react'
-import { Bold, CalendarClock, ExternalLink, Eye, Heading2, ImagePlus, Italic, Link2, List, ListOrdered, LoaderCircle, Pencil, Quote, RotateCcw, Trash2 } from 'lucide-react'
+import { Bold, CalendarClock, CalendarDays, ExternalLink, Eye, Heading2, ImagePlus, Italic, Link2, List, ListOrdered, LoaderCircle, Pencil, Quote, RotateCcw, Trash2 } from 'lucide-react'
 import { saveNews } from '@/app/admin/actions'
 import { createClient } from '@/lib/supabase/client'
 import { slugify, type NewsPost } from '@/lib/cms-types'
@@ -24,6 +24,7 @@ type Snapshot = {
   coverUrl: string
   mode: Mode
   scheduleAt: string
+  publishDate: string
 }
 
 const pad = (value: number) => String(value).padStart(2, '0')
@@ -64,6 +65,7 @@ export function NewsForm({ post }: { post?: NewsPost }) {
   const [coverUrl, setCoverUrl] = useState(post?.cover_image_url ?? '')
   const [mode, setMode] = useState<Mode>(startingMode)
   const [scheduleAt, setScheduleAt] = useState(startingMode === 'scheduled' && post?.published_at ? toLocalInput(new Date(post.published_at)) : '')
+  const [publishDate, setPublishDate] = useState(startingMode === 'published' && post?.published_at ? toLocalInput(new Date(post.published_at)) : '')
 
   const [tab, setTab] = useState<'write' | 'preview'>('write')
   const [uploading, setUploading] = useState<'cover' | 'inline' | null>(null)
@@ -72,11 +74,12 @@ export function NewsForm({ post }: { post?: NewsPost }) {
   const [autosavedAt, setAutosavedAt] = useState<number | null>(null)
 
   const storageKey = `doe-news-draft:${post?.id ?? 'new'}`
-  const current: Snapshot = { title, slug, excerpt, content, category, coverUrl, mode, scheduleAt }
+  const current: Snapshot = { title, slug, excerpt, content, category, coverUrl, mode, scheduleAt, publishDate }
   const initialJson = useRef(JSON.stringify(current)).current
   const dirty = JSON.stringify(current) !== initialJson
 
   const scheduledIso = mode === 'scheduled' ? toIso(scheduleAt) : ''
+  const publishedIso = mode === 'published' ? toIso(publishDate) : ''
   const wordCount = useMemo(() => content.trim().split(/\s+/).filter(Boolean).length, [content])
 
   /* ---------- Autosave to this device ---------- */
@@ -107,7 +110,7 @@ export function NewsForm({ post }: { post?: NewsPost }) {
     }, AUTOSAVE_DELAY_MS)
     return () => window.clearTimeout(timer)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, slug, excerpt, content, category, coverUrl, mode, scheduleAt, restorable])
+    }, [title, slug, excerpt, content, category, coverUrl, mode, scheduleAt, publishDate, restorable])
 
   // Clear the local copy once the article has been saved successfully (the page redirects, so the form unmounts).
   useEffect(() => {
@@ -150,6 +153,7 @@ export function NewsForm({ post }: { post?: NewsPost }) {
     setCoverUrl(restorable.coverUrl)
     setMode(restorable.mode)
     setScheduleAt(restorable.scheduleAt)
+    setPublishDate(restorable.publishDate ?? '')
     setRestorable(null)
   }
 
@@ -286,6 +290,7 @@ export function NewsForm({ post }: { post?: NewsPost }) {
 
   const submitLabel = mode === 'draft' ? 'Save draft' : mode === 'scheduled' ? 'Schedule article' : post?.status === 'published' && initialMode(post) === 'published' ? 'Update article' : 'Publish now'
   const minSchedule = toLocalInput(new Date(Date.now() + 5 * 60_000))
+  const maxPublishDate = toLocalInput(new Date())
 
   const toolButton = 'flex size-9 items-center justify-center rounded-lg text-[#1a1917]/70 transition-colors hover:bg-[#f1c6d7]/45 hover:text-[#d70063] focus-visible:outline-2 focus-visible:outline-[#d70063] disabled:opacity-50'
   const tabButton = (active: boolean) =>
@@ -311,7 +316,7 @@ export function NewsForm({ post }: { post?: NewsPost }) {
       <input type="hidden" name="cover_image_url" value={coverUrl} />
       <input type="hidden" name="status" value={mode === 'draft' ? 'draft' : 'published'} />
       <input type="hidden" name="publish_mode" value={mode} />
-      <input type="hidden" name="published_at" value={scheduledIso} />
+      <input type="hidden" name="published_at" value={scheduledIso || publishedIso} />
 
       <div className="flex min-w-0 flex-col gap-4 lg:col-span-2">
         {restorable && (
@@ -418,7 +423,7 @@ export function NewsForm({ post }: { post?: NewsPost }) {
                 content,
                 category: category || 'News',
                 cover_image_url: coverUrl || null,
-                published_at: scheduledIso || post?.published_at || new Date().toISOString(),
+                published_at: scheduledIso || publishedIso || post?.published_at || new Date().toISOString(),
               }}
             />
           </div>
@@ -452,6 +457,32 @@ export function NewsForm({ post }: { post?: NewsPost }) {
             </Field>
           )}
 
+                    {mode === 'published' && (
+            <Field
+              label="Article date"
+              htmlFor="publish_date"
+              hint={publishedIso ? `Shown as ${formatLagos(publishedIso)} (Nigeria time). Pick today or an earlier date.` : 'Leave empty to use today. Pick an earlier date to publish a past story.'}
+            >
+              <div className="relative">
+                <CalendarDays size={16} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#d70063]" aria-hidden="true" />
+                <input
+                  id="publish_date"
+                  type="datetime-local"
+                  max={maxPublishDate}
+                  value={publishDate}
+                  suppressHydrationWarning
+                  onChange={(event) => setPublishDate(event.target.value)}
+                  className={`${inputClass} pl-10`}
+                />
+              </div>
+              {publishDate && (
+                <button type="button" onClick={() => setPublishDate('')} className="w-fit text-xs font-semibold text-[#d70063] hover:underline">
+                  Use the current date and time
+                </button>
+              )}
+            </Field>
+          )}
+          
           <Field label="Category" htmlFor="category">
             <input id="category" name="category" list="news-categories" maxLength={60} value={category} onChange={(event) => setCategory(event.target.value)} className={inputClass} />
             <datalist id="news-categories">
