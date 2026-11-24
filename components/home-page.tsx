@@ -12,11 +12,11 @@ import { LatestNews } from '@/components/latest-news'
 import type { ImpactStat, NewsPost } from '@/lib/cms-types'
 
 const heroImages = [
-  { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/15-cQBBTFwjpRjQBkMF3nfTMtzv2bmoxo.jpeg', alt: 'DOE Foundation students and mentors celebrating together' },
-  { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/20-8nShIXaDzLxfypSIRabs4PRbZuGaWk.jpeg', alt: 'DOE Foundation team members gathered at an education event' },
-  { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/13-DXKEfcAKHMUIWC8rtLyeE7N3kXhXT7.jpg', alt: 'Students and educators gathered outside a school' },
-  { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/10-YXCFMuRSlnjMMRPamarjB1bAazqIyU.jpeg', alt: 'A student speaker presenting at a debate event' },
-  { src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/9-5kM9OMsC7vDYKzvBl8DpovpiBkZDhJ.jpeg', alt: 'Students participating in an educational debate event' },
+  { src: '20.jpeg', alt: 'DOE Foundation students and mentors celebrating together' },
+  { src: '9.jpeg', alt: 'DOE Foundation team members gathered at an education event' },
+  { src: '13.jpeg', alt: 'Students and educators gathered outside a school' },
+  { src: '16.jpeg', alt: 'A student speaker presenting at a debate event' },
+  { src: '15.jpeg', alt: 'Students participating in an educational debate event' },
 ]
 
 export function HomePage({ impactStats, latestNews }: { impactStats: ImpactStat[]; latestNews: NewsPost[] }) {
