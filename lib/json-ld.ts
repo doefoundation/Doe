@@ -1,4 +1,4 @@
-import type { NewsPost } from '@/lib/cms-types'
+import type { NewsPost } from '@/lib/cms-types'g
 import { ORG_NAME, SITE_DESCRIPTION, SITE_NAME, getSiteUrl, summarize } from '@/lib/site'
 
 // The logo is served from this site's own public folder (public/icon.png), not an outside address.
