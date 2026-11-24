@@ -9,6 +9,7 @@ import { getPublishedNews } from '@/lib/cms'
 export const metadata: Metadata = {
   title: 'News & Updates | DOE Foundation',
   description: 'The latest stories, events, and announcements from the Davida Omosomi Empowerment Foundation.',
+  alternates: { canonical: '/news' },
 }
 
 export default async function NewsRoute() {
