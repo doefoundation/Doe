@@ -1,3 +1,4 @@
+import { articleJsonLd, breadcrumbJsonLd } from '@/lib/json-ld'
 import { JsonLd } from '@/components/json-ld'
 import { articleJsonLd } from '@/lib/json-ld'
 import type { Metadata } from 'next'
@@ -50,6 +51,7 @@ export default async function NewsArticleRoute({ params }: Props) {
     return (
     <main className="min-h-screen bg-[#f8f5ef] text-[#1a1917]">
       <JsonLd data={articleJsonLd(post)} />
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'News', path: '/news' }, { name: post.title, path: `/news/${post.slug}` }])} />
       <SiteHeader />
       <NewsArticle post={post} shareUrl={`${getSiteUrl()}/news/${post.slug}`} />
       <SiteFooter />
