@@ -1,4 +1,4 @@
-import type { MetadataRoute } from 'next'g
+import type { MetadataRoute } from 'next'
 import { getPublishedNews } from '@/lib/cms'
 import { getSiteUrl } from '@/lib/site'
 
