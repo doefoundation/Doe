@@ -1,3 +1,5 @@
+import { JsonLd } from '@/components/json-ld'
+import { breadcrumbJsonLd } from '@/lib/json-ld'
 import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
@@ -14,6 +16,7 @@ export default async function NewsRoute() {
 
   return (
     <main className="min-h-screen bg-[#f8f5ef] text-[#1a1917]">
+    <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'News', path: '/news' }])} />
       <SiteHeader />
       <section className="mx-auto max-w-[1360px] px-5 py-16 sm:px-8 sm:py-24">
         <p className="mb-6 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#d70063]">
