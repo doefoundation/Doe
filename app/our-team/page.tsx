@@ -4,6 +4,7 @@ import { TeamPage } from '@/components/team-page'
 export const metadata: Metadata = {
   title: 'Our Team | DOE Foundation',
   description: 'Meet the leaders and dedicated professionals behind the Davida Omosomi Empowerment Foundation.',
+  alternates: { canonical: '/our-team' },
 }
 
 export default function OurTeamRoute() {
