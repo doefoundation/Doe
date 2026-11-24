@@ -7,6 +7,7 @@ import { PartnerForm } from '@/components/partner-form'
 export const metadata: Metadata = {
   title: 'Partner With Us | DOE Foundation',
   description: 'Individuals and organisations can partner with the DOE Foundation to support debate education, advocacy and opportunity for young people.',
+  alternates: { canonical: '/partner' },
 }
 
 const steps = [
