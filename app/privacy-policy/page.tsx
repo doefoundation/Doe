@@ -39,7 +39,7 @@ function Section({ id, number, title, children }: { id: string; number: number; 
         <span className="mr-3 text-[#d70063]">{number}.</span>
         {title}
       </h2>
-      <div className="mt-5 flex flex-col gap-4 text-base leading-relaxed text-[#1a1917]/75 sm:text-[17px]">{children}</div>
+      <div className="mt-5 flex flex-col gap-4 text-lg leading-relaxed text-[#1a1917]/75 sm:text-[17px]">{children}</div>
     </section>
   )
 }
