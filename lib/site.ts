@@ -1,4 +1,7 @@
 export const SITE_NAME = 'DOE Foundation'
+export const ORG_NAME = 'The Davida Omosomi Empowerment Foundation'
+export const SITE_DESCRIPTION =
+  'DOE Foundation opens doors to quality education, mentorship and opportunity for young people in Nigeria through debate education, literacy, leadership, community outreach and scholarships.'
 
 /**
  * The public address of the website, used to build absolute links for social previews and sharing.
