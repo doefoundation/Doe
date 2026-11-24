@@ -7,6 +7,7 @@ import { SiteHeader } from '@/components/site-header'
 export const metadata: Metadata = {
   title: 'Privacy Policy | DOE Foundation',
   description: 'How the DOE Foundation collects, uses and protects personal information on this website, and the choices you have.',
+  alternates: { canonical: '/privacy-policy' },
 }
 
 const UPDATED = '24 November 2026'
