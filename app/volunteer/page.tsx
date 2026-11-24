@@ -7,6 +7,7 @@ import { VolunteerForm } from '@/components/volunteer-form'
 export const metadata: Metadata = {
   title: 'Volunteer | DOE Foundation',
   description: 'Register to volunteer with the DOE Foundation and help young people grow into confident thinkers and leaders.',
+  alternates: { canonical: '/volunteer' },
 }
 
 const steps = [
