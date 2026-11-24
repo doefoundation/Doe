@@ -1,6 +1,5 @@
 import { articleJsonLd, breadcrumbJsonLd } from '@/lib/json-ld'
 import { JsonLd } from '@/components/json-ld'
-import { articleJsonLd } from '@/lib/json-ld'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { cache } from 'react'
