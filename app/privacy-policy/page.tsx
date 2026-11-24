@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'How the DOE Foundation collects, uses and protects personal information on this website, and the choices you have.',
 }
 
-const UPDATED = '23 November 2026'
+const UPDATED = '24 November 2026'
 const EMAIL = 'info@thedoefoundation.com'
 const PHONE_DISPLAY = '+234 906 655 5162'
 const PHONE_LINK = '+2349066555162'
@@ -95,15 +95,16 @@ export default function PrivacyPolicyRoute() {
             <SubHeading>Information you give us</SubHeading>
             <Bullets>
               <li><Strong>Newsletter sign-up.</Strong> Your email address and a record that you agreed to receive our updates. When you open our emails or click links in them, our email provider records this so that we can see which news is useful.</li>
-              <li><Strong>Volunteer registration.</Strong> Your name, phone number, email address, your reason for volunteering and any other information you choose to share with us.</li>
-              <li><Strong>Partnership enquiries:</Strong> until you ask us to delete them or our partnership discussions end.</li>
+              <li><Strong>Volunteer registration.</Strong> Your name, phone number, email address, your reason for volunteering, any other information you choose to share with us, and a record of the date you agreed to receive updates.</li>
               <li><Strong>Messages and enquiries.</Strong> If you email or call us about volunteering, partnerships or anything else, we receive your contact details and whatever you choose to tell us.</li>
-              <li><Strong>Partnership enquiries.</Strong> Your name, organisation (if any), phone number, email address, how you would like to partner with us, and anything else you choose to tell us.</li>
+              <li><Strong>Partnership enquiries.</Strong> Your name, organisation (if any), phone number, email address, how you would like to partner with us, your message, how you heard about us (if you tell us), and a record of the date you agreed to be contacted.</li>
+              <li><Strong>Confirmation emails.</Strong> When you register to volunteer or send a partnership enquiry, we email you straight away to confirm that we received your details.</li>
               <li><Strong>Donations and sponsorship.</Strong> Donations are made by bank transfer, outside this website, and we do not collect payment card details here. Your bank shares your name, the amount and your payment reference with us so that we can record and acknowledge your gift.</li>
             </Bullets>
             <SubHeading>Information collected automatically</SubHeading>
             <Bullets>
               <li><Strong>Visit statistics.</Strong> We use Vercel Web Analytics to count visits. It records things like the pages viewed, the website you came from, your country, and your device type and browser. It is designed to measure overall traffic without identifying individuals or following you across other websites.</li>
+              <li><Strong>Spam protection.</Strong> Our forms use hidden fields and timing checks, and limit how many submissions can be made in a short time, to block automated spam. These checks do not use cookies and do not identify you.</li>
               <li><Strong>Security and technical logs.</Strong> Our hosting provider keeps short-term technical records, such as your IP address and the pages requested, to keep the website secure and to fix problems.</li>
             </Bullets>
             <SubHeading>Our team</SubHeading>
@@ -116,7 +117,8 @@ export default function PrivacyPolicyRoute() {
               {[
                 ['Sending our newsletter and updates', 'Your consent. You can withdraw it at any time.'],
                 ['Managing volunteers and sending them important updates', 'Your consent. You can withdraw it at any time.'],
-                ['Replying to enquiries, volunteering and partnership messages', 'Our legitimate interest in responding to you, and taking steps you ask us to take.'],
+                ['Managing partnership enquiries and sending partners important updates', 'Your consent. You can withdraw it at any time.'],
+                ['Replying to enquiries and confirming volunteer and partnership submissions', 'Our legitimate interest in responding to you, and taking steps you ask us to take.'],
                 ['Recording and acknowledging donations', 'Our legal obligations and legitimate interest in keeping accurate financial records.'],
                 ['Understanding how the website is used so we can improve it', 'Our legitimate interest in running an effective website.'],
                 ['Keeping the website secure and preventing spam or abuse', 'Our legitimate interest in protecting the website and the people who use it.'],
@@ -134,9 +136,10 @@ export default function PrivacyPolicyRoute() {
           <Section id="who-we-share-with" number={4} title="Who we share it with">
             <p>We share information only with the service providers who help us run the website and our communications, and only for those purposes:</p>
             <Bullets>
-              <li><Strong>Brevo</Strong> &mdash; sends our newsletters and volunteer emails, and holds the subscriber and volunteer lists.</li>
+              <li><Strong>Brevo</Strong> &mdash; sends our newsletters and our emails to volunteers and partners, and holds the subscriber, volunteer and partner lists.</li>
               <li><Strong>Vercel</Strong> &mdash; hosts the website and provides visit statistics.</li>
-              <li><Strong>Supabase</Strong> &mdash; stores our news articles, announcements and volunteer registrations, and handles team sign-in. It does not hold the newsletter subscriber list.</li>
+              <li><Strong>Supabase</Strong> &mdash; stores our news articles, announcements, volunteer registrations and partnership enquiries, and handles team sign-in. It does not hold the newsletter subscriber list.</li>
+              <li><Strong>ImprovMX and Google (Gmail)</Strong> &mdash; forward emails sent to our info@ address to our team inbox, which is hosted by Google.</li>
               <li><Strong>Banks</Strong> &mdash; process donations made by bank transfer.</li>
             </Bullets>
             <p>We may also disclose information when the law requires it, for example to a court, regulator or law enforcement agency.</p>
@@ -156,6 +159,7 @@ export default function PrivacyPolicyRoute() {
               <li><Strong>Donation records:</Strong> for as long as financial and legal record-keeping rules require.</li>
               <li><Strong>Visit statistics:</Strong> in summary form, for a limited period set by our analytics provider.</li>
               <li><Strong>Volunteer registrations:</Strong> until you ask us to delete them or you stop volunteering with us.</li>
+              <li><Strong>Partnership enquiries:</Strong> until you ask us to delete them or our partnership discussions end.</li>
               <li><Strong>Team accounts:</Strong> until a person&apos;s access is removed.</li>
             </Bullets>
           </Section>
@@ -171,10 +175,10 @@ export default function PrivacyPolicyRoute() {
               <li>ask for your information in a portable format, where this applies.</li>
             </Bullets>
             <p>
-              <Strong>To unsubscribe from the newsletter,</Strong> use the &ldquo;unsubscribe&rdquo; link at the bottom of any email we send, or write to us at <a href={`mailto:${EMAIL}`} className={linkClass}>{EMAIL}</a>.
+              <Strong>To unsubscribe from the newsletter, or from volunteer or partner updates,</Strong> use the &ldquo;unsubscribe&rdquo; link at the bottom of any email we send, or write to us at <a href={`mailto:${EMAIL}`} className={linkClass}>{EMAIL}</a>.
             </p>
             <p>
-              To use any other right, email us at the same address. We may need to confirm who you are first, and we will respond as quickly as we can and within the time the law requires.
+              To have your volunteer or partnership details deleted, or to use any other right, email us at the same address. We may need to confirm who you are first, and we will respond as quickly as we can and within the time the law requires.
             </p>
             <p>
               If you are unhappy with how we have handled your information, you also have the right to complain to the{' '}
@@ -184,7 +188,7 @@ export default function PrivacyPolicyRoute() {
 
           <Section id="cookies-and-links" number={8} title="Cookies and third-party links">
             <p>
-              The public pages of this website do not use advertising or tracking cookies. We use essential cookies only to keep team members signed in to the admin area. You can read more in our <Link href="/cookie-policy" className={linkClass}>Cookie Policy</Link>.
+              The public pages of this website do not use advertising or tracking cookies, and we do not set cookies on your device when you browse them. You can read more in our <Link href="/cookie-policy" className={linkClass}>Cookie Policy</Link>.
             </p>
             <p>
               Our pages contain links and share buttons for services such as Facebook, Instagram, WhatsApp, LinkedIn and Telegram. These do nothing until you click them. Once you do, you leave our website and that service&apos;s own privacy policy applies, including any cookies it sets.
@@ -193,16 +197,16 @@ export default function PrivacyPolicyRoute() {
 
           <Section id="children" number={9} title="Children">
             <p>
-              Although our work supports children and young people, this website and our newsletter are meant for adults. We do not knowingly collect personal information about children under 18 through the website.
+              Although our work supports children and young people, this website, our newsletter and our volunteer and partnership forms are meant for adults. We do not knowingly collect personal information about children under 18 through the website.
             </p>
             <p>
-              If you believe a child has subscribed to our newsletter or sent us their information, please contact us at <a href={`mailto:${EMAIL}`} className={linkClass}>{EMAIL}</a> and we will delete it promptly.
+              If you believe a child has subscribed to our newsletter, registered or sent us their information, please contact us at <a href={`mailto:${EMAIL}`} className={linkClass}>{EMAIL}</a> and we will delete it promptly.
             </p>
           </Section>
 
           <Section id="security" number={10} title="Keeping information safe">
             <p>
-              We use reasonable technical and organisational measures to protect personal information, including encrypted connections (HTTPS), restricted access to the admin area, and trusted service providers. No online service is completely risk-free, but we take your privacy seriously and act quickly if something goes wrong.
+              We use reasonable technical and organisational measures to protect personal information, including encrypted connections (HTTPS), restricting access to the information you send us to authorised team members, and trusted service providers. No online service is completely risk-free, but we take your privacy seriously and act quickly if something goes wrong.
             </p>
           </Section>
 
@@ -225,4 +229,4 @@ export default function PrivacyPolicyRoute() {
       <SiteFooter />
     </main>
   )
- }
+}
