@@ -7,6 +7,7 @@ import { SiteHeader } from '@/components/site-header'
 export const metadata: Metadata = {
   title: 'Cookie Policy | DOE Foundation',
   description: 'The few cookies and similar technologies used on the DOE Foundation website, why we use them, and how you can control them.',
+  alternates: { canonical: '/cookie-policy' },
 }
 
 const UPDATED = '24 November 2026'
