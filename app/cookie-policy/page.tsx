@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'The few cookies and similar technologies used on the DOE Foundation website, why we use them, and how you can control them.',
 }
 
-const UPDATED = '22 November 2026'
+const UPDATED = '24 November 2026'
 const EMAIL = 'info@thedoefoundation.com'
 const PHONE_DISPLAY = '+234 906 655 5162'
 const PHONE_LINK = '+2349066555162'
@@ -71,7 +71,7 @@ export default function CookiePolicyRoute() {
         <h1 className="mt-4 font-serif text-6xl leading-[.92] tracking-[-0.06em] sm:text-8xl">Cookie Policy</h1>
         <p className="mt-6 text-sm text-[#1a1917]/55">Last updated: {UPDATED}</p>
         <p className="mt-6 text-lg leading-relaxed text-[#1a1917]/75">
-          The short version: visitors to our public website are not tracked with cookies. We only use a small amount of browser storage so that our own team can sign in and manage the website. This page explains the details.
+          The short version: we do not set any cookies on the public pages of this website, and we do not use advertising or tracking cookies. This page explains how we count visits without them, and the choices you have.
         </p>
 
         <nav aria-label="Contents" className="mt-10 rounded-2xl border border-[#1a1917]/10 bg-white p-5 sm:p-6">
@@ -99,23 +99,23 @@ export default function CookiePolicyRoute() {
           </Section>
 
           <Section id="what-we-use" number={2} title="What we use">
-            <p>Everything below is essential to how the website works for our team. None of it is used for advertising or to follow visitors around the internet.</p>
+            <p>We do not set any cookies on your device when you browse this website. The two things below are worth explaining. Neither uses cookies or stores anything on your device.</p>
             <div className="flex flex-col gap-4">
               <Card
-                title="Sign-in session cookies"
-                who="Our team members only"
-                purpose="Keep a team member signed in to the admin area, and protect it from unauthorised access. They are created only after someone signs in, never for ordinary visitors."
-                duration="Until you sign out or the session expires."
+                title="Visit statistics (Vercel Web Analytics)"
+                who="All visitors"
+                purpose="Counts visits and shows which pages are read, so that we can see what is useful. It works without cookies, and it is designed not to identify you or follow you across other websites."
+                duration="Nothing is stored on your device. Summary figures are kept by Vercel for a limited period."
               />
               <Card
-                title="Saved drafts in local storage"
-                who="Our team members only"
-                purpose="While writing a news article, the editor keeps a backup copy of the unsaved text in the browser so that work is not lost if the page closes by accident. It stays on that device and is not sent to us."
-                duration="Until the article is saved or the backup is discarded."
+                title="Spam protection on our forms"
+                who="Anyone using our newsletter, volunteer or partner forms"
+                purpose="Hidden fields and timing checks help us block automated spam. They do not identify you."
+                duration="Nothing is stored on your device."
               />
             </div>
             <p>
-              <Strong>Visit statistics.</Strong> To understand how many people visit and which pages they read, we use Vercel Web Analytics. It counts visits without using cookies and is designed not to identify you or follow you across other websites. You can read more about what it records in our <Link href="/privacy-policy#information-we-collect" className={linkClass}>Privacy Policy</Link>.
+              You can read more about what the visit statistics record in our <Link href="/privacy-policy#information-we-collect" className={linkClass}>Privacy Policy</Link>.
             </p>
           </Section>
 
@@ -123,9 +123,9 @@ export default function CookiePolicyRoute() {
             <Bullets>
               <li>No advertising cookies.</li>
               <li>No social media tracking pixels or behavioural profiling.</li>
-              <li>No cookies that build a profile of you from the pages you read.</li>
+              <li>No analytics cookies, and no cookies that build a profile of you from the pages you read.</li>
             </Bullets>
-            <p>Because we use no optional cookies on the public website, there is no cookie banner and nothing for visitors to switch on or off.</p>
+            <p>Because we set no cookies on the public website, there is no cookie banner and nothing for visitors to switch on or off.</p>
           </Section>
 
           <Section id="third-parties" number={4} title="Third-party links and share buttons">
@@ -133,16 +133,16 @@ export default function CookiePolicyRoute() {
               Our news articles include buttons to share a story on Facebook, Instagram, WhatsApp, LinkedIn and Telegram, and our pages link to other websites. These do nothing until you click them. When you do, you leave our website, and that service&apos;s own cookie and privacy policies apply, including any cookies it sets on its own site.
             </p>
             <p>
-              Emails we send through our email provider, Brevo, may record whether an email was opened or a link was clicked, so that we can see which news is useful. You can stop receiving these emails at any time with the unsubscribe link at the bottom of each one.
+              Emails we send through our email provider, Brevo, such as our newsletter and updates to volunteers and partners, may record whether an email was opened or a link was clicked, so that we can see which messages are useful. You can stop receiving these emails at any time with the unsubscribe link at the bottom of each one.
             </p>
           </Section>
 
           <Section id="your-choices" number={5} title="Your choices">
             <p>
-              You can control or delete cookies and site data in your browser settings, usually under Privacy or Site settings. Blocking the sign-in cookies would only stop team members from signing in to the admin area. It does not affect reading the website.
+              Because we set no cookies on the public pages, there is nothing to switch off here. You can still control or delete cookies and site data at any time in your browser settings, usually under Privacy or Site settings.
             </p>
             <p>
-              To remove the saved-draft backup from a device, clear the website&apos;s data in your browser, or discard the backup when the editor offers it.
+              To limit what emails can record, you can turn off automatic image loading in your email app, or use the unsubscribe link in any email we send. If you would rather not be counted in our visit statistics, you can use a browser or extension that blocks analytics requests.
             </p>
           </Section>
 
@@ -165,4 +165,4 @@ export default function CookiePolicyRoute() {
       <SiteFooter />
     </main>
   )
- }
+}
