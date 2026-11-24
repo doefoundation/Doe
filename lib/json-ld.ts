@@ -1,47 +1,86 @@
 import type { NewsPost } from '@/lib/cms-types'
-import { SITE_NAME, getSiteUrl, summarize } from '@/lib/site'
+import { ORG_NAME, SITE_DESCRIPTION, SITE_NAME, getSiteUrl, summarize } from '@/lib/site'
 
-const ORG_NAME = 'The Davida Omosomi Empowerment Foundation'
-const LOGO_URL =
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/file_00000000ebbc8243b1a46e16cc7df432-Ey2WCQZAaBoXSQKqIEQgRVc2ePrSvh.png'
+// The logo is served from this site's own public folder (public/icon.png), not an outside address.
+function logoUrl() {
+  return `${getSiteUrl()}/icon.png`
+}
 
+const SOCIAL_LINKS = [
+  'https://www.facebook.com/share/16YXz6DD8T5/',
+  'https://www.linkedin.com/company/thee-davida-omosomi-empowerment-foundation/',
+  'https://www.instagram.com/the_doe_foundation/',
+]
+
+/** Describes the foundation to search engines. Shown on the homepage. */
 export function organizationJsonLd() {
   const url = getSiteUrl()
   return {
     '@context': 'https://schema.org',
-    '@type': 'NGO',
-    '@id': `${url}/#organization`,
-    name: ORG_NAME,
-    alternateName: SITE_NAME,
-    url,
-    logo: LOGO_URL,
-    description:
-      'A child- and youth-focused nonprofit raising purposeful leaders through debate education, advocacy, literacy development and community-centered initiatives.',
-    foundingDate: '2025',
-    email: 'info@thedoefoundation.com',
-    telephone: '+2349066555162',
-    areaServed: 'Nigeria',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Abuja',
-      addressCountry: 'NG',
-    },
-     sameAs: [
-      'https://www.facebook.com/share/16YXz6DD8T5/',
-      'https://www.linkedin.com/company/thee-davida-omosomi-empowerment-foundation/',
-      'https://www.instagram.com/the_doe_foundation/',
+    '@graph': [
+      {
+        '@type': 'NGO',
+        '@id': `${url}/#organization`,
+        name: ORG_NAME,
+        alternateName: [SITE_NAME, 'DOE Foundation Nigeria'],
+        url,
+        logo: { '@type': 'ImageObject', url: logoUrl(), width: 424, height: 403 },
+        image: `${url}/opengraph-image`,
+        description: SITE_DESCRIPTION,
+        foundingDate: '2025',
+        email: 'info@thedoefoundation.com',
+        telephone: '+2349066555162',
+        areaServed: { '@type': 'Country', name: 'Nigeria' },
+        knowsAbout: ['Debate education', 'Youth leadership', 'Literacy', 'Scholarships', 'Community outreach'],
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Kuje',
+          addressRegion: 'Abuja (FCT)',
+          addressCountry: 'NG',
+        },
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            contactType: 'customer support',
+            email: 'info@thedoefoundation.com',
+            telephone: '+2349066555162',
+            areaServed: 'NG',
+            availableLanguage: ['English'],
+          },
+        ],
+        sameAs: SOCIAL_LINKS,
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${url}/#website`,
+        url,
+        name: SITE_NAME,
+        description: SITE_DESCRIPTION,
+        inLanguage: 'en-NG',
+        publisher: { '@id': `${url}/#organization` },
+      },
     ],
+  }
+}
+
+/** Breadcrumb trail (Home > News > Article). Search engines can show it under the page title. */
+export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
+  const url = getSiteUrl()
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: `${url}${item.path === '/' ? '' : item.path}`,
+    })),
   }
 }
 
 export function articleJsonLd(post: NewsPost) {
   const siteUrl = getSiteUrl()
   const url = `${siteUrl}/news/${post.slug}`
-  const publisher = {
-    '@type': 'Organization',
-    name: ORG_NAME,
-    logo: { '@type': 'ImageObject', url: LOGO_URL },
-  }
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -52,7 +91,13 @@ export function articleJsonLd(post: NewsPost) {
     datePublished: post.published_at ?? post.created_at,
     dateModified: post.updated_at,
     articleSection: post.category,
+    inLanguage: 'en-NG',
     author: { '@type': 'Organization', name: ORG_NAME, url: siteUrl },
-    publisher,
+    publisher: {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      name: ORG_NAME,
+      logo: { '@type': 'ImageObject', url: logoUrl() },
+    },
   }
-      }
+}
