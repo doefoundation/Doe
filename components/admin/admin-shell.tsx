@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState, type ReactNode } from 'react'
-import { Building2, ChartColumn, ExternalLink, HeartHandshake, LayoutDashboard, LogOut, Megaphone, Menu, Newspaper, Users, X } from 'lucide-react'
+import { Building2, ChartColumn, ExternalLink, HeartHandshake, History, LayoutDashboard, LogOut, Megaphone, Menu, Newspaper, Users, X } from 'lucide-react'
 import { signOut } from '@/app/admin/actions'
 import { LOGO_URL } from '@/lib/brand'
 
@@ -15,6 +15,7 @@ const navItems = [
   { label: 'Volunteers', href: '/admin/volunteers', icon: HeartHandshake },
   { label: 'Partners', href: '/admin/partners', icon: Building2 },
   { label: 'Admins', href: '/admin/admins', icon: Users },
+  { label: 'Activity log', href: '/admin/activity', icon: History },
 ]
 
 function isActive(pathname: string, href: string) {
