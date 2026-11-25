@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { createServiceClient } from '@/lib/supabase/admin'
 import { hasAnyAdmin, requireAdmin } from '@/lib/admin-auth'
+import { logActivity } from '@/lib/activity-log'
 import { slugify, type ActionState } from '@/lib/cms-types'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -29,8 +30,9 @@ export async function signIn(_prev: ActionState, formData: FormData): Promise<Ac
   if (!EMAIL_PATTERN.test(email) || !password) return { error: 'Enter your email address and password.' }
 
   const supabase = await createClient()
-  const { error } = await supabase.auth.signInWithPassword({ email, password })
+  const { data: signedIn, error } = await supabase.auth.signInWithPassword({ email, password })
   if (error) {
+    await logActivity({ email }, 'login.failed', 'Admin sign-in', email)
     if (error.code === 'email_not_confirmed') return { error: 'Please confirm your email address before signing in.' }
     if (error.status === 429) return { error: 'Too many attempts. Please wait a moment and try again.' }
     if (error.code === 'invalid_credentials' || error.status === 400) return { error: 'Invalid email or password.' }
@@ -44,6 +46,7 @@ export async function signIn(_prev: ActionState, formData: FormData): Promise<Ac
     return { error: 'This account does not have admin access.' }
   }
 
+  await logActivity({ id: signedIn.user?.id, email }, 'login', 'Admin sign-in')
   redirect('/admin')
 }
 
@@ -74,6 +77,10 @@ export async function setupFirstAdmin(_prev: ActionState, formData: FormData): P
 
 export async function signOut() {
   const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  if (user) await logActivity(user, 'logout', 'Admin sign-in')
   await supabase.auth.signOut()
   redirect('/admin/login')
 }
@@ -108,7 +115,7 @@ export async function saveNews(_prev: ActionState, formData: FormData): Promise<
       if (!scheduledFor || Number.isNaN(when.getTime())) return { error: 'Choose a valid date and time to schedule this article.' }
       if (when.getTime() < Date.now() + 60_000) return { error: 'The scheduled time must be in the future. To go live immediately, choose "Publish now".' }
       publishedAt = when.toISOString()
-        } else if (scheduledFor) {
+    } else if (scheduledFor) {
       // Publish with a date chosen by the admin (today or any past date).
       const when = new Date(scheduledFor)
       if (Number.isNaN(when.getTime()) || when.getFullYear() < 2000) return { error: 'Choose a valid article date.' }
@@ -147,15 +154,18 @@ export async function saveNews(_prev: ActionState, formData: FormData): Promise<
     return { error: 'Could not save the article. Please try again.' }
   }
 
+  await logActivity(user, id ? 'news.update' : 'news.create', 'News article', `${title} (${status})`)
   refreshPublicSite()
   redirect(`/admin/news?saved=${scheduled && status === 'published' ? 'scheduled' : status}`)
-    }
+}
 
 export async function deleteNews(formData: FormData) {
-  const { supabase } = await requireAdmin()
+  const { supabase, user } = await requireAdmin()
   const id = text(formData, 'id')
   if (!id) return
+  const { data: post } = await supabase.from('news_posts').select('title').eq('id', id).maybeSingle()
   await supabase.from('news_posts').delete().eq('id', id)
+  await logActivity(user, 'news.delete', 'News article', post?.title ?? id)
   refreshPublicSite()
   redirect('/admin/news?deleted=1')
 }
@@ -163,7 +173,7 @@ export async function deleteNews(formData: FormData) {
 /* ---------- Announcements ---------- */
 
 export async function saveAnnouncement(_prev: ActionState, formData: FormData): Promise<ActionState> {
-  const { supabase } = await requireAdmin()
+  const { supabase, user } = await requireAdmin()
 
   const id = text(formData, 'id')
   const message = text(formData, 'message')
@@ -192,26 +202,29 @@ export async function saveAnnouncement(_prev: ActionState, formData: FormData): 
     return { error: 'Could not save the announcement. Please try again.' }
   }
 
+  await logActivity(user, id ? 'announcement.update' : 'announcement.create', 'Announcement', message.slice(0, 80))
   refreshPublicSite()
   redirect('/admin/announcements?saved=1')
 }
 
 export async function toggleAnnouncement(formData: FormData) {
-  const { supabase } = await requireAdmin()
+  const { supabase, user } = await requireAdmin()
   const id = text(formData, 'id')
   const activate = formData.get('activate') === 'true'
   if (!id) return
 
   if (activate) await supabase.from('announcements').update({ is_active: false }).eq('is_active', true)
   await supabase.from('announcements').update({ is_active: activate, updated_at: new Date().toISOString() }).eq('id', id)
+  await logActivity(user, activate ? 'announcement.activate' : 'announcement.deactivate', 'Announcement', id)
   refreshPublicSite()
 }
 
 export async function deleteAnnouncement(formData: FormData) {
-  const { supabase } = await requireAdmin()
+  const { supabase, user } = await requireAdmin()
   const id = text(formData, 'id')
   if (!id) return
   await supabase.from('announcements').delete().eq('id', id)
+  await logActivity(user, 'announcement.delete', 'Announcement', id)
   refreshPublicSite()
   redirect('/admin/announcements')
 }
@@ -219,7 +232,7 @@ export async function deleteAnnouncement(formData: FormData) {
 /* ---------- Impact stats ---------- */
 
 export async function saveImpactStats(_prev: ActionState, formData: FormData): Promise<ActionState> {
-  const { supabase } = await requireAdmin()
+  const { supabase, user } = await requireAdmin()
 
   const ids = formData.getAll('id').map(String)
   const labels = formData.getAll('label').map((v) => String(v).trim())
@@ -240,29 +253,32 @@ export async function saveImpactStats(_prev: ActionState, formData: FormData): P
   )
   if (results.some((result) => result.error)) return { error: 'Some stats could not be saved. Please try again.' }
 
+  await logActivity(user, 'stats.update', 'Impact stats', `${ids.length} stats saved`)
   refreshPublicSite()
   return { success: 'Impact stats updated. The homepage now shows the new figures.' }
 }
 
 export async function addImpactStat() {
-  const { supabase } = await requireAdmin()
+  const { supabase, user } = await requireAdmin()
   const { count } = await supabase.from('impact_stats').select('id', { count: 'exact', head: true })
   await supabase.from('impact_stats').insert({ label: 'New stat', value: 0, suffix: '', sort_order: (count ?? 0) + 1 })
+  await logActivity(user, 'stats.add', 'Impact stat')
   refreshPublicSite()
 }
 
 export async function deleteImpactStat(formData: FormData) {
-  const { supabase } = await requireAdmin()
+  const { supabase, user } = await requireAdmin()
   const id = text(formData, 'id')
   if (!id) return
   await supabase.from('impact_stats').delete().eq('id', id)
+  await logActivity(user, 'stats.delete', 'Impact stat', id)
   refreshPublicSite()
 }
 
 /* ---------- Admin accounts ---------- */
 
 export async function addAdmin(_prev: ActionState, formData: FormData): Promise<ActionState> {
-  await requireAdmin()
+  const { user } = await requireAdmin()
 
   const email = text(formData, 'email').toLowerCase()
   const password = String(formData.get('password') ?? '')
@@ -276,6 +292,7 @@ export async function addAdmin(_prev: ActionState, formData: FormData): Promise<
   const { error: adminError } = await service.from('admin_users').insert({ user_id: data.user.id, email })
   if (adminError) return { error: 'Account created, but admin access could not be granted.' }
 
+  await logActivity(user, 'admin.add', 'Admin account', email)
   revalidatePath('/admin/admins')
   return { success: `${email} can now sign in at /admin with the temporary password.` }
 }
@@ -286,6 +303,8 @@ export async function removeAdmin(formData: FormData) {
   if (!userId || userId === user.id) return
 
   const service = createServiceClient()
+  const { data: target } = await service.from('admin_users').select('email').eq('user_id', userId).maybeSingle()
   await service.from('admin_users').delete().eq('user_id', userId)
+  await logActivity(user, 'admin.remove', 'Admin account', target?.email ?? userId)
   revalidatePath('/admin/admins')
 }
