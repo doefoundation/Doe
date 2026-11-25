@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { requireAdmin } from '@/lib/admin-auth'
+import { logActivity } from '@/lib/activity-log'
 import { createCampaign, getBrevoConfig, getCampaign, getSubscriberCount, removeContact, sendNow, sendTest, sendTransactional, updateCampaign } from '@/lib/brevo'
 import { getSiteUrl } from '@/lib/site'
 import { splitName } from '@/lib/volunteer'
@@ -62,7 +63,7 @@ export async function sendVolunteerTest(subject: string, message: string, testEm
 
 /** Message to everyone, step 2: sends the tested draft to the whole volunteer list. */
 export async function sendVolunteerCampaign(campaignId: number, subject: string, message: string): Promise<VolunteerActionResult> {
-  await requireAdmin()
+  const { user } = await requireAdmin()
   const config = getBrevoConfig()
   if (!config.volunteersReady) return { ok: false, error: NOT_SET_UP }
   if (!Number.isInteger(campaignId) || campaignId <= 0) return { ok: false, error: 'Send a test email first.' }
@@ -88,12 +89,14 @@ export async function sendVolunteerCampaign(campaignId: number, subject: string,
     const reason = sent.status === 402 ? 'Brevo reports there are not enough sending credits.' : sent.message
     return { ok: false, error: `Brevo could not send the email: ${reason}` }
   }
+
+  await logActivity(user, 'volunteer.broadcast', 'Volunteer email to everyone', subject.trim())
   return { ok: true, message: 'Sent! Brevo is delivering your message to the volunteers now.' }
 }
 
 /** Message to one volunteer: sent straight away. */
 export async function sendVolunteerMessage(volunteerId: string, subject: string, message: string): Promise<VolunteerActionResult> {
-  const { supabase } = await requireAdmin()
+  const { supabase, user } = await requireAdmin()
   const config = getBrevoConfig()
   if (!config.apiKey) return { ok: false, error: NOT_SET_UP }
 
@@ -107,16 +110,18 @@ export async function sendVolunteerMessage(volunteerId: string, subject: string,
   const built = buildMessageEmail({ mode: 'direct', subject: subject.trim(), message, siteUrl: getSiteUrl(), firstName: splitName(volunteer.full_name).firstName })
   const sent = await sendTransactional({ to: { email: volunteer.email, name: volunteer.full_name }, subject: subject.trim(), htmlContent: built.html })
   if (!sent.ok) return { ok: false, error: `Brevo could not send the message: ${sent.message}` }
+
+  await logActivity(user, 'volunteer.message', 'Volunteer message', `${volunteer.full_name}: ${subject.trim()}`)
   return { ok: true, message: `Message sent to ${volunteer.full_name}.` }
 }
 
 /** Removes a volunteer from the dashboard and from the Brevo list. */
 export async function deleteVolunteer(formData: FormData) {
-  const { supabase } = await requireAdmin()
+  const { supabase, user } = await requireAdmin()
   const id = String(formData.get('id') ?? '')
   if (!/^[0-9a-f-]{36}$/i.test(id)) return
 
-  const { data: volunteer } = await supabase.from('volunteers').select('email').eq('id', id).maybeSingle()
+  const { data: volunteer } = await supabase.from('volunteers').select('full_name, email').eq('id', id).maybeSingle()
   if (!volunteer) redirect('/admin/volunteers')
 
   const { error } = await supabase.from('volunteers').delete().eq('id', id)
@@ -125,6 +130,8 @@ export async function deleteVolunteer(formData: FormData) {
     return
   }
 
+  await logActivity(user, 'volunteer.delete', 'Volunteer', volunteer.full_name)
+
   if (getBrevoConfig().apiKey) {
     const removed = await removeContact(volunteer.email)
     if (!removed.ok) console.error('Volunteer: could not remove the contact from Brevo', removed.status)
@@ -132,4 +139,4 @@ export async function deleteVolunteer(formData: FormData) {
 
   revalidatePath('/admin/volunteers')
   redirect('/admin/volunteers?deleted=1')
-  }
+}
