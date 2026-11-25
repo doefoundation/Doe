@@ -28,6 +28,13 @@ const ACTIONS: Record<string, { text: string; tone: string }> = {
   'stats.delete': { text: 'Deleted impact stat', tone: RED },
   'admin.add': { text: 'Added admin', tone: GREEN },
   'admin.remove': { text: 'Removed admin', tone: RED },
+  'volunteer.delete': { text: 'Deleted volunteer', tone: RED },
+  'volunteer.message': { text: 'Messaged a volunteer', tone: BLUE },
+  'volunteer.broadcast': { text: 'Emailed all volunteers', tone: BLUE },
+  'partner.delete': { text: 'Deleted partner', tone: RED },
+  'partner.message': { text: 'Messaged a partner', tone: BLUE },
+  'partner.broadcast': { text: 'Emailed all partners', tone: BLUE },
+  'news.emailed': { text: 'Emailed article to subscribers', tone: BLUE },
 }
 
 const formatter = new Intl.DateTimeFormat('en-GB', {
