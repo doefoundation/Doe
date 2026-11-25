@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { requireAdmin } from '@/lib/admin-auth'
+import { logActivity } from '@/lib/activity-log'
 import { createCampaign, getBrevoConfig, getCampaign, getSubscriberCount, sendNow, sendTest } from '@/lib/brevo'
 import { BREVO_MIRROR, BREVO_UNSUBSCRIBE, buildArticleEmail } from '@/lib/email-template'
 import { getSiteUrl } from '@/lib/site'
@@ -80,7 +81,7 @@ export async function sendArticleTest(articleId: string, testEmail: string, exis
 
 /** Step 2: sends the checked campaign to the whole subscriber list. */
 export async function sendArticleToSubscribers(articleId: string, campaignId: number, sendAgain: boolean): Promise<EmailActionResult> {
-  const { supabase } = await requireAdmin()
+  const { supabase, user } = await requireAdmin()
   const config = getBrevoConfig()
   if (!config.ready) return { ok: false, error: NOT_SET_UP }
   if (!Number.isInteger(campaignId) || campaignId <= 0) return { ok: false, error: 'Send a test email first.' }
@@ -107,6 +108,8 @@ export async function sendArticleToSubscribers(articleId: string, campaignId: nu
     const reason = sent.status === 402 ? 'Brevo reports there are not enough sending credits.' : sent.message
     return { ok: false, error: `Brevo could not send the email: ${reason}` }
   }
+
+  await logActivity(user, 'news.emailed', 'Newsletter', post.title)
 
   const { error } = await supabase.from('news_posts').update({ emailed_at: new Date().toISOString() }).eq('id', post.id)
   if (error) console.error('Could not record that the article was emailed', error.code)
