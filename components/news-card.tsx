@@ -8,7 +8,7 @@ export function NewsCard({ post }: { post: NewsPost }) {
       <div className="relative aspect-[16/10] overflow-hidden bg-[#e9e3d9]">
         {post.cover_image_url ? (
         <>
-  <img src={post.cover_image_url} alt="" aria-hidden="true" loading="lazy" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-30" />
+  <img src={post.cover_image_url} alt="" aria-hidden="true" loading="lazy" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-80 blur-2xl" />
   <img src={post.cover_image_url} alt="" loading="lazy" className="relative h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
 </>  
         ) : (
