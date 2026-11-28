@@ -1,4 +1,5 @@
 import { LOGO_URL } from '@/lib/brand'
+import { orgFooterHtml } from '@/lib/email-social'
 
 export const FONT = 'Arial, Helvetica, sans-serif'
 export const SERIF = "Georgia, 'Times New Roman', serif"
@@ -64,7 +65,7 @@ ${footerHtml}
 }
 
 export const footerLine = (text: string) => `      <p style="margin:0 0 8px 0;font-family:${FONT};font-size:12px;line-height:1.7;color:#777777;">${text}</p>`
-export const org = `      <p style="margin:0;font-family:${FONT};font-size:12px;line-height:1.7;color:#999999;">Davida Omosomi Empowerment Foundation · Abuja, Nigeria</p>`
+export const org = (siteUrl: string) => orgFooterHtml(siteUrl)
 export const link = (href: string, label: string) => `<a href="${href}" style="color:#777777;text-decoration:underline;">${label}</a>`
 
 /** The email a volunteer receives straight after registering. */
@@ -95,7 +96,7 @@ ${stepsHtml}
   const footerHtml = [
     footerLine('You are receiving this email because you registered to volunteer at thedoefoundation.com. If this was not you, please reply to this email and we will remove your details.'),
     footerLine(link(`${e(input.siteUrl)}/privacy-policy`, 'Privacy Policy')),
-    org,
+    org(input.siteUrl),,
   ].join('\n')
 
   return { subject, html: shell({ title: subject, preheader, bodyHtml, footerHtml, siteUrl: input.siteUrl }) }
@@ -129,7 +130,7 @@ ${textToParagraphs(input.message)}
   } else {
     lines.push(footerLine(`Questions? Just reply to this email. &nbsp;·&nbsp; ${link(`${e(input.siteUrl)}/privacy-policy`, 'Privacy Policy')}`))
   }
-  lines.push(org)
+    lines.push(org(input.siteUrl))
 
   return {
     previewText,
