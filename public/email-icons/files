@@ -1,0 +1,1 @@
+import { orgFooterHtml } from '@/lib/email-social'
