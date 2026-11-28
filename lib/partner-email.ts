@@ -33,7 +33,7 @@ ${stepsHtml}
   const footerHtml = [
     footerLine('You are receiving this email because you asked about partnering with the DOE Foundation at thedoefoundation.com. If this was not you, please reply to this email and we will remove your details.'),
     footerLine(link(`${e(input.siteUrl)}/privacy-policy`, 'Privacy Policy')),
-    org,
+    org(input.siteUrl),
   ].join('\n')
 
   return { subject, html: shell({ title: subject, preheader, bodyHtml, footerHtml, siteUrl: input.siteUrl }) }
@@ -70,7 +70,7 @@ ${rows}
         </td>
       </tr></table>`
 
-  const footerHtml = [footerLine('Automatic notification from the Partner with us form.'), org].join('\n')
+  const footerHtml = [footerLine('Automatic notification from the Partner with us form.'), org(input.siteUrl)].join('\n')
   return { subject, html: shell({ title: subject, preheader: `${who} would like to partner with us.`, bodyHtml, footerHtml, siteUrl: input.siteUrl }) }
 }
 
@@ -102,7 +102,7 @@ ${textToParagraphs(input.message)}
   } else {
     lines.push(footerLine(`Questions? Just reply to this email. &nbsp;·&nbsp; ${link(`${e(input.siteUrl)}/privacy-policy`, 'Privacy Policy')}`))
   }
-  lines.push(org)
+    lines.push(org(input.siteUrl))
 
   return {
     previewText,
