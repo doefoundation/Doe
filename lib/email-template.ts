@@ -1,5 +1,6 @@
 import { LOGO_URL } from '@/lib/brand'
 import { summarize } from '@/lib/site'
+import { orgFooterHtml } from '@/lib/email-social'
 
 export type EmailArticle = {
   title: string
@@ -87,7 +88,9 @@ export function buildArticleEmail(article: EmailArticle, options: Options) {
         <a href="${e(options.siteUrl)}/privacy-policy" style="color:#777777;text-decoration:underline;">Privacy Policy</a> &nbsp;·&nbsp;
         <a href="${options.mirrorUrl}" style="color:#777777;text-decoration:underline;">View in browser</a>
       </p>
-      <p style="margin:8px 0 0 0;font-family:${font};font-size:12px;line-height:1.7;color:#999999;">Davida Omosomi Empowerment Foundation · Abuja, Nigeria</p>
+            <div style="margin-top:14px;">
+${orgFooterHtml(options.siteUrl)}
+      </div>
     </td></tr>
   </table>
 </td></tr>
