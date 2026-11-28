@@ -25,7 +25,7 @@ export function NewsArticle({ post, showBackLink = true, shareUrl }: { post: Art
       </h1>
       {post.excerpt && <p className="mt-6 text-lg leading-8 text-[#1a1917]/70 sm:text-xl sm:leading-9">{post.excerpt}</p>}
       {shareUrl && <ShareIconBar url={shareUrl} title={post.title} summary={post.excerpt || undefined} />}
-            {post.cover_image_url && <img src={post.cover_image_url} alt="" className="mt-10 aspect-[4/5] w-full rounded-2xl object-cover object-top sm:aspect-[3/2]" />}
+                  {post.cover_image_url && <img src={post.cover_image_url} alt="" className="mt-10 h-auto w-full rounded-2xl" />}
       <div className="mt-12 border-t border-[#1a1917]/10 pt-10">
         <MarkdownContent source={post.content} />
       </div>
