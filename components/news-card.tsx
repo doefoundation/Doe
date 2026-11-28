@@ -7,7 +7,10 @@ export function NewsCard({ post }: { post: NewsPost }) {
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#1a1917]/10 bg-white">
       <div className="relative aspect-[16/10] overflow-hidden bg-[#e9e3d9]">
         {post.cover_image_url ? (
-          <img src={post.cover_image_url} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <>
+  <img src={post.cover_image_url} alt="" aria-hidden="true" loading="lazy" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-60 blur-2xl" />
+  <img src={post.cover_image_url} alt="" loading="lazy" className="relative h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
+</>  
         ) : (
           <div className="flex h-full items-center justify-center font-serif text-4xl italic text-[#d70063]/40" aria-hidden="true">DOE</div>
         )}
