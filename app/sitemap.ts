@@ -18,10 +18,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${siteUrl}/donate`, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${siteUrl}/partner`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${siteUrl}/volunteer`, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${siteUrl}/news`, lastModified: latestUpdate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${siteUrl}/news`, lastModified: latestUpdate, changeFrequency: 'daily', priority: 0.8 },
     { url: `${siteUrl}/our-team`, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${siteUrl}/privacy-policy`, changeFrequency: 'yearly', priority: 0.2 },
-    { url: `${siteUrl}/cookie-policy`, changeFrequency: 'yearly', priority: 0.2 },
+    { url: `${siteUrl}/privacy-policy`, changeFrequency: 'weekly', priority: 0.2 },
+    { url: `${siteUrl}/cookie-policy`, changeFrequency: 'weekly', priority: 0.2 },
   ]
 
   const articles: MetadataRoute.Sitemap = posts.map((post) => ({
