@@ -1,4 +1,5 @@
 import { LOGO_URL } from '@/lib/brand'
+import { orgFooterHtml } from '@/lib/email-social'
 import { escapeHtml } from '@/lib/volunteer-email'
 
 const FONT = 'Arial, Helvetica, sans-serif'
@@ -78,7 +79,7 @@ ${latest}
     <tr><td style="padding:20px 28px;background-color:#faf8f4;border-top:1px solid #eeeae2;">
       <p style="margin:0 0 8px 0;font-family:${FONT};font-size:12px;line-height:1.7;color:#777777;">You are receiving this email because you subscribed to updates from the DOE Foundation at thedoefoundation.com. If this was not you, reply to this email and we will remove your address. You can stop our newsletters at any time with the unsubscribe link at the bottom of any newsletter.</p>
       <p style="margin:0 0 8px 0;font-family:${FONT};font-size:12px;line-height:1.7;color:#777777;"><a href="${e(site)}/privacy-policy" style="color:#777777;text-decoration:underline;">Privacy Policy</a></p>
-      <p style="margin:0;font-family:${FONT};font-size:12px;line-height:1.7;color:#999999;">Davida Omosomi Empowerment Foundation · Abuja, Nigeria</p>
+      ${orgFooterHtml(site)}
     </td></tr>
   </table>
 </td></tr>
